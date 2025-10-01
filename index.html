@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tower Rush - Play Online</title>
   <link rel="icon" type="image/png" href="https://iimg.su/i/Np6peT">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
   </script>
 
   <style>
-    :root{
+    :root {
       --accent1:#ffcc00;
       --accent2:#ff8800;
       --bg:#0d0f14;
@@ -25,163 +25,113 @@
       --text:#f1f1f1;
       --muted:#9da5b4;
     }
-
-    /* reset + iOS niceties */
-    html,body{height:100%}
     *{box-sizing:border-box;margin:0;padding:0}
-    html { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
-    body{
-      font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+    body {
+      font-family:"Inter",sans-serif;
       background:var(--bg);
       color:var(--text);
-      -webkit-text-size-adjust:100%; /* запрещаем автоувеличение текста на iOS */
       overflow-x:hidden;
-      padding-bottom:env(safe-area-inset-bottom); /* учёт нижней панели iPhone */
-      line-height:1.6;
-    }
-
-    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
-    body{opacity:0; animation:fadeIn .9s ease forwards}
-
-    /* падающие доллары (фон) */
-    #dollars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-1;overflow:hidden}
-    .dollar{position:absolute;top:-50px;font-weight:700;opacity:.8;will-change:transform,color;animation: fall linear infinite, colorShift 3s ease-in-out infinite}
-    @keyframes fall{0%{transform:translateY(-50px)}100%{transform:translateY(110vh)}}
-    @keyframes colorShift{0%{color:#ffcc00}50%{color:#00ff66}100%{color:#ffcc00}}
-
-    /* Заголовок — используем clamp чтобы iOS не масштабировал слишком сильно */
-    h1{
-      font-family:"Montserrat",sans-serif;
-      font-weight:900;
-      text-align:center;
-      margin:18px 18px 8px;
-      color:var(--accent1);
-      text-shadow:0 0 10px var(--accent1),0 0 20px var(--accent2);
-      font-size: clamp(36px, 10vw, 80px); /* min, fluid, max */
-    }
-    @keyframes neonBlink {0%,100%{opacity:1}50%{opacity:.8}}
-    h1{animation:neonBlink 2s infinite alternate;}
-
-    .container{
-      max-width:1000px;
-      margin:0 auto;
-      padding:8px 16px;
       position:relative;
-      top:-12px; /* чуть приподнять контент */
-      padding-bottom: calc(env(safe-area-inset-bottom) + 20px);
+      opacity:0;
+      animation: fadeIn 1.2s ease forwards;
     }
 
-    .card{
-      background:var(--card);
-      border-radius:18px;
-      padding:18px;
-      margin:18px 0;
-      box-shadow:0 8px 20px rgba(0,0,0,0.55);
-    }
-    .card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(255,136,0,0.18)}
-    h2{font-family:"Montserrat",sans-serif;color:var(--accent1);font-size:clamp(18px,4.5vw,28px);margin-bottom:10px}
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
 
-    p,li{color:var(--muted);font-size:clamp(14px,4vw,17px)}
-    ul{padding-left:20px}
+    #dollars { position:fixed; top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:-1; }
+    .dollar {
+      position:absolute; top:-50px; font-weight:bold;
+      animation: fall linear infinite, colorShift 3s ease-in-out infinite;
+      opacity:0.75; user-select:none;
+    }
+    @keyframes fall { 0% {transform:translateY(-50px);} 100% {transform:translateY(110vh);} }
+    @keyframes colorShift {
+      0% {color:#ffcc00; text-shadow:0 0 10px rgba(255,255,0,0.6);}
+      50% {color:#00ff66; text-shadow:0 0 10px rgba(0,255,100,0.6);}
+      100% {color:#ffcc00; text-shadow:0 0 10px rgba(255,255,0,0.6);}
+    }
 
-    /* Кнопки расположение - важная часть */
-    .buttons{
-      display:flex;
-      gap:12px;
-      justify-content:center;
-      align-items:center;
-      flex-wrap:wrap;
-      margin-top:12px;
-    }
-    .buttons a{
-      -webkit-appearance:none;
-      appearance:none;
-      text-decoration:none;
-    }
-    .play-btn{
-      background:linear-gradient(90deg,var(--accent1),var(--accent2));
-      color:#000;
-      font-weight:800;
-      border-radius:50px;
-      padding:12px 26px;
-      font-size:clamp(16px,3.8vw,20px); /* >=16px to prevent iOS zoom */
-      display:inline-block;
-      box-shadow:0 8px 20px rgba(255,200,0,0.25);
-      text-align:center;
-      min-width:140px;
-    }
-    .play-btn:active,.play-btn:hover{transform:translateY(-2px)}
-
-    /* Блок промокода: компактный и адаптивный */
-    .promo{
-      text-align:center;
-      margin:20px 0 8px; /* уменьшил лишний вертикальный провал */
-    }
-    .promo-flex{
-      display:flex;
-      gap:12px;
-      justify-content:center;
-      align-items:center;
-      flex-wrap:wrap;
-      margin-top:8px;
-    }
-    .promo-code{
-      background:#0b0c0e;
-      border:2px solid var(--accent1);
-      color:var(--accent1);
-      padding:10px 18px;
+    h1 {
+      font-family:"Montserrat",sans-serif;
+      font-size:12vw;
       font-weight:900;
-      border-radius:12px;
-      font-size: clamp(16px,4.5vw,22px);
-      letter-spacing:1.5px;
-      min-width:120px;
+      text-align:center;
+      margin:20px 20px 10px 20px;
+      color:var(--accent1);
+      text-shadow:0 0 10px var(--accent1), 0 0 20px var(--accent2);
+      animation: neonBlink 2s infinite alternate;
+    }
+    @keyframes neonBlink {
+      0%, 100% { opacity:1; text-shadow:0 0 10px var(--accent1), 0 0 20px var(--accent2), 0 0 40px var(--accent2); }
+      50% { opacity:0.7; text-shadow:0 0 5px var(--accent1), 0 0 10px var(--accent2); }
+    }
+
+    .container { max-width:1000px; margin:0 auto; padding:10px; position:relative; top:-15px; }
+    .card {
+      background:var(--card); border-radius:20px; padding:20px;
+      margin:20px 0; box-shadow:0 8px 20px rgba(0,0,0,0.6);
+      transition:transform .3s, box-shadow .3s;
+    }
+    .card:hover { transform:translateY(-3px); box-shadow:0 12px 30px rgba(255,136,0,0.2); }
+
+    h2 { font-family:"Montserrat",sans-serif; font-size:5vw; margin-bottom:12px; color:var(--accent1); }
+    p,li { color:var(--muted); line-height:1.6; font-size:4vw; }
+    ul { padding-left:20px; }
+
+    .buttons {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+      margin-top:15px;
+    }
+    .buttons a {
+      flex:1 1 auto;
       text-align:center;
     }
-    .copy-btn{
+    @media (max-width:767px){
+      .buttons { flex-direction:column; gap:12px; }
+      .buttons a { width:100%; }
+    }
+
+    .play-btn {
+      display:inline-block; background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:#000; font-weight:800; font-size:4.5vw; padding:12px 24px;
+      border-radius:50px; text-decoration:none;
+      transition:transform .2s, box-shadow .2s;
+      box-shadow:0 8px 20px rgba(255,200,0,0.4);
+    }
+    .play-btn:hover { transform:scale(1.05); box-shadow:0 12px 26px rgba(255,180,0,0.6); }
+
+    .promo { text-align:center; margin:30px 0 40px 0; }
+    .promo-code {
+      display:inline-block; background:#111; border:2px solid var(--accent1);
+      color:var(--accent1); padding:10px 20px; font-family:"Montserrat",sans-serif;
+      font-weight:800; font-size:5vw; border-radius:12px; margin-bottom:10px;
+    }
+    .copy-btn {
+      display:block; margin:10px auto 8px auto;
       background:linear-gradient(90deg,var(--accent1),var(--accent2));
-      color:#000;
-      border:none;
-      padding:10px 18px;
-      border-radius:10px;
-      font-weight:700;
-      font-size:clamp(15px,4vw,18px);
-      cursor:pointer;
-      box-shadow:0 6px 16px rgba(255,160,0,0.18);
-      -webkit-appearance:none;
+      color:#000; border:none; font-weight:700; font-size:4vw;
+      padding:10px 20px; border-radius:10px; cursor:pointer; transition:0.2s;
     }
-    .copy-btn:active{transform:translateY(1px)}
+    .copy-btn:hover { transform:scale(1.05); }
+    .notification { margin-top:5px; color:#90ee90; display:none; font-size:3.5vw; }
 
-    .promo-note{margin-top:8px;color:#90ee90;font-weight:700;font-size:14px;display:none}
+    .faq-item { margin-bottom:15px; }
+    .faq-item h3 { font-size:4.5vw; margin-bottom:8px; color:var(--accent1); }
+    .faq-item p { font-size:4vw; color:var(--muted); line-height:1.6; }
 
-    /* FAQ */
-    .faq-item{margin-bottom:12px}
-    .faq-item h3{font-size:clamp(16px,4vw,20px);color:var(--accent1);margin-bottom:6px}
-    .faq-item p{font-size:clamp(14px,3.8vw,16px);color:var(--muted)}
-
-    /* маленькая оптимизация для айфона: больше пространства снизу страницы,
-       и гарантируем, что кликабельные размеры >= 44px где нужно */
-    .copy-btn, .play-btn { min-height:44px; line-height:1.1; }
-
-    /* Desktop */
-    @media(min-width:768px){
-      .promo{margin:26px 0 12px}
-      .promo-code{font-size:22px;padding:12px 22px}
-      .copy-btn{font-size:17px;padding:12px 20px}
-    }
-
-    /* Mobile specific: stack promo code + copy vertically, full-width buttons */
-    @media(max-width:767px){
-      .buttons{flex-direction:column; gap:10px}
-      .play-btn{width:100%; max-width:420px}
-      .promo-flex{flex-direction:column}
-      .promo-code{width:100%; max-width:260px}
-      .copy-btn{width:100%; max-width:260px}
-      .container{padding-left:18px;padding-right:18px}
-    }
-
-    /* safe area slight top/bottom paddings for iOS notch devices */
-    @supports(padding: max(0px)) {
-      body{padding-top:env(safe-area-inset-top); padding-bottom:calc(env(safe-area-inset-bottom) + 12px)}
+    @media (min-width:768px){
+      h1 { font-size:80px; }
+      h2 { font-size:26px; }
+      p,li { font-size:17px; }
+      .play-btn { font-size:20px; padding:16px 40px; }
+      .promo-code { font-size:22px; padding:14px 30px; }
+      .copy-btn { font-size:18px; padding:12px 28px; }
+      .notification { font-size:15px; }
+      .faq-item h3 { font-size:20px; }
+      .faq-item p { font-size:16px; }
     }
   </style>
 </head>
@@ -189,27 +139,26 @@
   <div id="dollars"></div>
 
   <h1>Tower Rush</h1>
-
   <div class="container">
+
     <div class="card">
       <h2>О игре</h2>
-      <p>Tower Rush — динамичная игра, где всё решает твоя стратегия. Башня растёт этаж за этажом, множитель увеличивается, а вместе с ним и твой выигрыш. Каждый новый уровень — это риск и шанс на победу.</p>
-
-      <div class="buttons" role="navigation" aria-label="Действия">
-        <a class="play-btn" href="https://1woxno.life/casino/list?open=register&sub1=tg" target="_blank" rel="noopener noreferrer">▶ Играть</a>
-        <a class="play-btn" href="promo.html">🎁 Что за бонусы?</a>
+      <p>
+        Tower Rush — динамичная игра, где всё решает твоя стратегия.  
+        Башня растёт этаж за этажом, множитель увеличивается, а вместе с ним и твой выигрыш.  
+        Каждый новый уровень — это риск и шанс на победу.
+      </p>
+      <div class="buttons">
+        <a href="https://1woxno.life/casino/list?open=register&sub1=tg" target="_blank" rel="noopener noreferrer" class="play-btn">▶ Играть</a>
+        <a href="promo.html" class="play-btn">🎁 Что за бонусы?</a>
       </div>
     </div>
 
-    <div class="promo" aria-live="polite">
+    <div class="promo">
       <h2>Ваш промокод для бонуса</h2>
-
-      <div class="promo-flex">
-        <div class="promo-code" id="promo">ADBLOCK</div>
-        <button class="copy-btn" id="copyBtn">Скопировать промокод</button>
-      </div>
-
-      <div id="notify" class="promo-note" role="status">Промокод скопирован!</div>
+      <div class="promo-code" id="promo">ADBLOCK</div>
+      <button class="copy-btn" onclick="copyPromo()">Скопировать промокод</button>
+      <div id="notify" class="notification">Промокод скопирован!</div>
     </div>
 
     <div class="card">
@@ -240,56 +189,27 @@
   </div>
 
   <script>
-    // copy promo with accessible notification
-    (function(){
-      const copyBtn = document.getElementById('copyBtn');
-      const promoEl = document.getElementById('promo');
-      const notify = document.getElementById('notify');
+    function copyPromo() {
+      const code = document.getElementById("promo").innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const notify = document.getElementById("notify");
+        notify.style.display = "block";
+        setTimeout(() => notify.style.display = "none", 2000);
+      });
+    }
 
-      async function copyPromo() {
-        const code = promoEl.innerText.trim();
-        try {
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            await navigator.clipboard.writeText(code);
-          } else {
-            const ta = document.createElement('textarea');
-            ta.value = code;
-            document.body.appendChild(ta);
-            ta.select();
-            document.execCommand('copy');
-            ta.remove();
-          }
-          notify.style.display = 'block';
-          setTimeout(()=> notify.style.display='none', 1800);
-
-          if (window.gtag) {
-            gtag('event','copy_promo',{event_category:'engagement',event_label:code});
-          }
-        } catch(e){
-          alert('Не удалось скопировать промокод. Выделите и скопируйте вручную: ' + code);
-        }
-      }
-
-      copyBtn.addEventListener('click', copyPromo);
-      promoEl.addEventListener('click', copyPromo);
-    })();
-
-    // dollars animation
-    (function(){
-      const container = document.getElementById('dollars');
-      const num = 14;
-      for (let i=0;i<num;i++){
-        const d = document.createElement('div');
-        d.className = 'dollar';
-        d.innerText = '$';
-        d.style.left = Math.random()*100 + 'vw';
-        d.style.fontSize = (14 + Math.random()*28) + 'px';
-        d.style.animationDuration = (4 + Math.random()*3) + 's';
-        d.style.animationDelay = (Math.random()*6) + 's';
-        container.appendChild(d);
-      }
-    })();
+    const container = document.getElementById("dollars");
+    const num = 15;
+    for (let i=0;i<num;i++) {
+      let dollar = document.createElement("div");
+      dollar.classList.add("dollar");
+      dollar.innerText = "$";
+      dollar.style.left = Math.random()*100 + "vw";
+      dollar.style.fontSize = (18 + Math.random()*22) + "px";
+      dollar.style.animationDuration = (3.5 + Math.random()*2.5) + "s";
+      dollar.style.animationDelay = (Math.random()*6) + "s";
+      container.appendChild(dollar);
+    }
   </script>
 </body>
 </html>
-
