@@ -1,29 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tower Rush — Play Online</title>
-  <meta name="description" content="Tower Rush — азартная игра с растущим множителем. Играй онлайн, строй башню и используй промокод ADBLOCK для приветственных бонусов.">
-  <meta name="keywords" content="Tower Rush, Tower Rush играть онлайн, Tower Rush бонусы, Tower Rush промокод, казино игра Tower Rush">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tower Rush</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Tower Rush — Play Online">
-  <meta property="og:description" content="Tower Rush — азартная игра с растущим множителем. Играй онлайн и используй промокод ADBLOCK для бонуса.">
-  <meta property="og:image" content="favicon.png">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://yourdomain.com">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Tower Rush — Play Online">
-  <meta name="twitter:description" content="Tower Rush — азартная игра с растущим множителем. Забирай бонусы с промокодом ADBLOCK.">
-  <meta name="twitter:image" content="favicon.png">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png">
-
-  <!-- Google Analytics -->
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4BLH9NWKZW"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -33,138 +16,227 @@
   </script>
 
   <style>
+    :root {
+      --accent1:#ffcc00;
+      --accent2:#ff8800;
+      --bg:#0d0f14;
+      --card:#161a21;
+      --text:#f1f1f1;
+      --muted:#9da5b4;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
     body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      color: #fff;
-      text-align: center;
-      overflow-x: hidden;
-      background: #0a0a0a;
+      font-family:"Inter",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
+      position:relative;
+      opacity:0;
+      animation: fadeIn 1.2s ease forwards;
     }
 
-    /* Анимированный фон: падающие значки $ */
-    .background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: -1;
+    @keyframes fadeIn {
+      from {opacity:0;}
+      to {opacity:1;}
+    }
+
+    #dollars {
+      position:fixed;
+      top:0;left:0;width:100%;height:100%;
+      pointer-events:none;
+      overflow:hidden;
+      z-index:-1;
     }
     .dollar {
-      position: absolute;
-      top: -50px;
-      font-size: 28px;
-      font-weight: bold;
-      color: yellow;
-      animation: fall linear infinite, colorchange 3s ease-in-out infinite;
+      position:absolute;
+      top:-50px;
+      font-weight:bold;
+      animation: fall linear infinite, colorShift 3s ease-in-out infinite;
+      opacity:0.75;
+      user-select:none;
+      will-change:transform, color;
     }
     @keyframes fall {
-      0% { top: -50px; }
-      100% { top: 110vh; }
+      0% {transform:translateY(-50px);}
+      100% {transform:translateY(110vh);}
     }
-    @keyframes colorchange {
-      0% { color: yellow; }
-      50% { color: limegreen; }
-      100% { color: yellow; }
+    @keyframes colorShift {
+      0% {color:#ffcc00; text-shadow:0 0 10px rgba(255,255,0,0.6);}
+      50% {color:#00ff66; text-shadow:0 0 10px rgba(0,255,100,0.6);}
+      100% {color:#ffcc00; text-shadow:0 0 10px rgba(255,255,0,0.6);}
     }
 
-    header h1 {
-      font-size: 3.2em;
-      margin: 20px 0;
-      animation: neon 1.5s ease-in-out infinite alternate;
+    h1 {
+      font-family:"Montserrat",sans-serif;
+      font-size:10vw;
+      font-weight:900;
+      text-align:center;
+      margin:40px 20px;
+      color:var(--accent1);
+      text-shadow:0 0 10px var(--accent1), 0 0 20px var(--accent2);
+      animation: neonBlink 2s infinite alternate;
     }
-    @keyframes neon {
-      from { text-shadow: 0 0 5px #ffae00, 0 0 10px #ffae00, 0 0 20px #ff8c00; }
-      to { text-shadow: 0 0 10px #ffae00, 0 0 20px #ff8c00, 0 0 30px #ff4500; }
+    @keyframes neonBlink {
+      0%, 100% {
+        opacity:1;
+        text-shadow:0 0 10px var(--accent1), 0 0 20px var(--accent2), 0 0 40px var(--accent2);
+      }
+      50% {
+        opacity:0.7;
+        text-shadow:0 0 5px var(--accent1), 0 0 10px var(--accent2);
+      }
     }
 
     .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
+      max-width:1000px;
+      margin:0 auto;
+      padding:15px;
     }
+    .card {
+      background:var(--card);
+      border-radius:20px;
+      padding:20px;
+      margin:20px 0;
+      box-shadow:0 8px 20px rgba(0,0,0,0.6);
+      transition:transform .3s, box-shadow .3s;
+    }
+    .card:hover {
+      transform:translateY(-3px);
+      box-shadow:0 12px 30px rgba(255,136,0,0.2);
+    }
+    h2 {
+      font-family:"Montserrat",sans-serif;
+      font-size:5vw;
+      margin-bottom:12px;
+      color:var(--accent1);
+    }
+    p,li {
+      color:var(--muted);
+      line-height:1.6;
+      font-size:4vw;
+    }
+    ul { padding-left:20px; }
 
-    .play-button {
-      display: inline-block;
-      margin: 20px auto;
-      padding: 15px 40px;
-      font-size: 1.2em;
-      color: #fff;
-      background: linear-gradient(90deg, #ffae00, #ff4500);
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.3s;
-      text-decoration: none;
+    .play-btn {
+      display:inline-block;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:#000;
+      font-weight:800;
+      font-size:4.5vw;
+      padding:12px 24px;
+      border-radius:50px;
+      margin-top:15px;
+      text-decoration:none;
+      transition:transform .2s, box-shadow .2s;
+      box-shadow:0 8px 20px rgba(255,200,0,0.4);
     }
-    .play-button:hover {
-      transform: scale(1.05);
+    .play-btn:hover {
+      transform:scale(1.05);
+      box-shadow:0 12px 26px rgba(255,180,0,0.6);
     }
 
     .promo {
-      margin-top: 30px;
-      font-size: 1.2em;
-      background: rgba(255,255,255,0.1);
-      padding: 20px;
-      border-radius: 10px;
-      display: inline-block;
+      text-align:center;
+      margin:40px 0;
+    }
+    .promo-code {
+      display:inline-block;
+      background:#111;
+      border:2px solid var(--accent1);
+      color:var(--accent1);
+      padding:10px 20px;
+      font-family:"Montserrat",sans-serif;
+      font-weight:800;
+      font-size:5vw;
+      border-radius:12px;
+      margin-bottom:15px;
     }
     .copy-btn {
-      margin-top: 10px;
-      padding: 10px 20px;
-      background: #ff8c00;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1em;
-      color: #fff;
+      display:block;
+      margin:0 auto;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:#000;
+      border:none;
+      font-weight:700;
+      font-size:4vw;
+      padding:10px 20px;
+      border-radius:10px;
+      cursor:pointer;
+      transition:0.2s;
     }
-    .copy-btn:hover {
-      background: #ffae00;
+    .copy-btn:hover { transform:scale(1.05); }
+    .notification {
+      margin-top:12px;
+      color:#90ee90;
+      display:none;
+      font-size:3.5vw;
+    }
+
+    @media (min-width:768px){
+      h1 { font-size:72px; }
+      h2 { font-size:26px; }
+      p,li { font-size:17px; }
+      .play-btn { font-size:20px; padding:16px 40px; }
+      .promo-code { font-size:22px; padding:14px 30px; }
+      .copy-btn { font-size:18px; padding:12px 28px; }
+      .notification { font-size:16px; }
     }
   </style>
 </head>
 <body>
-  <div class="background"></div>
+  <div id="dollars"></div>
 
-  <header>
-    <h1>TOWER RUSH</h1>
-  </header>
-
+  <h1>Tower Rush</h1>
   <div class="container">
-    <p><strong>Tower Rush</strong> — это увлекательная азартная игра с растущим множителем. Твоя задача — строить башню и вовремя забирать выигрыш, пока множитель не обнулился. Простые правила, быстрый геймплей и шанс сорвать большой куш делают игру особенно популярной среди новичков и опытных игроков.</p>
-
-    <a href="https://1woxno.life/casino/list?open=register&sub1=tg" class="play-button">PLAY</a>
+    <div class="card">
+      <h2>О игре</h2>
+      <p>
+        Tower Rush — динамичная игра, где всё решает твоя стратегия.  
+        Башня растёт этаж за этажом, множитель увеличивается, а вместе с ним и твой выигрыш.  
+        Каждый новый уровень — это риск и шанс на победу.
+      </p>
+      <a href="https://1woxno.life/casino/list?open=register&sub1=tg" target="_blank" rel="noopener noreferrer" class="play-btn">▶ Играть</a>
+    </div>
 
     <div class="promo">
-      Промокод для бонуса: <strong>ADBLOCK</strong><br>
+      <h2>Ваш промокод для бонуса</h2>
+      <div class="promo-code" id="promo">ADBLOCK</div>
       <button class="copy-btn" onclick="copyPromo()">Скопировать промокод</button>
+      <div id="notify" class="notification">Промокод скопирован!</div>
+    </div>
+
+    <div class="card">
+      <h2>Как играть</h2>
+      <ul>
+        <li>Сделай ставку и начни строить башню.</li>
+        <li>Каждый этаж увеличивает множитель.</li>
+        <li>Реши: продолжать или забрать выигрыш.</li>
+        <li>Используй промокод, чтобы получить дополнительные бонусы.</li>
+      </ul>
     </div>
   </div>
 
   <script>
-    // Падающие доллары
-    function createDollar() {
-      const dollar = document.createElement("div");
-      dollar.classList.add("dollar");
-      dollar.style.left = Math.random() * 100 + "vw";
-      dollar.style.animationDuration = (Math.random() * 2 + 2.5) + "s"; 
-      dollar.innerText = "$";
-      document.querySelector(".background").appendChild(dollar);
-      setTimeout(() => {
-        dollar.remove();
-      }, 6000);
-    }
-    setInterval(createDollar, 300);
-
-    // Копирование промокода
     function copyPromo() {
-      navigator.clipboard.writeText("ADBLOCK").then(() => {
-        alert("Промокод скопирован!");
+      const code = document.getElementById("promo").innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const notify = document.getElementById("notify");
+        notify.style.display = "block";
+        setTimeout(() => notify.style.display = "none", 2000);
       });
+    }
+
+    const container = document.getElementById("dollars");
+    const num = 15;
+    for (let i=0;i<num;i++) {
+      let dollar = document.createElement("div");
+      dollar.classList.add("dollar");
+      dollar.innerText = "$";
+      dollar.style.left = Math.random()*100 + "vw";
+      dollar.style.fontSize = (18 + Math.random()*22) + "px";
+      dollar.style.animationDuration = (5 + Math.random()*4) + "s";
+      dollar.style.animationDelay = (Math.random()*6) + "s";
+      container.appendChild(dollar);
     }
   </script>
 </body>
