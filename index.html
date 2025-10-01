@@ -4,8 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tower Rush - Play Online</title>
+  <link rel="icon" type="image/png" href="https://s.iimg.su/s/01/gNp6peTxXb5Xs0LEn2zPbvy0Mg9sg6LSpOwSbngF.png">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4BLH9NWKZW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4BLH9NWKZW');
+  </script>
 
   <style>
     :root {
@@ -26,114 +35,187 @@
       opacity:0;
       animation: fadeIn 1.2s ease forwards;
     }
-    @keyframes fadeIn {from {opacity:0;} to {opacity:1;}}
-
-    /* фон */
-    #dollars {position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:-1;}
-    .dollar {
-      position:absolute;top:-50px;font-weight:bold;opacity:0.75;user-select:none;
-      animation: fall linear infinite, colorShift 3s ease-in-out infinite;
+    @keyframes fadeIn {
+      from {opacity:0;}
+      to {opacity:1;}
     }
-    @keyframes fall {0%{transform:translateY(-50px);}100%{transform:translateY(110vh);}}
+    #dollars {
+      position:fixed;
+      top:0;left:0;width:100%;height:100%;
+      pointer-events:none;
+      overflow:hidden;
+      z-index:-1;
+    }
+    .dollar {
+      position:absolute;
+      top:-50px;
+      font-weight:bold;
+      animation: fall linear infinite, colorShift 3s ease-in-out infinite;
+      opacity:0.75;
+      user-select:none;
+    }
+    @keyframes fall {
+      0% {transform:translateY(-50px);}
+      100% {transform:translateY(110vh);}
+    }
     @keyframes colorShift {
       0% {color:#ffcc00; text-shadow:0 0 10px rgba(255,255,0,0.6);}
       50% {color:#00ff66; text-shadow:0 0 10px rgba(0,255,100,0.6);}
       100% {color:#ffcc00; text-shadow:0 0 10px rgba(255,255,0,0.6);}
     }
-
-    /* заголовок */
     h1 {
       font-family:"Montserrat",sans-serif;
-      font-size:12vw;font-weight:900;text-align:center;
-      margin:25px 20px 15px;
+      font-size:11vw;
+      font-weight:900;
+      text-align:center;
+      margin:30px 20px 20px;
       color:var(--accent1);
-      text-shadow:0 0 12px var(--accent1),0 0 24px var(--accent2);
+      text-shadow:0 0 10px var(--accent1), 0 0 20px var(--accent2);
       animation: neonBlink 2s infinite alternate;
     }
     @keyframes neonBlink {
-      0%,100% {opacity:1;text-shadow:0 0 12px var(--accent1),0 0 24px var(--accent2),0 0 48px var(--accent2);}
-      50% {opacity:0.7;text-shadow:0 0 6px var(--accent1),0 0 12px var(--accent2);}
+      0%, 100% {
+        opacity:1;
+        text-shadow:0 0 10px var(--accent1), 0 0 20px var(--accent2), 0 0 40px var(--accent2);
+      }
+      50% {
+        opacity:0.7;
+        text-shadow:0 0 5px var(--accent1), 0 0 10px var(--accent2);
+      }
     }
-
-    .container {max-width:1000px;margin:0 auto;padding:10px 15px;}
+    .container {
+      max-width:1000px;
+      margin:0 auto;
+      padding:15px;
+    }
     .card {
-      background:var(--card);border-radius:16px;padding:18px;margin:15px 0;
-      box-shadow:0 6px 16px rgba(0,0,0,0.6);
-      transition:transform .3s,box-shadow .3s;
+      background:var(--card);
+      border-radius:20px;
+      padding:20px;
+      margin:20px 0;
+      box-shadow:0 8px 20px rgba(0,0,0,0.6);
     }
-    .card:hover {transform:translateY(-2px);box-shadow:0 10px 22px rgba(255,136,0,0.2);}
-    h2 {font-family:"Montserrat",sans-serif;font-size:5.5vw;margin-bottom:10px;color:var(--accent1);}
-    p,li {color:var(--muted);line-height:1.6;font-size:4.2vw;}
-    .highlight {color:var(--accent1);font-weight:700;}
-
-    /* кнопки */
-    .btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;justify-content:center;}
-    .btn {
-      display:inline-block;background:linear-gradient(90deg,var(--accent1),var(--accent2));
-      color:#000;font-weight:800;font-size:4.2vw;padding:10px 24px;border-radius:40px;text-decoration:none;
-      transition:transform .2s,box-shadow .2s;box-shadow:0 6px 16px rgba(255,200,0,0.4);
+    h2 {
+      font-family:"Montserrat",sans-serif;
+      font-size:5vw;
+      margin-bottom:12px;
+      color:var(--accent1);
     }
-    .btn:hover{transform:scale(1.05);box-shadow:0 10px 22px rgba(255,180,0,0.6);}
-
-    /* промокод */
-    .promo{text-align:center;margin:30px 0;}
+    p,li {
+      color:var(--muted);
+      line-height:1.6;
+      font-size:4vw;
+    }
+    ul { padding-left:20px; }
+    .buttons {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+      margin-top:15px;
+    }
+    .buttons a {
+      flex:1 1 auto;
+      text-align:center;
+    }
+    .play-btn {
+      display:inline-block;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:#000;
+      font-weight:800;
+      font-size:4.5vw;
+      padding:12px 24px;
+      border-radius:50px;
+      text-decoration:none;
+      transition:transform .2s, box-shadow .2s;
+      box-shadow:0 8px 20px rgba(255,200,0,0.4);
+    }
+    .play-btn:hover {
+      transform:scale(1.05);
+      box-shadow:0 12px 26px rgba(255,180,0,0.6);
+    }
+    .promo {
+      text-align:center;
+      margin:40px 0;
+    }
     .promo-code {
-      display:inline-block;background:#111;border:2px solid var(--accent1);color:var(--accent1);
-      padding:10px 20px;font-family:"Montserrat",sans-serif;font-weight:800;font-size:5vw;
-      border-radius:10px;margin-bottom:12px;
+      display:inline-block;
+      background:#111;
+      border:2px solid var(--accent1);
+      color:var(--accent1);
+      padding:10px 20px;
+      font-family:"Montserrat",sans-serif;
+      font-weight:800;
+      font-size:5vw;
+      border-radius:12px;
+      margin-bottom:15px;
     }
     .copy-btn {
-      display:block;margin:0 auto;background:linear-gradient(90deg,var(--accent1),var(--accent2));
-      color:#000;border:none;font-weight:700;font-size:4vw;
-      padding:10px 22px;border-radius:10px;cursor:pointer;transition:0.2s;
+      display:block;
+      margin:0 auto;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:#000;
+      border:none;
+      font-weight:700;
+      font-size:4vw;
+      padding:10px 20px;
+      border-radius:10px;
+      cursor:pointer;
+      transition:0.2s;
     }
-    .copy-btn:hover{transform:scale(1.05);}
-    .notification{margin-top:10px;color:#90ee90;display:none;font-size:3.6vw;}
-
-    /* аккордеон */
-    .accordion-item {border-bottom:1px solid #333;padding:12px 0;}
-    .accordion-question {
-      cursor:pointer;font-weight:600;color:var(--accent1);
-      display:flex;justify-content:space-between;align-items:center;
-      font-size:4.5vw;
+    .copy-btn:hover { transform:scale(1.05); }
+    .notification {
+      margin-top:12px;
+      color:#90ee90;
+      display:none;
+      font-size:3.5vw;
     }
-    .accordion-answer {
-      max-height:0;overflow:hidden;color:var(--muted);
-      transition:max-height .4s ease;
-      font-size:4vw;line-height:1.5;
+    .faq, .how-to {
+      margin:40px 0;
     }
-    .accordion-item.active .accordion-answer {max-height:500px;margin-top:6px;}
-    .accordion-item.active .accordion-question::after {content:"–";}
-    .accordion-question::after {content:"+";color:var(--accent2);font-weight:900;margin-left:10px;}
-
-    @media(min-width:768px){
-      h1{font-size:90px;margin:30px 20px 20px;}
-      h2{font-size:26px;}
-      p,li{font-size:17px;}
-      .btn{font-size:18px;padding:12px 32px;}
-      .promo-code{font-size:22px;padding:14px 28px;}
-      .copy-btn{font-size:18px;padding:12px 26px;}
-      .notification{font-size:15px;}
-      .accordion-question{font-size:20px;}
-      .accordion-answer{font-size:16px;}
+    details {
+      background:#111;
+      margin:10px 0;
+      padding:12px;
+      border-radius:10px;
+      cursor:pointer;
+    }
+    details summary {
+      font-weight:700;
+      color:var(--accent1);
+      font-size:18px;
+    }
+    details p {
+      margin-top:8px;
+      font-size:15px;
+      color:var(--muted);
+    }
+    @media (min-width:768px){
+      h1 { font-size:80px; margin:40px 20px 10px; }
+      h2 { font-size:28px; }
+      p,li { font-size:18px; }
+      .play-btn { font-size:20px; padding:16px 40px; }
+      .promo-code { font-size:22px; padding:14px 30px; }
+      .copy-btn { font-size:18px; padding:12px 28px; }
+      .notification { font-size:16px; }
     }
   </style>
 </head>
 <body>
   <div id="dollars"></div>
-  <h1>TOWER RUSH</h1>
-  <div class="container">
 
+  <h1>Tower Rush</h1>
+  <div class="container">
     <div class="card">
       <h2>О игре</h2>
       <p>
-        Tower Rush — динамичная игра, где всё решает твоя стратегия.<br>
-        Башня растёт этаж за этажом, <span class="highlight">множитель</span> увеличивается, а вместе с ним и твой <span class="highlight">выигрыш</span>.<br>
-        Каждый новый уровень — это <span class="highlight">риск</span> и шанс на победу.
+        Tower Rush — динамичная игра, где всё решает твоя стратегия.  
+        Башня растёт этаж за этажом, множитель увеличивается, а вместе с ним и твой выигрыш.  
+        Каждый новый уровень — это риск и шанс на победу.
       </p>
-      <div class="btn-row">
-        <a href="https://1woxno.life/casino/list?open=register&sub1=tg" target="_blank" rel="noopener noreferrer" class="btn">▶ Играть</a>
-        <a href="promo.html" class="btn">Что за бонусы?</a>
+      <div class="buttons">
+        <a href="https://1woxno.life/casino/list?open=register&sub1=tg" target="_blank" rel="noopener noreferrer" class="play-btn">▶ Играть</a>
+        <a href="promo.html" class="play-btn">🎁 Что за бонусы?</a>
       </div>
     </div>
 
@@ -144,69 +226,64 @@
       <div id="notify" class="notification">Промокод скопирован!</div>
     </div>
 
-    <div class="card">
+    <div class="card how-to">
       <h2>Как играть</h2>
-      <div class="accordion-item">
-        <div class="accordion-question">Сделай ставку</div>
-        <div class="accordion-answer">Выберите сумму и начните строить башню.</div>
-      </div>
-      <div class="accordion-item">
-        <div class="accordion-question">Строй этажи</div>
-        <div class="accordion-answer">Каждый этаж увеличивает множитель и вашу потенциальную прибыль.</div>
-      </div>
-      <div class="accordion-item">
-        <div class="accordion-question">Рискни или забери</div>
-        <div class="accordion-answer">Решите — продолжать игру или забрать выигрыш прямо сейчас.</div>
-      </div>
-      <div class="accordion-item">
-        <div class="accordion-question">Используй бонусы</div>
-        <div class="accordion-answer">Активируйте промокод, чтобы увеличить шансы на успех.</div>
-      </div>
+      <details>
+        <summary>Сделай ставку и начни строить башню</summary>
+        <p>Башня растёт этаж за этажом, а множитель увеличивается.</p>
+      </details>
+      <details>
+        <summary>Каждый этаж увеличивает множитель</summary>
+        <p>Чем выше башня — тем больше твой потенциальный выигрыш.</p>
+      </details>
+      <details>
+        <summary>Реши: продолжать или забрать выигрыш</summary>
+        <p>Остановись вовремя или рискуй ради ещё большего результата.</p>
+      </details>
+      <details>
+        <summary>Используй промокод</summary>
+        <p>Введи промокод, чтобы получить бонусы и фриспины.</p>
+      </details>
     </div>
 
-    <div class="card">
+    <div class="card faq">
       <h2>FAQ</h2>
-      <div class="accordion-item">
-        <div class="accordion-question">Можно ли играть бесплатно?</div>
-        <div class="accordion-answer">Да, доступен демо-режим для знакомства с механикой игры.</div>
-      </div>
-      <div class="accordion-item">
-        <div class="accordion-question">Какие бонусы доступны?</div>
-        <div class="accordion-answer">При активации промокода вы получаете до +500% на первые депозиты, cashback и фриспины.</div>
-      </div>
-      <div class="accordion-item">
-        <div class="accordion-question">Подходит ли игра для телефона?</div>
-        <div class="accordion-answer">Да, Tower Rush полностью оптимизирован под Android и iOS.</div>
-      </div>
+      <details>
+        <summary>Что такое Tower Rush?</summary>
+        <p>Это динамичная онлайн-игра с растущей башней и множителями.</p>
+      </details>
+      <details>
+        <summary>Где взять промокод?</summary>
+        <p>На этой странице указан действующий промокод для бонусов.</p>
+      </details>
+      <details>
+        <summary>Можно ли играть с телефона?</summary>
+        <p>Да, игра полностью оптимизирована под Android и iPhone.</p>
+      </details>
     </div>
-
   </div>
 
   <script>
     function copyPromo() {
-      const code=document.getElementById("promo").innerText;
-      navigator.clipboard.writeText(code).then(()=>{
-        const notify=document.getElementById("notify");
-        notify.style.display="block";
-        setTimeout(()=>notify.style.display="none",2000);
+      const code = document.getElementById("promo").innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const notify = document.getElementById("notify");
+        notify.style.display = "block";
+        setTimeout(() => notify.style.display = "none", 2000);
       });
     }
-    const container=document.getElementById("dollars");
-    for(let i=0;i<15;i++){
-      let dollar=document.createElement("div");
+    const container = document.getElementById("dollars");
+    const num = 15;
+    for (let i=0;i<num;i++) {
+      let dollar = document.createElement("div");
       dollar.classList.add("dollar");
-      dollar.innerText="$";
-      dollar.style.left=Math.random()*100+"vw";
-      dollar.style.fontSize=(18+Math.random()*22)+"px";
-      dollar.style.animationDuration=(5+Math.random()*4)+"s";
-      dollar.style.animationDelay=(Math.random()*6)+"s";
+      dollar.innerText = "$";
+      dollar.style.left = Math.random()*100 + "vw";
+      dollar.style.fontSize = (18 + Math.random()*22) + "px";
+      dollar.style.animationDuration = (4 + Math.random()*3) + "s";
+      dollar.style.animationDelay = (Math.random()*6) + "s";
       container.appendChild(dollar);
     }
-    document.querySelectorAll(".accordion-question").forEach(q=>{
-      q.addEventListener("click",()=>{
-        q.parentElement.classList.toggle("active");
-      });
-    });
   </script>
 </body>
 </html>
