@@ -102,7 +102,6 @@
       margin:20px 0;
       box-shadow:0 8px 20px rgba(0,0,0,0.6);
       transition:transform .3s, box-shadow .3s;
-      text-align:center;
     }
     .card:hover {
       transform:translateY(-3px);
@@ -121,15 +120,7 @@
     }
     ul { padding-left:20px; }
 
-    .buttons {
-      margin-top:15px;
-      display:flex;
-      gap:12px;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
-
-    .btn {
+    .play-btn, .bonus-btn {
       display:inline-block;
       background:linear-gradient(90deg,var(--accent1),var(--accent2));
       color:#000;
@@ -137,20 +128,62 @@
       font-size:4.5vw;
       padding:12px 24px;
       border-radius:50px;
+      margin-top:15px;
+      margin-right:10px;
       text-decoration:none;
       transition:transform .2s, box-shadow .2s;
       box-shadow:0 8px 20px rgba(255,200,0,0.4);
     }
-    .btn:hover {
+    .play-btn:hover, .bonus-btn:hover {
       transform:scale(1.05);
       box-shadow:0 12px 26px rgba(255,180,0,0.6);
+    }
+
+    .promo {
+      text-align:center;
+      margin:40px 0;
+    }
+    .promo-code {
+      display:inline-block;
+      background:#111;
+      border:2px solid var(--accent1);
+      color:var(--accent1);
+      padding:10px 20px;
+      font-family:"Montserrat",sans-serif;
+      font-weight:800;
+      font-size:5vw;
+      border-radius:12px;
+      margin-bottom:15px;
+    }
+    .copy-btn {
+      display:block;
+      margin:0 auto;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:#000;
+      border:none;
+      font-weight:700;
+      font-size:4vw;
+      padding:10px 20px;
+      border-radius:10px;
+      cursor:pointer;
+      transition:0.2s;
+    }
+    .copy-btn:hover { transform:scale(1.05); }
+    .notification {
+      margin-top:12px;
+      color:#90ee90;
+      display:none;
+      font-size:3.5vw;
     }
 
     @media (min-width:768px){
       h1 { font-size:72px; }
       h2 { font-size:26px; }
       p,li { font-size:17px; }
-      .btn { font-size:20px; padding:16px 40px; }
+      .play-btn, .bonus-btn { font-size:20px; padding:16px 40px; }
+      .promo-code { font-size:22px; padding:14px 30px; }
+      .copy-btn { font-size:18px; padding:12px 28px; }
+      .notification { font-size:16px; }
     }
   </style>
 </head>
@@ -166,12 +199,15 @@
         Башня растёт этаж за этажом, множитель увеличивается, а вместе с ним и твой выигрыш.  
         Каждый новый уровень — это риск и шанс на победу.
       </p>
+      <a href="https://1woxno.life/casino/list?open=register&sub1=tg" target="_blank" rel="noopener noreferrer" class="play-btn">▶ Играть</a>
+      <a href="promo.html" class="bonus-btn">🎁 Что за бонусы?</a>
+    </div>
 
-      <!-- Две кнопки рядом -->
-      <div class="buttons">
-        <a href="https://1woxno.life/casino/list?open=register&sub1=tg" target="_blank" rel="noopener noreferrer" class="btn">▶ Играть</a>
-        <a href="promo.html" class="btn">🎁 Что за бонусы?</a>
-      </div>
+    <div class="promo">
+      <h2>Ваш промокод для бонуса</h2>
+      <div class="promo-code" id="promo">ADBLOCK</div>
+      <button class="copy-btn" onclick="copyPromo()">Скопировать промокод</button>
+      <div id="notify" class="notification">Промокод скопирован!</div>
     </div>
 
     <div class="card">
@@ -186,6 +222,15 @@
   </div>
 
   <script>
+    function copyPromo() {
+      const code = document.getElementById("promo").innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const notify = document.getElementById("notify");
+        notify.style.display = "block";
+        setTimeout(() => notify.style.display = "none", 2000);
+      });
+    }
+
     const container = document.getElementById("dollars");
     const num = 15;
     for (let i=0;i<num;i++) {
@@ -194,7 +239,7 @@
       dollar.innerText = "$";
       dollar.style.left = Math.random()*100 + "vw";
       dollar.style.fontSize = (18 + Math.random()*22) + "px";
-      dollar.style.animationDuration = (4 + Math.random()*3) + "s"; /* чуть быстрее падение */
+      dollar.style.animationDuration = (5 + Math.random()*4) + "s";
       dollar.style.animationDelay = (Math.random()*6) + "s";
       container.appendChild(dollar);
     }
