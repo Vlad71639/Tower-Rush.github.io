@@ -36,31 +36,15 @@
       animation: fadeIn 1.2s ease forwards;
     }
 
-    @keyframes fadeIn {
-      from {opacity:0;}
-      to {opacity:1;}
-    }
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
 
-    #dollars {
-      position:fixed;
-      top:0;left:0;width:100%;height:100%;
-      pointer-events:none;
-      overflow:hidden;
-      z-index:-1;
-    }
+    #dollars { position:fixed; top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:-1; }
     .dollar {
-      position:absolute;
-      top:-50px;
-      font-weight:bold;
+      position:absolute; top:-50px; font-weight:bold;
       animation: fall linear infinite, colorShift 3s ease-in-out infinite;
-      opacity:0.75;
-      user-select:none;
-      will-change:transform, color;
+      opacity:0.75; user-select:none;
     }
-    @keyframes fall {
-      0% {transform:translateY(-50px);}
-      100% {transform:translateY(110vh);}
-    }
+    @keyframes fall { 0% {transform:translateY(-50px);} 100% {transform:translateY(110vh);} }
     @keyframes colorShift {
       0% {color:#ffcc00; text-shadow:0 0 10px rgba(255,255,0,0.6);}
       50% {color:#00ff66; text-shadow:0 0 10px rgba(0,255,100,0.6);}
@@ -69,120 +53,85 @@
 
     h1 {
       font-family:"Montserrat",sans-serif;
-      font-size:12vw;  /* увеличил размер */
+      font-size:12vw;
       font-weight:900;
       text-align:center;
-      margin:20px 20px; /* уменьшил отступ сверху */
+      margin:20px 20px 10px 20px;
       color:var(--accent1);
       text-shadow:0 0 10px var(--accent1), 0 0 20px var(--accent2);
       animation: neonBlink 2s infinite alternate;
     }
     @keyframes neonBlink {
-      0%, 100% {
-        opacity:1;
-        text-shadow:0 0 10px var(--accent1), 0 0 20px var(--accent2), 0 0 40px var(--accent2);
-      }
-      50% {
-        opacity:0.7;
-        text-shadow:0 0 5px var(--accent1), 0 0 10px var(--accent2);
-      }
+      0%, 100% { opacity:1; text-shadow:0 0 10px var(--accent1), 0 0 20px var(--accent2), 0 0 40px var(--accent2); }
+      50% { opacity:0.7; text-shadow:0 0 5px var(--accent1), 0 0 10px var(--accent2); }
     }
 
-    .container {
-      max-width:1000px;
-      margin:0 auto;
-      padding:10px;
-      position:relative;
-      top:-20px; /* весь контент чуть выше */
-    }
+    .container { max-width:1000px; margin:0 auto; padding:10px; position:relative; top:-15px; }
     .card {
-      background:var(--card);
-      border-radius:20px;
-      padding:20px;
-      margin:20px 0;
-      box-shadow:0 8px 20px rgba(0,0,0,0.6);
+      background:var(--card); border-radius:20px; padding:20px;
+      margin:20px 0; box-shadow:0 8px 20px rgba(0,0,0,0.6);
       transition:transform .3s, box-shadow .3s;
     }
-    .card:hover {
-      transform:translateY(-3px);
-      box-shadow:0 12px 30px rgba(255,136,0,0.2);
-    }
-    h2 {
-      font-family:"Montserrat",sans-serif;
-      font-size:5vw;
-      margin-bottom:12px;
-      color:var(--accent1);
-    }
-    p,li {
-      color:var(--muted);
-      line-height:1.6;
-      font-size:4vw;
-    }
+    .card:hover { transform:translateY(-3px); box-shadow:0 12px 30px rgba(255,136,0,0.2); }
+
+    h2 { font-family:"Montserrat",sans-serif; font-size:5vw; margin-bottom:12px; color:var(--accent1); }
+    p,li { color:var(--muted); line-height:1.6; font-size:4vw; }
     ul { padding-left:20px; }
 
-    .play-btn {
-      display:inline-block;
-      background:linear-gradient(90deg,var(--accent1),var(--accent2));
-      color:#000;
-      font-weight:800;
-      font-size:4.5vw;
-      padding:12px 24px;
-      border-radius:50px;
+    .buttons {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
       margin-top:15px;
-      text-decoration:none;
+    }
+    .buttons a {
+      flex:1 1 auto;
+      text-align:center;
+    }
+    @media (max-width:767px){
+      .buttons { flex-direction:column; gap:12px; }
+      .buttons a { width:100%; }
+    }
+
+    .play-btn {
+      display:inline-block; background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:#000; font-weight:800; font-size:4.5vw; padding:12px 24px;
+      border-radius:50px; text-decoration:none;
       transition:transform .2s, box-shadow .2s;
       box-shadow:0 8px 20px rgba(255,200,0,0.4);
     }
-    .play-btn:hover {
-      transform:scale(1.05);
-      box-shadow:0 12px 26px rgba(255,180,0,0.6);
-    }
+    .play-btn:hover { transform:scale(1.05); box-shadow:0 12px 26px rgba(255,180,0,0.6); }
 
-    .promo {
-      text-align:center;
-      margin:40px 0 100px 0; /* больше отступа снизу для мобильных */
-    }
+    .promo { text-align:center; margin:30px 0 40px 0; }
     .promo-code {
-      display:inline-block;
-      background:#111;
-      border:2px solid var(--accent1);
-      color:var(--accent1);
-      padding:10px 20px;
-      font-family:"Montserrat",sans-serif;
-      font-weight:800;
-      font-size:5vw;
-      border-radius:12px;
-      margin-bottom:15px;
+      display:inline-block; background:#111; border:2px solid var(--accent1);
+      color:var(--accent1); padding:10px 20px; font-family:"Montserrat",sans-serif;
+      font-weight:800; font-size:5vw; border-radius:12px; margin-bottom:10px;
     }
     .copy-btn {
-      display:block;
-      margin:20px auto 0 auto;
+      display:block; margin:10px auto 8px auto;
       background:linear-gradient(90deg,var(--accent1),var(--accent2));
-      color:#000;
-      border:none;
-      font-weight:700;
-      font-size:4vw;
-      padding:10px 20px;
-      border-radius:10px;
-      cursor:pointer;
-      transition:0.2s;
+      color:#000; border:none; font-weight:700; font-size:4vw;
+      padding:10px 20px; border-radius:10px; cursor:pointer; transition:0.2s;
     }
     .copy-btn:hover { transform:scale(1.05); }
-    .notification {
-      margin-top:12px;
-      color:#90ee90;
-      display:none;
-      font-size:3.5vw;
-    }
+    .notification { margin-top:5px; color:#90ee90; display:none; font-size:3.5vw; }
+
+    .faq-item { margin-bottom:15px; }
+    .faq-item h3 { font-size:4.5vw; margin-bottom:8px; color:var(--accent1); }
+    .faq-item p { font-size:4vw; color:var(--muted); line-height:1.6; }
 
     @media (min-width:768px){
-      h1 { font-size:80px; } /* на ПК тоже крупнее */
+      h1 { font-size:80px; }
       h2 { font-size:26px; }
       p,li { font-size:17px; }
       .play-btn { font-size:20px; padding:16px 40px; }
       .promo-code { font-size:22px; padding:14px 30px; }
       .copy-btn { font-size:18px; padding:12px 28px; }
-      .notification { font-size:16px; }
+      .notification { font-size:15px; }
+      .faq-item h3 { font-size:20px; }
+      .faq-item p { font-size:16px; }
     }
   </style>
 </head>
@@ -191,6 +140,7 @@
 
   <h1>Tower Rush</h1>
   <div class="container">
+
     <div class="card">
       <h2>О игре</h2>
       <p>
@@ -198,8 +148,10 @@
         Башня растёт этаж за этажом, множитель увеличивается, а вместе с ним и твой выигрыш.  
         Каждый новый уровень — это риск и шанс на победу.
       </p>
-      <a href="https://1woxno.life/casino/list?open=register&sub1=tg" target="_blank" rel="noopener noreferrer" class="play-btn">▶ Играть</a>
-      <a href="promo.html" class="play-btn" style="margin-left:10px;">🎁 Что за бонусы?</a>
+      <div class="buttons">
+        <a href="https://1woxno.life/casino/list?open=register&sub1=tg" target="_blank" rel="noopener noreferrer" class="play-btn">▶ Играть</a>
+        <a href="promo.html" class="play-btn">🎁 Что за бонусы?</a>
+      </div>
     </div>
 
     <div class="promo">
@@ -217,6 +169,22 @@
         <li>Реши: продолжать или забрать выигрыш.</li>
         <li>Используй промокод, чтобы получить дополнительные бонусы.</li>
       </ul>
+    </div>
+
+    <div class="card">
+      <h2>FAQ</h2>
+      <div class="faq-item">
+        <h3>Можно ли играть бесплатно?</h3>
+        <p>Да, игра доступна в демо-режиме. Но выигрыши возможны только при игре на реальные ставки.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Что даёт промокод?</h3>
+        <p>Используя промокод, вы получите приветственные бонусы: дополнительные средства и бесплатные вращения.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Безопасна ли игра?</h3>
+        <p>Игра лицензирована и использует проверенный генератор случайных чисел для честного результата.</p>
+      </div>
     </div>
   </div>
 
@@ -238,14 +206,10 @@
       dollar.innerText = "$";
       dollar.style.left = Math.random()*100 + "vw";
       dollar.style.fontSize = (18 + Math.random()*22) + "px";
-      dollar.style.animationDuration = (4 + Math.random()*3) + "s";
+      dollar.style.animationDuration = (3.5 + Math.random()*2.5) + "s";
       dollar.style.animationDelay = (Math.random()*6) + "s";
       container.appendChild(dollar);
     }
   </script>
 </body>
 </html>
-
-
-
-
