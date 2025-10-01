@@ -22,15 +22,13 @@
   <meta name="twitter:description" content="Tower Rush — азартная онлайн-игра с бонусами и промокодом ADBLOCK. Начни играть прямо сейчас!" />
   <meta name="twitter:image" content="https://s.iimg.su/s/01/gNp6peTxXb5Xs0LEn2zPbvy0Mg9sg6LSpOwSbngF.png" />
 
-  <!-- Favicon + Mobile icons -->
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="https://s.iimg.su/s/01/gNp6peTxXb5Xs0LEn2zPbvy0Mg9sg6LSpOwSbngF.png">
   <link rel="apple-touch-icon" href="https://s.iimg.su/s/01/gNp6peTxXb5Xs0LEn2zPbvy0Mg9sg6LSpOwSbngF.png">
-  <link rel="shortcut icon" href="https://s.iimg.su/s/01/gNp6peTxXb5Xs0LEn2zPbvy0Mg9sg6LSpOwSbngF.png">
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- Google tag (gtag.js) -->
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4BLH9NWKZW"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -196,6 +194,30 @@
       font-size:3.5vw;
     }
 
+    /* FAQ */
+    .faq {
+      margin:40px 0;
+      background:var(--card);
+      border-radius:20px;
+      padding:20px;
+    }
+    .faq h2 {
+      color:var(--accent1);
+      margin-bottom:20px;
+      font-size:6vw;
+    }
+    .faq-item {
+      margin-bottom:15px;
+    }
+    .faq-item h3 {
+      color:var(--accent2);
+      font-size:4.5vw;
+    }
+    .faq-item p {
+      font-size:4vw;
+      color:var(--muted);
+    }
+
     @media (min-width:768px){
       h1 { font-size:72px; }
       h2 { font-size:26px; }
@@ -204,6 +226,9 @@
       .promo-code { font-size:22px; padding:14px 30px; }
       .copy-btn { font-size:18px; padding:12px 28px; }
       .notification { font-size:16px; }
+      .faq h2 { font-size:32px; }
+      .faq-item h3 { font-size:20px; }
+      .faq-item p { font-size:16px; }
     }
   </style>
 </head>
@@ -238,7 +263,58 @@
         <li>Используй промокод, чтобы получить дополнительные бонусы.</li>
       </ul>
     </div>
+
+    <!-- FAQ Section -->
+    <div class="faq">
+      <h2>Часто задаваемые вопросы</h2>
+      <div class="faq-item">
+        <h3>Что такое Tower Rush?</h3>
+        <p>Tower Rush — азартная онлайн-игра, где игрок строит башню, а множитель выигрыша растет с каждым этажом.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Где взять промокод?</h3>
+        <p>Промокод ADBLOCK доступен на нашем сайте и даёт приветственные бонусы новым игрокам.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Можно ли играть с телефона?</h3>
+        <p>Да, Tower Rush полностью оптимизирован для Android и iPhone.</p>
+      </div>
+    </div>
   </div>
+
+  <!-- JSON-LD schema.org FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Что такое Tower Rush?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tower Rush — азартная онлайн-игра, где игрок строит башню, а множитель выигрыша растет с каждым этажом."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Где взять промокод?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Промокод ADBLOCK доступен на нашем сайте и даёт приветственные бонусы новым игрокам."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Можно ли играть с телефона?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Да, Tower Rush полностью оптимизирован для Android и iPhone."
+        }
+      }
+    ]
+  }
+  </script>
 
   <script>
     function copyPromo() {
@@ -265,4 +341,5 @@
   </script>
 </body>
 </html>
+
 
