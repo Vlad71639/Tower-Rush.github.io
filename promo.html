@@ -8,36 +8,59 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="favicon.png">
   <style>
-    /* Локальные правки только для promo.html */
+    /* Стили для promo.html */
     .promo-wrapper {
       display:flex;
       flex-direction:column;
       align-items:center;
       text-align:center;
+      gap:20px;
     }
     .promo-img {
       max-width:320px;
       width:100%;
-      border-radius:16px;
+      border-radius:12px;
       margin:20px auto;
+    }
+    .promo-content {
+      max-width:600px;
     }
     .promo-buttons {
       display:flex;
       flex-direction:column;
-      gap:12px;
+      gap:14px;
       margin-top:20px;
     }
-    .promo-buttons a, .promo-buttons button {
-      width:100%;
-      max-width:300px;
-      margin:0 auto;
+    .btn {
+      display:inline-block;
+      padding:14px 24px;
+      border-radius:10px;
+      font-size:16px;
+      font-weight:600;
+      text-decoration:none;
+      text-align:center;
+      transition:all 0.3s ease;
+      cursor:pointer;
+      color:#fff;
+      background: linear-gradient(135deg, #ff9800, #ff5722);
+      box-shadow:0 4px 12px rgba(0,0,0,0.2);
     }
+    .btn:hover {
+      transform:translateY(-2px);
+      box-shadow:0 6px 16px rgba(0,0,0,0.3);
+    }
+    .notification {
+      display:none;
+      margin-top:10px;
+      color:#4caf50;
+      font-weight:600;
+    }
+
     @media (min-width:768px) {
       .promo-wrapper {
         flex-direction:row;
         text-align:left;
         align-items:flex-start;
-        gap:30px;
       }
       .promo-img {
         max-width:40%;
@@ -51,8 +74,8 @@
         flex-wrap:wrap;
         justify-content:flex-start;
       }
-      .promo-buttons a, .promo-buttons button {
-        max-width:none;
+      .btn {
+        margin-right:12px;
       }
     }
   </style>
@@ -80,9 +103,9 @@
           <h2>Активируйте промокод</h2>
           <div class="promo-code" id="promo">ADBLOCK</div>
           <div class="promo-buttons">
-            <button class="copy-btn" onclick="copyPromo()">Скопировать</button>
-            <a href="https://1woxno.life/casino/list?open=register&sub1=tg" target="_blank" rel="noopener noreferrer" class="play-btn">▶ Активировать</a>
-            <a href="index.html" class="menu-btn">⬅ Вернуться в меню</a>
+            <button class="btn" onclick="copyPromo()">Скопировать промокод</button>
+            <a href="https://1woxno.life/casino/list?open=register&sub1=tg" target="_blank" rel="noopener noreferrer" class="btn">Активировать промокод</a>
+            <a href="index.html" class="btn">Вернуться в меню</a>
           </div>
           <div id="notify" class="notification">Промокод скопирован!</div>
         </div>
@@ -100,6 +123,7 @@
       });
     }
 
+    // Анимация падения $
     const container = document.getElementById("dollars");
     const num = 15;
     for (let i=0;i<num;i++) {
@@ -115,5 +139,4 @@
   </script>
 </body>
 </html>
-
 
