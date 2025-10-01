@@ -64,7 +64,6 @@
     .card:hover {transform:translateY(-2px);box-shadow:0 10px 22px rgba(255,136,0,0.2);}
     h2 {font-family:"Montserrat",sans-serif;font-size:5.5vw;margin-bottom:10px;color:var(--accent1);}
     p,li {color:var(--muted);line-height:1.6;font-size:4.2vw;}
-    ul{padding-left:20px;}
     .highlight {color:var(--accent1);font-weight:700;}
 
     /* кнопки */
@@ -91,21 +90,21 @@
     .copy-btn:hover{transform:scale(1.05);}
     .notification{margin-top:10px;color:#90ee90;display:none;font-size:3.6vw;}
 
-    /* FAQ */
-    .faq-item {border-bottom:1px solid #333;padding:12px 0;}
-    .faq-question {
+    /* аккордеон */
+    .accordion-item {border-bottom:1px solid #333;padding:12px 0;}
+    .accordion-question {
       cursor:pointer;font-weight:600;color:var(--accent1);
       display:flex;justify-content:space-between;align-items:center;
       font-size:4.5vw;
     }
-    .faq-answer {
+    .accordion-answer {
       max-height:0;overflow:hidden;color:var(--muted);
       transition:max-height .4s ease;
       font-size:4vw;line-height:1.5;
     }
-    .faq-item.active .faq-answer {max-height:500px;margin-top:6px;}
-    .faq-item.active .faq-question::after {content:"–";}
-    .faq-question::after {content:"+";color:var(--accent2);font-weight:900;margin-left:10px;}
+    .accordion-item.active .accordion-answer {max-height:500px;margin-top:6px;}
+    .accordion-item.active .accordion-question::after {content:"–";}
+    .accordion-question::after {content:"+";color:var(--accent2);font-weight:900;margin-left:10px;}
 
     @media(min-width:768px){
       h1{font-size:90px;margin:30px 20px 20px;}
@@ -115,8 +114,8 @@
       .promo-code{font-size:22px;padding:14px 28px;}
       .copy-btn{font-size:18px;padding:12px 26px;}
       .notification{font-size:15px;}
-      .faq-question{font-size:20px;}
-      .faq-answer{font-size:16px;}
+      .accordion-question{font-size:20px;}
+      .accordion-answer{font-size:16px;}
     }
   </style>
 </head>
@@ -146,18 +145,38 @@
     </div>
 
     <div class="card">
+      <h2>Как играть</h2>
+      <div class="accordion-item">
+        <div class="accordion-question">Сделай ставку</div>
+        <div class="accordion-answer">Выберите сумму и начните строить башню.</div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-question">Строй этажи</div>
+        <div class="accordion-answer">Каждый этаж увеличивает множитель и вашу потенциальную прибыль.</div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-question">Рискни или забери</div>
+        <div class="accordion-answer">Решите — продолжать игру или забрать выигрыш прямо сейчас.</div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-question">Используй бонусы</div>
+        <div class="accordion-answer">Активируйте промокод, чтобы увеличить шансы на успех.</div>
+      </div>
+    </div>
+
+    <div class="card">
       <h2>FAQ</h2>
-      <div class="faq-item">
-        <div class="faq-question">Можно ли играть бесплатно?</div>
-        <div class="faq-answer">Да, доступен демо-режим для знакомства с механикой игры.</div>
+      <div class="accordion-item">
+        <div class="accordion-question">Можно ли играть бесплатно?</div>
+        <div class="accordion-answer">Да, доступен демо-режим для знакомства с механикой игры.</div>
       </div>
-      <div class="faq-item">
-        <div class="faq-question">Какие бонусы доступны?</div>
-        <div class="faq-answer">При активации промокода вы получаете до +500% на первые депозиты, cashback и фриспины.</div>
+      <div class="accordion-item">
+        <div class="accordion-question">Какие бонусы доступны?</div>
+        <div class="accordion-answer">При активации промокода вы получаете до +500% на первые депозиты, cashback и фриспины.</div>
       </div>
-      <div class="faq-item">
-        <div class="faq-question">Подходит ли игра для телефона?</div>
-        <div class="faq-answer">Да, Tower Rush полностью оптимизирован под Android и iOS.</div>
+      <div class="accordion-item">
+        <div class="accordion-question">Подходит ли игра для телефона?</div>
+        <div class="accordion-answer">Да, Tower Rush полностью оптимизирован под Android и iOS.</div>
       </div>
     </div>
 
@@ -183,7 +202,7 @@
       dollar.style.animationDelay=(Math.random()*6)+"s";
       container.appendChild(dollar);
     }
-    document.querySelectorAll(".faq-question").forEach(q=>{
+    document.querySelectorAll(".accordion-question").forEach(q=>{
       q.addEventListener("click",()=>{
         q.parentElement.classList.toggle("active");
       });
@@ -191,4 +210,3 @@
   </script>
 </body>
 </html>
-
