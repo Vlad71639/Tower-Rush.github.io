@@ -26,174 +26,105 @@
       opacity:0;
       animation: fadeIn 1.2s ease forwards;
     }
+    @keyframes fadeIn {from {opacity:0;} to {opacity:1;}}
 
-    @keyframes fadeIn {
-      from {opacity:0;}
-      to {opacity:1;}
-    }
-
-    #dollars {
-      position:fixed;
-      top:0;left:0;width:100%;height:100%;
-      pointer-events:none;
-      overflow:hidden;
-      z-index:-1;
-    }
+    /* фон */
+    #dollars {position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:-1;}
     .dollar {
-      position:absolute;
-      top:-50px;
-      font-weight:bold;
+      position:absolute;top:-50px;font-weight:bold;opacity:0.75;user-select:none;
       animation: fall linear infinite, colorShift 3s ease-in-out infinite;
-      opacity:0.75;
-      user-select:none;
-      will-change:transform, color;
     }
-    @keyframes fall {
-      0% {transform:translateY(-50px);}
-      100% {transform:translateY(110vh);}
-    }
+    @keyframes fall {0%{transform:translateY(-50px);}100%{transform:translateY(110vh);}}
     @keyframes colorShift {
       0% {color:#ffcc00; text-shadow:0 0 10px rgba(255,255,0,0.6);}
       50% {color:#00ff66; text-shadow:0 0 10px rgba(0,255,100,0.6);}
       100% {color:#ffcc00; text-shadow:0 0 10px rgba(255,255,0,0.6);}
     }
 
+    /* заголовок */
     h1 {
       font-family:"Montserrat",sans-serif;
-      font-size:12vw;
-      font-weight:900;
-      text-align:center;
+      font-size:12vw;font-weight:900;text-align:center;
       margin:25px 20px 15px;
       color:var(--accent1);
-      text-shadow:0 0 12px var(--accent1), 0 0 24px var(--accent2);
+      text-shadow:0 0 12px var(--accent1),0 0 24px var(--accent2);
       animation: neonBlink 2s infinite alternate;
-      line-height:1.1;
     }
     @keyframes neonBlink {
-      0%, 100% {
-        opacity:1;
-        text-shadow:0 0 12px var(--accent1), 0 0 24px var(--accent2), 0 0 48px var(--accent2);
-      }
-      50% {
-        opacity:0.7;
-        text-shadow:0 0 6px var(--accent1), 0 0 12px var(--accent2);
-      }
+      0%,100% {opacity:1;text-shadow:0 0 12px var(--accent1),0 0 24px var(--accent2),0 0 48px var(--accent2);}
+      50% {opacity:0.7;text-shadow:0 0 6px var(--accent1),0 0 12px var(--accent2);}
     }
 
-    .container {
-      max-width:1000px;
-      margin:0 auto;
-      padding:10px 15px;
-    }
+    .container {max-width:1000px;margin:0 auto;padding:10px 15px;}
     .card {
-      background:var(--card);
-      border-radius:16px;
-      padding:18px;
-      margin:15px 0;
+      background:var(--card);border-radius:16px;padding:18px;margin:15px 0;
       box-shadow:0 6px 16px rgba(0,0,0,0.6);
-      transition:transform .3s, box-shadow .3s;
+      transition:transform .3s,box-shadow .3s;
     }
-    .card:hover {
-      transform:translateY(-2px);
-      box-shadow:0 10px 22px rgba(255,136,0,0.2);
-    }
-    h2 {
-      font-family:"Montserrat",sans-serif;
-      font-size:5.5vw;
-      margin-bottom:10px;
-      color:var(--accent1);
-      line-height:1.2;
-    }
-    p,li {
-      color:var(--muted);
-      line-height:1.6;
-      font-size:4.2vw;
-    }
-    ul { padding-left:20px; }
+    .card:hover {transform:translateY(-2px);box-shadow:0 10px 22px rgba(255,136,0,0.2);}
+    h2 {font-family:"Montserrat",sans-serif;font-size:5.5vw;margin-bottom:10px;color:var(--accent1);}
+    p,li {color:var(--muted);line-height:1.6;font-size:4.2vw;}
+    ul{padding-left:20px;}
+    .highlight {color:var(--accent1);font-weight:700;}
 
-    .highlight {
-      color: var(--accent1);
-      font-weight:700;
-    }
-
-    .btn-row {
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:12px;
-      justify-content:center;
-    }
+    /* кнопки */
+    .btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;justify-content:center;}
     .btn {
-      display:inline-block;
-      background:linear-gradient(90deg,var(--accent1),var(--accent2));
-      color:#000;
-      font-weight:800;
-      font-size:4.2vw;
-      padding:10px 24px;
-      border-radius:40px;
-      text-decoration:none;
-      transition:transform .2s, box-shadow .2s;
-      box-shadow:0 6px 16px rgba(255,200,0,0.4);
-      text-align:center;
+      display:inline-block;background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:#000;font-weight:800;font-size:4.2vw;padding:10px 24px;border-radius:40px;text-decoration:none;
+      transition:transform .2s,box-shadow .2s;box-shadow:0 6px 16px rgba(255,200,0,0.4);
     }
-    .btn:hover {
-      transform:scale(1.05);
-      box-shadow:0 10px 22px rgba(255,180,0,0.6);
-    }
+    .btn:hover{transform:scale(1.05);box-shadow:0 10px 22px rgba(255,180,0,0.6);}
 
-    .promo {
-      text-align:center;
-      margin:30px 0;
-    }
+    /* промокод */
+    .promo{text-align:center;margin:30px 0;}
     .promo-code {
-      display:inline-block;
-      background:#111;
-      border:2px solid var(--accent1);
-      color:var(--accent1);
-      padding:10px 20px;
-      font-family:"Montserrat",sans-serif;
-      font-weight:800;
-      font-size:5vw;
-      border-radius:10px;
-      margin-bottom:12px;
+      display:inline-block;background:#111;border:2px solid var(--accent1);color:var(--accent1);
+      padding:10px 20px;font-family:"Montserrat",sans-serif;font-weight:800;font-size:5vw;
+      border-radius:10px;margin-bottom:12px;
     }
     .copy-btn {
-      display:block;
-      margin:0 auto;
-      background:linear-gradient(90deg,var(--accent1),var(--accent2));
-      color:#000;
-      border:none;
-      font-weight:700;
-      font-size:4vw;
-      padding:10px 22px;
-      border-radius:10px;
-      cursor:pointer;
-      transition:0.2s;
+      display:block;margin:0 auto;background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:#000;border:none;font-weight:700;font-size:4vw;
+      padding:10px 22px;border-radius:10px;cursor:pointer;transition:0.2s;
     }
-    .copy-btn:hover { transform:scale(1.05); }
-    .notification {
-      margin-top:10px;
-      color:#90ee90;
-      display:none;
-      font-size:3.6vw;
-    }
+    .copy-btn:hover{transform:scale(1.05);}
+    .notification{margin-top:10px;color:#90ee90;display:none;font-size:3.6vw;}
 
-    @media (min-width:768px){
-      h1 { font-size:90px; margin:30px 20px 20px; }
-      h2 { font-size:26px; }
-      p,li { font-size:17px; }
-      .btn { font-size:18px; padding:12px 32px; }
-      .promo-code { font-size:22px; padding:14px 28px; }
-      .copy-btn { font-size:18px; padding:12px 26px; }
-      .notification { font-size:15px; }
+    /* FAQ */
+    .faq-item {border-bottom:1px solid #333;padding:12px 0;}
+    .faq-question {
+      cursor:pointer;font-weight:600;color:var(--accent1);
+      display:flex;justify-content:space-between;align-items:center;
+      font-size:4.5vw;
+    }
+    .faq-answer {
+      max-height:0;overflow:hidden;color:var(--muted);
+      transition:max-height .4s ease;
+      font-size:4vw;line-height:1.5;
+    }
+    .faq-item.active .faq-answer {max-height:500px;margin-top:6px;}
+    .faq-item.active .faq-question::after {content:"–";}
+    .faq-question::after {content:"+";color:var(--accent2);font-weight:900;margin-left:10px;}
+
+    @media(min-width:768px){
+      h1{font-size:90px;margin:30px 20px 20px;}
+      h2{font-size:26px;}
+      p,li{font-size:17px;}
+      .btn{font-size:18px;padding:12px 32px;}
+      .promo-code{font-size:22px;padding:14px 28px;}
+      .copy-btn{font-size:18px;padding:12px 26px;}
+      .notification{font-size:15px;}
+      .faq-question{font-size:20px;}
+      .faq-answer{font-size:16px;}
     }
   </style>
 </head>
 <body>
   <div id="dollars"></div>
-
   <h1>TOWER RUSH</h1>
   <div class="container">
+
     <div class="card">
       <h2>О игре</h2>
       <p>
@@ -215,45 +146,48 @@
     </div>
 
     <div class="card">
-      <h2>Как играть</h2>
-      <ul>
-        <li>Сделай ставку и начни строить башню.</li>
-        <li>Каждый этаж увеличивает <span class="highlight">множитель</span>.</li>
-        <li>Реши: продолжать или забрать <span class="highlight">выигрыш</span>.</li>
-        <li>Используй <span class="highlight">бонусы</span>, чтобы увеличить шансы на победу.</li>
-      </ul>
+      <h2>FAQ</h2>
+      <div class="faq-item">
+        <div class="faq-question">Можно ли играть бесплатно?</div>
+        <div class="faq-answer">Да, доступен демо-режим для знакомства с механикой игры.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Какие бонусы доступны?</div>
+        <div class="faq-answer">При активации промокода вы получаете до +500% на первые депозиты, cashback и фриспины.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Подходит ли игра для телефона?</div>
+        <div class="faq-answer">Да, Tower Rush полностью оптимизирован под Android и iOS.</div>
+      </div>
     </div>
 
-    <div class="card">
-      <h2>FAQ</h2>
-      <p><b>Можно ли играть бесплатно?</b><br>Да, доступен демо-режим для знакомства с механикой игры.</p>
-      <p><b>Какие <span class="highlight">бонусы</span> доступны?</b><br>При активации промокода вы получаете до +500% на первые депозиты, cashback и фриспины.</p>
-      <p><b>Подходит ли игра для телефона?</b><br>Да, Tower Rush полностью оптимизирован под Android и iOS.</p>
-    </div>
   </div>
 
   <script>
     function copyPromo() {
-      const code = document.getElementById("promo").innerText;
-      navigator.clipboard.writeText(code).then(() => {
-        const notify = document.getElementById("notify");
-        notify.style.display = "block";
-        setTimeout(() => notify.style.display = "none", 2000);
+      const code=document.getElementById("promo").innerText;
+      navigator.clipboard.writeText(code).then(()=>{
+        const notify=document.getElementById("notify");
+        notify.style.display="block";
+        setTimeout(()=>notify.style.display="none",2000);
       });
     }
-
-    const container = document.getElementById("dollars");
-    const num = 15;
-    for (let i=0;i<num;i++) {
-      let dollar = document.createElement("div");
+    const container=document.getElementById("dollars");
+    for(let i=0;i<15;i++){
+      let dollar=document.createElement("div");
       dollar.classList.add("dollar");
-      dollar.innerText = "$";
-      dollar.style.left = Math.random()*100 + "vw";
-      dollar.style.fontSize = (18 + Math.random()*22) + "px";
-      dollar.style.animationDuration = (5 + Math.random()*4) + "s";
-      dollar.style.animationDelay = (Math.random()*6) + "s";
+      dollar.innerText="$";
+      dollar.style.left=Math.random()*100+"vw";
+      dollar.style.fontSize=(18+Math.random()*22)+"px";
+      dollar.style.animationDuration=(5+Math.random()*4)+"s";
+      dollar.style.animationDelay=(Math.random()*6)+"s";
       container.appendChild(dollar);
     }
+    document.querySelectorAll(".faq-question").forEach(q=>{
+      q.addEventListener("click",()=>{
+        q.parentElement.classList.toggle("active");
+      });
+    });
   </script>
 </body>
 </html>
