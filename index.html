@@ -85,5 +85,91 @@
       border-bottom:1px solid #222;
     }
     .accordion-header {
-      background:#1c2028
+      background:#1c2028;
+      padding:15px;
+      font-weight:600;
+      cursor:pointer;
+      color:var(--accent1);
+    }
+    .accordion-content {
+      max-height:0;
+      overflow:hidden;
+      background:#161a21;
+      transition:max-height 0.3s ease;
+      padding:0 15px;
+    }
+    .accordion-content p, .accordion-content li {
+      padding:10px 0;
+      font-size:16px;
+      color:var(--muted);
+    }
+    .accordion-item.active .accordion-content {
+      max-height:500px; /* достаточно для текста */
+      padding:15px;
+    }
+
+    /* адаптив */
+    @media(min-width:768px){
+      h1{font-size:80px;}
+      h2{font-size:28px;}
+      p{font-size:18px;}
+      .btn{font-size:18px;min-width:250px;} /* еще длиннее на ПК */
+    }
+  </style>
+</head>
+<body>
+  <h1>Tower Rush</h1>
+  <div class="container">
+
+    <div class="card">
+      <h2>О игре</h2>
+      <p>
+        Tower Rush — динамичная игра, где всё решает твоя стратегия.  
+        Башня растёт этаж за этажом, множитель увеличивается, а вместе с ним и твой <b class="highlight">выигрыш</b>.  
+        Каждый новый уровень — это <b class="highlight">риск</b> и шанс на победу.
+      </p>
+
+      <div class="buttons">
+        <a href="https://1woxno.life/casino/list?open=register&sub1=tg" target="_blank" rel="noopener noreferrer" class="btn">🎮 Играть</a>
+        <a href="promo.html" class="btn">🎁 Что за бонусы?</a>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-item">
+        <div class="accordion-header">📖 Как играть</div>
+        <div class="accordion-content">
+          <ul>
+            <li>Сделай ставку и начни строить башню.</li>
+            <li>Каждый этаж увеличивает множитель.</li>
+            <li>Реши: продолжать или забрать выигрыш.</li>
+            <li>Используй промокод, чтобы получить дополнительные бонусы.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header">❓ FAQ</div>
+        <div class="accordion-content">
+          <ul>
+            <li><b>Можно ли играть бесплатно?</b> Да, в демо-режиме.</li>
+            <li><b>Какие бонусы даёт промокод?</b> До 500% на пополнения + фриспины.</li>
+            <li><b>Подходит ли игра для телефона?</b> Да, полностью оптимизирована.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const items = document.querySelectorAll(".accordion-item");
+    items.forEach(item=>{
+      item.querySelector(".accordion-header").addEventListener("click",()=>{
+        item.classList.toggle("active");
+      });
+    });
+  </script>
+</body>
+</html>
 
