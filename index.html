@@ -4,31 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tower Rush - Play Online</title>
-
-  <!-- SEO -->
   <meta name="description" content="Tower Rush — динамичная онлайн-игра с растущим множителем. Играй, строй башню, получай бонусы и используй промокод ADBLOCK для приветственного подарка.">
   <meta name="keywords" content="Tower Rush, Tower Rush играть онлайн, Tower Rush бонусы, Tower Rush промокод, казино игра Tower Rush">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Tower Rush - Play Online" />
-  <meta property="og:description" content="Играй в Tower Rush онлайн. Строй башню, увеличивай множитель и получай бонусы. Промокод ADBLOCK для новых игроков." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://example.com/" />
-  <meta property="og:image" content="https://s.iimg.su/s/01/gNp6peTxXb5Xs0LEn2zPbvy0Mg9sg6LSpOwSbngF.png" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Tower Rush - Play Online" />
-  <meta name="twitter:description" content="Tower Rush — азартная онлайн-игра с бонусами и промокодом ADBLOCK. Начни играть прямо сейчас!" />
-  <meta name="twitter:image" content="https://s.iimg.su/s/01/gNp6peTxXb5Xs0LEn2zPbvy0Mg9sg6LSpOwSbngF.png" />
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="https://s.iimg.su/s/01/gNp6peTxXb5Xs0LEn2zPbvy0Mg9sg6LSpOwSbngF.png">
-  <link rel="apple-touch-icon" href="https://s.iimg.su/s/01/gNp6peTxXb5Xs0LEn2zPbvy0Mg9sg6LSpOwSbngF.png">
-
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- Google Analytics -->
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4BLH9NWKZW"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -121,6 +102,7 @@
       margin:20px 0;
       box-shadow:0 8px 20px rgba(0,0,0,0.6);
       transition:transform .3s, box-shadow .3s;
+      text-align:center;
     }
     .card:hover {
       transform:translateY(-3px);
@@ -139,7 +121,15 @@
     }
     ul { padding-left:20px; }
 
-    .play-btn {
+    .buttons {
+      margin-top:15px;
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .btn {
       display:inline-block;
       background:linear-gradient(90deg,var(--accent1),var(--accent2));
       color:#000;
@@ -147,88 +137,20 @@
       font-size:4.5vw;
       padding:12px 24px;
       border-radius:50px;
-      margin-top:15px;
       text-decoration:none;
       transition:transform .2s, box-shadow .2s;
       box-shadow:0 8px 20px rgba(255,200,0,0.4);
     }
-    .play-btn:hover {
+    .btn:hover {
       transform:scale(1.05);
       box-shadow:0 12px 26px rgba(255,180,0,0.6);
-    }
-
-    .promo {
-      text-align:center;
-      margin:40px 0;
-    }
-    .promo-code {
-      display:inline-block;
-      background:#111;
-      border:2px solid var(--accent1);
-      color:var(--accent1);
-      padding:10px 20px;
-      font-family:"Montserrat",sans-serif;
-      font-weight:800;
-      font-size:5vw;
-      border-radius:12px;
-      margin-bottom:15px;
-    }
-    .copy-btn {
-      display:block;
-      margin:0 auto;
-      background:linear-gradient(90deg,var(--accent1),var(--accent2));
-      color:#000;
-      border:none;
-      font-weight:700;
-      font-size:4vw;
-      padding:10px 20px;
-      border-radius:10px;
-      cursor:pointer;
-      transition:0.2s;
-    }
-    .copy-btn:hover { transform:scale(1.05); }
-    .notification {
-      margin-top:12px;
-      color:#90ee90;
-      display:none;
-      font-size:3.5vw;
-    }
-
-    /* FAQ */
-    .faq {
-      margin:40px 0;
-      background:var(--card);
-      border-radius:20px;
-      padding:20px;
-    }
-    .faq h2 {
-      color:var(--accent1);
-      margin-bottom:20px;
-      font-size:6vw;
-    }
-    .faq-item {
-      margin-bottom:15px;
-    }
-    .faq-item h3 {
-      color:var(--accent2);
-      font-size:4.5vw;
-    }
-    .faq-item p {
-      font-size:4vw;
-      color:var(--muted);
     }
 
     @media (min-width:768px){
       h1 { font-size:72px; }
       h2 { font-size:26px; }
       p,li { font-size:17px; }
-      .play-btn { font-size:20px; padding:16px 40px; }
-      .promo-code { font-size:22px; padding:14px 30px; }
-      .copy-btn { font-size:18px; padding:12px 28px; }
-      .notification { font-size:16px; }
-      .faq h2 { font-size:32px; }
-      .faq-item h3 { font-size:20px; }
-      .faq-item p { font-size:16px; }
+      .btn { font-size:20px; padding:16px 40px; }
     }
   </style>
 </head>
@@ -244,14 +166,12 @@
         Башня растёт этаж за этажом, множитель увеличивается, а вместе с ним и твой выигрыш.  
         Каждый новый уровень — это риск и шанс на победу.
       </p>
-      <a href="https://1woxno.life/casino/list?open=register&sub1=tg" target="_blank" rel="noopener noreferrer" class="play-btn">▶ Играть</a>
-    </div>
 
-    <div class="promo">
-      <h2>Ваш промокод для бонуса</h2>
-      <div class="promo-code" id="promo">ADBLOCK</div>
-      <button class="copy-btn" onclick="copyPromo()">Скопировать промокод</button>
-      <div id="notify" class="notification">Промокод скопирован!</div>
+      <!-- Две кнопки рядом -->
+      <div class="buttons">
+        <a href="https://1woxno.life/casino/list?open=register&sub1=tg" target="_blank" rel="noopener noreferrer" class="btn">▶ Играть</a>
+        <a href="promo.html" class="btn">🎁 Что за бонусы?</a>
+      </div>
     </div>
 
     <div class="card">
@@ -263,69 +183,9 @@
         <li>Используй промокод, чтобы получить дополнительные бонусы.</li>
       </ul>
     </div>
-
-    <!-- FAQ Section -->
-    <div class="faq">
-      <h2>Часто задаваемые вопросы</h2>
-      <div class="faq-item">
-        <h3>Что такое Tower Rush?</h3>
-        <p>Tower Rush — азартная онлайн-игра, где игрок строит башню, а множитель выигрыша растет с каждым этажом.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Где взять промокод?</h3>
-        <p>Промокод ADBLOCK доступен на нашем сайте и даёт приветственные бонусы новым игрокам.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Можно ли играть с телефона?</h3>
-        <p>Да, Tower Rush полностью оптимизирован для Android и iPhone.</p>
-      </div>
-    </div>
   </div>
 
-  <!-- JSON-LD schema.org FAQ -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Что такое Tower Rush?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Tower Rush — азартная онлайн-игра, где игрок строит башню, а множитель выигрыша растет с каждым этажом."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Где взять промокод?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Промокод ADBLOCK доступен на нашем сайте и даёт приветственные бонусы новым игрокам."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Можно ли играть с телефона?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Да, Tower Rush полностью оптимизирован для Android и iPhone."
-        }
-      }
-    ]
-  }
-  </script>
-
   <script>
-    function copyPromo() {
-      const code = document.getElementById("promo").innerText;
-      navigator.clipboard.writeText(code).then(() => {
-        const notify = document.getElementById("notify");
-        notify.style.display = "block";
-        setTimeout(() => notify.style.display = "none", 2000);
-      });
-    }
-
     const container = document.getElementById("dollars");
     const num = 15;
     for (let i=0;i<num;i++) {
@@ -334,12 +194,14 @@
       dollar.innerText = "$";
       dollar.style.left = Math.random()*100 + "vw";
       dollar.style.fontSize = (18 + Math.random()*22) + "px";
-      dollar.style.animationDuration = (5 + Math.random()*4) + "s";
+      dollar.style.animationDuration = (4 + Math.random()*3) + "s"; /* чуть быстрее падение */
       dollar.style.animationDelay = (Math.random()*6) + "s";
       container.appendChild(dollar);
     }
   </script>
 </body>
 </html>
+
+
 
 
