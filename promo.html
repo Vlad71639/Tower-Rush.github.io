@@ -9,20 +9,58 @@
   <style>
     :root {
       --accent:#ffb400;
-      --accent-hover:#ffaa00;
+      --accent-strong:#ffaa00;
       --bg:#0d0f14;
       --card:#161a21;
       --text:#f1f1f1;
       --muted:#9da5b4;
+      --ghost: rgba(255,180,0,0.08);
     }
     *{margin:0;padding:0;box-sizing:border-box}
+    html,body{height:100%}
     body {
       font-family:"Inter",sans-serif;
       background:var(--bg);
       color:var(--text);
-      padding:20px;
+      padding:18px;
       line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
+
+    /* small header with back button */
+    .topbar {
+      max-width:1100px;
+      margin:0 auto 14px;
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:12px;
+      padding:6px 8px;
+    }
+    .back-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.06);
+      color:var(--text);
+      padding:8px 12px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:700;
+      font-size:14px;
+      transition:background .14s ease, transform .12s ease, box-shadow .12s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+      backdrop-filter: blur(4px);
+    }
+    .back-btn:hover {
+      background:var(--ghost);
+      transform:translateY(-2px);
+      box-shadow:0 6px 18px rgba(0,0,0,0.45);
+    }
+    .back-btn svg{width:16px;height:16px;display:block}
+
     .container {
       max-width:1100px;
       margin:0 auto;
@@ -31,158 +69,234 @@
       gap:20px;
       align-items:flex-start;
     }
+
     .image {
-      flex:1 1 350px;
+      flex:1 1 360px;
       text-align:center;
     }
     .image img {
-      max-width:100%;
+      width:100%;
+      height:auto;
       border-radius:12px;
-      box-shadow:0 6px 18px rgba(0,0,0,0.4);
+      box-shadow:0 8px 26px rgba(0,0,0,0.45);
+      display:block;
     }
+
     .content {
-      flex:2 1 500px;
+      flex:2 1 520px;
       background:var(--card);
-      padding:20px;
-      border-radius:16px;
-      box-shadow:0 6px 20px rgba(0,0,0,0.3);
+      padding:22px;
+      border-radius:14px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.35);
     }
+
     h1 {
       font-family:"Montserrat",sans-serif;
-      font-size:clamp(24px,5vw,36px);
-      margin-bottom:15px;
+      font-size:clamp(22px,4.6vw,34px);
+      margin-bottom:10px;
       color:var(--accent);
-      text-align:center;
+      text-align:left;
     }
+
+    p { color:var(--muted); margin-bottom:10px; font-size:clamp(14px,3.6vw,16px) }
+
     ul {
-      margin:15px 0;
-      padding-left:20px;
+      margin:10px 0 6px 0;
+      padding-left:22px;
+      color:var(--muted);
     }
-    li { color:var(--muted); margin-bottom:6px; font-size:clamp(14px,4vw,17px); }
+    li { margin-bottom:8px; font-size:clamp(14px,3.8vw,16px) }
+
+    /* promo block */
+    .promo-row {
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
 
     .promo-code {
-      display:inline-block;
       background:#0b0c0e;
-      border:2px solid var(--accent);
+      border:1px solid rgba(255,180,0,0.12);
       color:var(--accent);
-      padding:10px 20px;
+      padding:10px 18px;
       font-weight:800;
-      font-size:clamp(16px,4.5vw,20px);
+      font-size:clamp(16px,4.6vw,20px);
       border-radius:10px;
-      letter-spacing:1px;
-      margin-bottom:12px;
+      letter-spacing:1.2px;
+      min-width:120px;
+      text-align:center;
     }
+
+    /* buttons: monotoNE, subtle */
     .buttons {
       display:flex;
+      gap:10px;
       flex-wrap:wrap;
-      gap:12px;
-      margin-top:12px;
     }
-    button, .btn-link {
-      flex:1;
-      min-width:150px;
-      background:var(--accent);
-      color:#000;
-      border:none;
+    .btn {
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.06);
+      color:var(--text);
+      padding:10px 16px;
+      border-radius:10px;
       font-weight:700;
-      font-size:clamp(14px,4vw,18px);
-      padding:12px 20px;
-      border-radius:8px;
+      font-size:clamp(14px,3.6vw,16px);
       cursor:pointer;
-      transition:background .2s ease, transform .2s ease;
-      text-align:center;
+      transition: background .14s ease, border-color .14s ease, transform .12s ease;
+      min-height:44px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
       text-decoration:none;
     }
-    button:hover, .btn-link:hover { background:var(--accent-hover); transform:translateY(-2px); }
-    .notification {
+    .btn:hover{
+      background:rgba(255,255,255,0.02);
+      border-color:rgba(255,180,0,0.18);
+      transform:translateY(-2px);
+    }
+
+    .btn-cta {
+      background:var(--accent);
+      border:1px solid rgba(0,0,0,0.08);
+      color:#000;
+    }
+    .btn-cta:hover { background:var(--accent-strong); }
+
+    .note {
       margin-top:10px;
       color:#90ee90;
       display:none;
+      font-weight:700;
       font-size:14px;
     }
 
     /* FAQ */
     .faq {
-      max-width:1100px;
-      margin:30px auto 0;
-      background:var(--card);
-      padding:20px;
-      border-radius:16px;
-      box-shadow:0 6px 20px rgba(0,0,0,0.3);
+      margin-top:22px;
+      background:transparent;
+      border-radius:10px;
+      padding:14px;
     }
     .faq h2 {
       font-family:"Montserrat",sans-serif;
-      font-size:clamp(20px,5vw,28px);
-      margin-bottom:15px;
       color:var(--accent);
-      text-align:center;
+      font-size:clamp(18px,4.6vw,22px);
+      margin-bottom:12px;
     }
-    .faq-item { margin-bottom:14px; }
-    .faq-item h3 {
-      font-size:clamp(16px,4vw,20px);
-      color:var(--accent);
-      margin-bottom:6px;
-    }
-    .faq-item p { font-size:clamp(14px,3.8vw,16px); color:var(--muted); }
+    .faq-item { margin-bottom:12px; }
+    .faq-item h3 { font-size:clamp(15px,3.8vw,18px); color:var(--text); margin-bottom:6px; }
+    .faq-item p { color:var(--muted); font-size:clamp(14px,3.6vw,16px) }
 
-    @media(max-width:768px){
-      .container {flex-direction:column; align-items:center;}
-      .content {width:100%;}
-      .buttons {flex-direction:column; width:100%;}
-      button, .btn-link {width:100%;}
+    @media(max-width:880px){
+      .image{order:-1} /* image above on narrow screens if you prefer */
+    }
+    @media(max-width:720px){
+      .container{padding:0 6px}
+      .promo-row{justify-content:center}
+      .buttons{width:100%;flex-direction:column}
+      .btn{width:100%;justify-content:center}
+      .back-btn{font-size:15px;padding:10px 12px}
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="image">
-      <a href="https://iimg.su/i/RV57vZ">
-        <img src="https://s.iimg.su/s/01/gRV57vZxrN0KzrmXkSiQJL9XYSHnQDcq4z7VL74G.jpg" alt="Tower Rush бонусы">
-      </a>
-    </div>
-    <div class="content">
-      <h1>Бонусы за промокод</h1>
-      <p>Вот что вы получите при активации промокода:</p>
-      <ul>
-        <li><b>+500%</b> бонус на первые 4 пополнения</li>
-        <li><b>30%</b> cashback</li>
-        <li><b>+70 FS</b> (фриспинов)</li>
-      </ul>
-      <div class="promo-code" id="promo">ADBLOCK</div>
-      <div class="buttons">
-        <button onclick="copyPromo()">Скопировать промокод</button>
-        <a href="https://1woxno.life/casino/list?open=register&sub1=tg" target="_blank" class="btn-link">Активировать промокод</a>
-      </div>
-      <div id="notify" class="notification">Промокод скопирован!</div>
-    </div>
+  <!-- top small bar with back button -->
+  <div class="topbar" role="navigation" aria-label="Навигация страницы">
+    <a href="index.html" class="back-btn" aria-label="На главную">
+      <!-- simple left arrow icon -->
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+        <path d="M15 6 L9 12 L15 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>На главную</span>
+    </a>
   </div>
 
-  <div class="faq">
-    <h2>FAQ</h2>
-    <div class="faq-item">
-      <h3>Как активировать промокод?</h3>
-      <p>Скопируйте код и введите его при регистрации или пополнении баланса, чтобы получить бонусы.</p>
+  <div class="container">
+    <div class="image" aria-hidden="false">
+      <a href="https://iimg.su/i/RV57vZ" target="_blank" rel="noopener noreferrer" title="Промо картинка">
+        <img src="https://s.iimg.su/s/01/gRV57vZxrN0KzrmXkSiQJL9XYSHnQDcq4z7VL74G.jpg" alt="Tower Rush — промо бонусы">
+      </a>
     </div>
-    <div class="faq-item">
-      <h3>Можно ли использовать промокод несколько раз?</h3>
-      <p>Нет, промокод активируется только один раз на нового игрока.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Какие бонусы я получу?</h3>
-      <p>Дополнительные деньги, фриспины и cashback. Полный список указан выше.</p>
+
+    <div class="content" role="main" aria-labelledby="promo-title">
+      <h1 id="promo-title">Бонусы за промокод</h1>
+
+      <p>Активируйте промокод и получите мощный пакет приветственных бонусов — всё, чтобы начать играть с преимуществом.</p>
+
+      <ul>
+        <li><strong>+500%</strong> бонус на первые 4 пополнения</li>
+        <li><strong>30%</strong> cashback</li>
+        <li><strong>+70 FS</strong> — бесплатные вращения</li>
+      </ul>
+
+      <div class="promo-row" aria-hidden="false">
+        <div class="promo-code" id="promo">ADBLOCK</div>
+
+        <div class="buttons" role="group" aria-label="Действия с промокодом">
+          <button class="btn" id="copyBtn" aria-live="polite">📋 Скопировать</button>
+          <a class="btn btn-cta" href="https://1woxno.life/casino/list?open=register&sub1=tg" target="_blank" rel="noopener noreferrer">🚀 Активировать</a>
+        </div>
+      </div>
+
+      <div id="notify" class="note" role="status" aria-hidden="true">Промокод скопирован!</div>
+
+      <div class="faq" aria-labelledby="faq-title">
+        <h2 id="faq-title">Часто задаваемые вопросы</h2>
+
+        <div class="faq-item">
+          <h3>Как активировать промокод?</h3>
+          <p>Нажмите «Скопировать», вставьте код в поле «Промокод» на странице регистрации/пополнения и завершите операцию — бонусы начислятся автоматически по правилам акции.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Кто может получить бонусы?</h3>
+          <p>Как правило — новые игроки. Точные условия (ограничения, сроки, вейджер) указаны у оператора.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Где проверить условия акции?</h3>
+          <p>Откройте страницу оператора после перехода по кнопке «Активировать», там указаны полные правила и сроки начисления бонусов.</p>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
-    function copyPromo() {
-      const code = document.getElementById("promo").innerText;
-      navigator.clipboard.writeText(code).then(() => {
-        const notify = document.getElementById("notify");
-        notify.style.display = "block";
-        setTimeout(() => notify.style.display = "none", 2000);
-      });
-    }
+    (function(){
+      const promoEl = document.getElementById('promo');
+      const copyBtn = document.getElementById('copyBtn');
+      const notify = document.getElementById('notify');
+
+      async function copyPromo(){
+        const code = promoEl.textContent.trim();
+        try{
+          if(navigator.clipboard && navigator.clipboard.writeText){
+            await navigator.clipboard.writeText(code);
+          } else {
+            const ta = document.createElement('textarea');
+            ta.value = code;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            ta.remove();
+          }
+          notify.setAttribute('aria-hidden','false');
+          notify.style.display = 'block';
+          setTimeout(()=>{ notify.style.display='none'; notify.setAttribute('aria-hidden','true'); }, 2000);
+
+          if (window.gtag) {
+            gtag('event','copy_promo',{event_category:'engagement',event_label:code});
+          }
+        } catch(e){
+          alert('Не удалось скопировать автоматически. Выделите и скопируйте вручную: ' + code);
+        }
+      }
+
+      copyBtn.addEventListener('click', copyPromo);
+      promoEl.addEventListener('click', copyPromo);
+    })();
   </script>
 </body>
 </html>
-
