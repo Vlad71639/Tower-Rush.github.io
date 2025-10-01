@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tower Rush</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4BLH9NWKZW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4BLH9NWKZW');
+  </script>
+
   <style>
     :root {
       --accent1:#ffcc00;
@@ -25,13 +35,11 @@
       animation: fadeIn 1.2s ease forwards;
     }
 
-    /* Анимация появления */
     @keyframes fadeIn {
       from {opacity:0;}
       to {opacity:1;}
     }
 
-    /* Падающие доллары */
     #dollars {
       position:fixed;
       top:0;left:0;width:100%;height:100%;
@@ -58,10 +66,9 @@
       100% {color:#ffcc00; text-shadow:0 0 10px rgba(255,255,0,0.6);}
     }
 
-    /* Заголовок — крупный неон */
     h1 {
       font-family:"Montserrat",sans-serif;
-      font-size:10vw; /* крупнее на мобильных */
+      font-size:10vw;
       font-weight:900;
       text-align:center;
       margin:40px 20px;
@@ -110,7 +117,6 @@
     }
     ul { padding-left:20px; }
 
-    /* Кнопка */
     .play-btn {
       display:inline-block;
       background:linear-gradient(90deg,var(--accent1),var(--accent2));
@@ -129,7 +135,6 @@
       box-shadow:0 12px 26px rgba(255,180,0,0.6);
     }
 
-    /* Промокод */
     .promo {
       text-align:center;
       margin:40px 0;
@@ -167,7 +172,6 @@
       font-size:3.5vw;
     }
 
-    /* Desktop tweaks */
     @media (min-width:768px){
       h1 { font-size:72px; }
       h2 { font-size:26px; }
@@ -180,7 +184,6 @@
   </style>
 </head>
 <body>
-  <!-- Дождь из долларов -->
   <div id="dollars"></div>
 
   <h1>Tower Rush</h1>
@@ -223,21 +226,19 @@
       });
     }
 
-    // Оптимизированный дождь из долларов (быстрее падение)
     const container = document.getElementById("dollars");
-    const num = 15; // оптимально для производительности
+    const num = 15;
     for (let i=0;i<num;i++) {
       let dollar = document.createElement("div");
       dollar.classList.add("dollar");
       dollar.innerText = "$";
       dollar.style.left = Math.random()*100 + "vw";
       dollar.style.fontSize = (18 + Math.random()*22) + "px";
-      dollar.style.animationDuration = (5 + Math.random()*4) + "s"; // быстрее падение
+      dollar.style.animationDuration = (5 + Math.random()*4) + "s";
       dollar.style.animationDelay = (Math.random()*6) + "s";
       container.appendChild(dollar);
     }
   </script>
 </body>
 </html>
-
 
