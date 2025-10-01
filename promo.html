@@ -3,11 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tower Rush — промокод и бонусы</title>
-  <meta name="description" content="Tower Rush промокод ADBLOCK — активируй и получи +500% бонус на первые пополнения, 30% кэшбэк и 70 фриспинов.">
-  <meta name="keywords" content="Tower Rush промокод, Tower Rush бонусы, Tower Rush промокод ADBLOCK, Tower Rush фриспины, Tower Rush играть онлайн">
+  <title>Бонусы Tower Rush — промокод</title>
+  <meta name="description" content="Tower Rush — получи бонусы и промокоды: +500% на первые 4 пополнения, 30% cashback и +70 FS.">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-
   <style>
     :root {
       --accent1:#ffcc00;
@@ -17,118 +15,144 @@
       --text:#f1f1f1;
       --muted:#9da5b4;
     }
-    * {box-sizing:border-box;margin:0;padding:0}
+    * { box-sizing:border-box; margin:0; padding:0; }
     body {
       font-family:"Inter",sans-serif;
       background:var(--bg);
       color:var(--text);
       overflow-x:hidden;
-      padding:20px;
     }
 
-    h1 {
+    header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:15px 20px;
+      background:var(--card);
+      box-shadow:0 2px 6px rgba(0,0,0,0.4);
+    }
+    header h1 {
       font-family:"Montserrat",sans-serif;
-      font-size:8vw;
-      font-weight:900;
-      text-align:center;
-      margin:30px 0;
+      font-size:22px;
       color:var(--accent1);
-      text-shadow:0 0 12px var(--accent1), 0 0 22px var(--accent2);
     }
+    header a {
+      text-decoration:none;
+      color:#000;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      padding:8px 16px;
+      border-radius:8px;
+      font-weight:700;
+      transition:0.2s;
+    }
+    header a:hover { transform:scale(1.05); }
 
-    .promo-container {
-      max-width:900px;
-      margin:0 auto;
+    .container {
+      max-width:1200px;
+      margin:20px auto;
+      padding:20px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:20px;
+      align-items:center;
+    }
+    .container img {
+      max-width:100%;
+      height:auto;
+      border-radius:16px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.6);
+      flex:1 1 350px;
+    }
+    .content {
+      flex:1 1 400px;
       background:var(--card);
       border-radius:20px;
-      padding:25px;
-      box-shadow:0 8px 20px rgba(0,0,0,0.6);
+      padding:20px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.5);
+    }
+    .content h2 {
+      font-family:"Montserrat",sans-serif;
+      color:var(--accent1);
+      font-size:28px;
+      margin-bottom:15px;
+    }
+    .content ul {
+      list-style:disc;
+      padding-left:20px;
+      color:var(--muted);
+      line-height:1.6;
+      font-size:18px;
+    }
+    .content li { margin-bottom:10px; }
+
+    .promo-box {
+      margin-top:20px;
       text-align:center;
     }
-
-    .promo-container img {
-      max-width:100%;
-      border-radius:15px;
-      margin-bottom:20px;
-      box-shadow:0 6px 16px rgba(0,0,0,0.5);
-    }
-
     .promo-code {
       display:inline-block;
       background:#111;
       border:2px solid var(--accent1);
       color:var(--accent1);
       padding:12px 24px;
-      font-family:"Montserrat",sans-serif;
+      font-size:22px;
       font-weight:800;
-      font-size:6vw;
       border-radius:12px;
-      margin:20px 0;
+      margin-bottom:12px;
     }
-
     .copy-btn {
-      display:inline-block;
-      margin-top:10px;
+      display:block;
+      margin:0 auto;
       background:linear-gradient(90deg,var(--accent1),var(--accent2));
       color:#000;
       border:none;
       font-weight:700;
-      font-size:5vw;
-      padding:12px 24px;
+      font-size:18px;
+      padding:10px 22px;
       border-radius:10px;
       cursor:pointer;
-      transition:.2s;
+      transition:0.2s;
     }
-    .copy-btn:hover {transform:scale(1.05);}
-
+    .copy-btn:hover { transform:scale(1.05); }
     .notification {
-      margin-top:12px;
+      margin-top:10px;
       color:#90ee90;
       display:none;
-      font-size:4vw;
+      font-size:16px;
     }
 
-    ul {
-      text-align:left;
-      margin:20px auto;
-      max-width:600px;
-      font-size:4.5vw;
-      color:var(--muted);
-      line-height:1.6;
-    }
-
-    ul li {margin-bottom:12px;}
-
-    @media (min-width:768px){
-      h1 { font-size:52px; }
-      .promo-code { font-size:26px; }
-      .copy-btn { font-size:20px; padding:14px 32px; }
-      .notification { font-size:16px; }
-      ul { font-size:18px; }
+    @media(max-width:768px){
+      header h1 { font-size:18px; }
+      .content h2 { font-size:22px; }
+      .content ul { font-size:16px; }
+      .promo-code { font-size:20px; }
+      .copy-btn { font-size:16px; }
     }
   </style>
 </head>
 <body>
-  <h1>Tower Rush — промокод и бонусы</h1>
+  <header>
+    <h1>🎁 Tower Rush Бонусы</h1>
+    <a href="index.html">🏠 На главную</a>
+  </header>
 
-  <div class="promo-container">
-    <!-- Картинка -->
-    <a href="https://iimg.su/i/RV57vZ" target="_blank" rel="noopener noreferrer" title="Tower Rush промо">
-      <img src="https://s.iimg.su/s/01/gRV57vZxrN0KzrmXkSiQJL9XYSHnQDcq4z7VL74G.jpg" alt="Tower Rush бонусы и промокод" />
-    </a>
+  <div class="container">
+    <img src="https://s.iimg.su/s/01/gRV57vZxrN0KzrmXkSiQJL9XYSHnQDcq4z7VL74G.jpg" alt="Tower Rush бонусы">
 
-    <!-- Промокод -->
-    <div class="promo-code" id="promo">ADBLOCK</div>
-    <button class="copy-btn" onclick="copyPromo()">Скопировать промокод</button>
-    <div id="notify" class="notification">Промокод скопирован!</div>
+    <div class="content">
+      <h2>Вот бонусы, которые игрок получит за ввод промокода</h2>
+      <ul>
+        <li>+500% бонус на первые 4 пополнения</li>
+        <li>30% cashback</li>
+        <li>+70 FS</li>
+      </ul>
 
-    <!-- Список бонусов -->
-    <h2 style="margin-top:25px; color:var(--accent1); font-family:'Montserrat',sans-serif;">Вот бонусы, которые игрок получит за ввод промокода:</h2>
-    <ul>
-      <li><strong>+500%</strong> бонус на первые 4 пополнения</li>
-      <li><strong>30%</strong> cashback</li>
-      <li><strong>+70 FS</strong> (фриспинов)</li>
-    </ul>
+      <div class="promo-box">
+        <div class="promo-code" id="promo">ADBLOCK</div>
+        <button class="copy-btn" onclick="copyPromo()">Скопировать промокод</button>
+        <div id="notify" class="notification">Промокод скопирован!</div>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -143,3 +167,4 @@
   </script>
 </body>
 </html>
+
