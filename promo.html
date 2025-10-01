@@ -113,10 +113,11 @@
       font-size:24px;
       font-weight:900;
       border-radius:14px;
-      margin-bottom:15px;
+      margin-bottom:25px; /* увеличенный отступ */
       letter-spacing:2px;
       text-shadow:0 0 8px rgba(255,200,0,0.6);
     }
+
     .copy-btn {
       display:inline-block;
       background:linear-gradient(90deg,var(--accent1),var(--accent2));
@@ -129,8 +130,24 @@
       cursor:pointer;
       transition:0.25s;
       box-shadow:0 5px 15px rgba(255,150,0,0.4);
+      margin-bottom:20px; /* отступ снизу */
     }
     .copy-btn:hover { transform:scale(1.07); }
+
+    .activate-btn {
+      display:inline-block;
+      background:linear-gradient(90deg,#00ffcc,#0099ff);
+      color:#000;
+      font-weight:800;
+      font-size:20px;
+      padding:14px 30px;
+      border-radius:14px;
+      text-decoration:none;
+      transition:0.25s;
+      box-shadow:0 5px 20px rgba(0,200,255,0.5);
+    }
+    .activate-btn:hover { transform:scale(1.08); }
+
     .notification {
       margin-top:10px;
       color:#90ee90;
@@ -146,6 +163,7 @@
       .content li { font-size:16px; }
       .promo-code { font-size:20px; }
       .copy-btn { font-size:16px; padding:10px 20px; }
+      .activate-btn { font-size:18px; padding:12px 24px; }
     }
   </style>
 </head>
@@ -170,8 +188,14 @@
 
       <div class="promo-box">
         <div class="promo-code" id="promo">ADBLOCK</div>
+
         <button class="copy-btn" onclick="copyPromo()">Скопировать промокод</button>
         <div id="notify" class="notification">✅ Промокод скопирован!</div>
+
+        <!-- новая кнопка -->
+        <a href="https://1woxno.life/casino/list?open=register&sub1=tg" 
+           target="_blank" rel="noopener noreferrer" 
+           class="activate-btn">🚀 Активировать промокод</a>
       </div>
     </div>
   </div>
