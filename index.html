@@ -5,25 +5,199 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tower Rush - Play Online</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="favicon.png">
+
+  <style>
+    :root {
+      --accent1:#ffcc00;
+      --accent2:#ff8800;
+      --bg:#0d0f14;
+      --card:#161a21;
+      --text:#f1f1f1;
+      --muted:#9da5b4;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body {
+      font-family:"Inter",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
+      position:relative;
+      opacity:0;
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {opacity:0;}
+      to {opacity:1;}
+    }
+
+    #dollars {
+      position:fixed;
+      top:0;left:0;width:100%;height:100%;
+      pointer-events:none;
+      overflow:hidden;
+      z-index:-1;
+    }
+    .dollar {
+      position:absolute;
+      top:-50px;
+      font-weight:bold;
+      animation: fall linear infinite, colorShift 3s ease-in-out infinite;
+      opacity:0.75;
+      user-select:none;
+      will-change:transform, color;
+    }
+    @keyframes fall {
+      0% {transform:translateY(-50px);}
+      100% {transform:translateY(110vh);}
+    }
+    @keyframes colorShift {
+      0% {color:#ffcc00; text-shadow:0 0 10px rgba(255,255,0,0.6);}
+      50% {color:#00ff66; text-shadow:0 0 10px rgba(0,255,100,0.6);}
+      100% {color:#ffcc00; text-shadow:0 0 10px rgba(255,255,0,0.6);}
+    }
+
+    h1 {
+      font-family:"Montserrat",sans-serif;
+      font-size:12vw; /* увеличено */
+      font-weight:900;
+      text-align:center;
+      margin:30px 20px 40px;
+      color:var(--accent1);
+      text-shadow:0 0 12px var(--accent1), 0 0 24px var(--accent2);
+      animation: neonBlink 2s infinite alternate;
+      line-height:1.1;
+    }
+    @keyframes neonBlink {
+      0%, 100% {
+        opacity:1;
+        text-shadow:0 0 12px var(--accent1), 0 0 24px var(--accent2), 0 0 48px var(--accent2);
+      }
+      50% {
+        opacity:0.7;
+        text-shadow:0 0 6px var(--accent1), 0 0 12px var(--accent2);
+      }
+    }
+
+    .container {
+      max-width:1000px;
+      margin:0 auto;
+      padding:15px;
+    }
+    .card {
+      background:var(--card);
+      border-radius:20px;
+      padding:24px;
+      margin:20px 0;
+      box-shadow:0 8px 20px rgba(0,0,0,0.6);
+      transition:transform .3s, box-shadow .3s;
+    }
+    .card:hover {
+      transform:translateY(-3px);
+      box-shadow:0 12px 30px rgba(255,136,0,0.2);
+    }
+    h2 {
+      font-family:"Montserrat",sans-serif;
+      font-size:6vw;
+      margin-bottom:14px;
+      color:var(--accent1);
+      line-height:1.2;
+    }
+    p,li {
+      color:var(--muted);
+      line-height:1.7;
+      font-size:4.5vw;
+    }
+    ul { padding-left:20px; }
+
+    .btn-row {
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:20px;
+    }
+    .btn {
+      display:inline-block;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:#000;
+      font-weight:800;
+      font-size:4.5vw;
+      padding:12px 26px;
+      border-radius:50px;
+      text-decoration:none;
+      transition:transform .2s, box-shadow .2s;
+      box-shadow:0 8px 20px rgba(255,200,0,0.4);
+      text-align:center;
+    }
+    .btn:hover {
+      transform:scale(1.05);
+      box-shadow:0 12px 26px rgba(255,180,0,0.6);
+    }
+
+    .promo {
+      text-align:center;
+      margin:40px 0;
+    }
+    .promo-code {
+      display:inline-block;
+      background:#111;
+      border:2px solid var(--accent1);
+      color:var(--accent1);
+      padding:12px 26px;
+      font-family:"Montserrat",sans-serif;
+      font-weight:800;
+      font-size:5vw;
+      border-radius:12px;
+      margin-bottom:15px;
+    }
+    .copy-btn {
+      display:block;
+      margin:0 auto;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:#000;
+      border:none;
+      font-weight:700;
+      font-size:4.2vw;
+      padding:12px 26px;
+      border-radius:12px;
+      cursor:pointer;
+      transition:0.2s;
+    }
+    .copy-btn:hover { transform:scale(1.05); }
+    .notification {
+      margin-top:12px;
+      color:#90ee90;
+      display:none;
+      font-size:3.8vw;
+    }
+
+    @media (min-width:768px){
+      h1 { font-size:96px; margin:40px 20px 50px; }
+      h2 { font-size:28px; }
+      p,li { font-size:18px; }
+      .btn { font-size:20px; padding:14px 36px; }
+      .promo-code { font-size:24px; padding:16px 32px; }
+      .copy-btn { font-size:20px; padding:14px 32px; }
+      .notification { font-size:16px; }
+    }
+  </style>
 </head>
 <body>
   <div id="dollars"></div>
 
-  <h1>Tower Rush</h1>
+  <h1>TOWER RUSH</h1>
   <div class="container">
     <div class="card">
       <h2>О игре</h2>
       <p>
-        Tower Rush — динамичная игра, где всё решает твоя стратегия.  
-        Башня растёт этаж за этажом, множитель увеличивается, а вместе с ним и твой выигрыш.  
+        Tower Rush — динамичная игра, где всё решает твоя стратегия.<br>
+        Башня растёт этаж за этажом, множитель увеличивается, а вместе с ним и твой выигрыш.<br>
         Каждый новый уровень — это риск и шанс на победу.
       </p>
-
-      <div class="buttons">
-        <a href="https://1woxno.life/casino/list?open=register&sub1=tg" target="_blank" rel="noopener noreferrer" class="play-btn">▶ Играть</a>
-        <a href="promo.html" class="bonus-btn">🎁 Что за бонусы?</a>
+      <div class="btn-row">
+        <a href="https://1woxno.life/casino/list?open=register&sub1=tg" target="_blank" rel="noopener noreferrer" class="btn">▶ Играть</a>
+        <a href="promo.html" class="btn">Что за бонусы?</a>
       </div>
     </div>
 
@@ -46,11 +220,9 @@
 
     <div class="card">
       <h2>FAQ</h2>
-      <ul>
-        <li><strong>Можно ли играть бесплатно?</strong> — Да, в демо-режиме.</li>
-        <li><strong>Что даёт промокод?</strong> — Приветственные бонусы и дополнительные награды.</li>
-        <li><strong>Совместима ли игра с телефоном?</strong> — Полностью оптимизирована для iOS и Android.</li>
-      </ul>
+      <p><b>Можно ли играть бесплатно?</b><br>Да, доступен демо-режим для знакомства с механикой игры.</p>
+      <p><b>Какие бонусы доступны?</b><br>При активации промокода вы получаете до +500% на первые депозиты, cashback и фриспины.</p>
+      <p><b>Подходит ли игра для телефона?</b><br>Да, Tower Rush полностью оптимизирован под Android и iOS.</p>
     </div>
   </div>
 
