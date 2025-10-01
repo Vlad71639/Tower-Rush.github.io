@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tower Rush — Play Online</title>
-  <meta name="description" content="Tower Rush — exciting online game with a growing multiplier. Build your tower, collect winnings in time, and use promo code ADBLOCK for bonuses.">
-  <meta name="keywords" content="Tower Rush, Tower Rush play online, Tower Rush bonuses, Tower Rush promo code, casino game Tower Rush">
+  <meta name="description" content="Tower Rush — азартная игра с растущим множителем. Играй онлайн, строй башню и используй промокод ADBLOCK для приветственных бонусов.">
+  <meta name="keywords" content="Tower Rush, Tower Rush играть онлайн, Tower Rush бонусы, Tower Rush промокод, казино игра Tower Rush">
 
-  <!-- Open Graph (для соцсетей) -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Tower Rush — Play Online">
-  <meta property="og:description" content="Tower Rush — exciting game with a growing multiplier. Play online and grab bonuses with promo code ADBLOCK.">
+  <meta property="og:description" content="Tower Rush — азартная игра с растущим множителем. Играй онлайн и используй промокод ADBLOCK для бонуса.">
   <meta property="og:image" content="favicon.png">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://yourdomain.com">
@@ -17,7 +17,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Tower Rush — Play Online">
-  <meta name="twitter:description" content="Tower Rush — exciting game with a growing multiplier. Play online and use promo code ADBLOCK for welcome bonuses.">
+  <meta name="twitter:description" content="Tower Rush — азартная игра с растущим множителем. Забирай бонусы с промокодом ADBLOCK.">
   <meta name="twitter:image" content="favicon.png">
 
   <!-- Favicon -->
@@ -135,13 +135,13 @@
   </header>
 
   <div class="container">
-    <p><strong>Tower Rush</strong> — exciting online game with a growing multiplier. Build your tower, collect winnings in time, and enjoy fast gameplay with a chance to hit big rewards.</p>
+    <p><strong>Tower Rush</strong> — это увлекательная азартная игра с растущим множителем. Твоя задача — строить башню и вовремя забирать выигрыш, пока множитель не обнулился. Простые правила, быстрый геймплей и шанс сорвать большой куш делают игру особенно популярной среди новичков и опытных игроков.</p>
 
     <a href="https://1woxno.life/casino/list?open=register&sub1=tg" class="play-button">PLAY</a>
 
     <div class="promo">
-      Promo code for bonus: <strong>ADBLOCK</strong><br>
-      <button class="copy-btn" onclick="copyPromo()">Copy promo code</button>
+      Промокод для бонуса: <strong>ADBLOCK</strong><br>
+      <button class="copy-btn" onclick="copyPromo()">Скопировать промокод</button>
     </div>
   </div>
 
@@ -151,7 +151,7 @@
       const dollar = document.createElement("div");
       dollar.classList.add("dollar");
       dollar.style.left = Math.random() * 100 + "vw";
-      dollar.style.animationDuration = (Math.random() * 2 + 2.5) + "s"; // ускорил падение
+      dollar.style.animationDuration = (Math.random() * 2 + 2.5) + "s"; 
       dollar.innerText = "$";
       document.querySelector(".background").appendChild(dollar);
       setTimeout(() => {
@@ -163,10 +163,9 @@
     // Копирование промокода
     function copyPromo() {
       navigator.clipboard.writeText("ADBLOCK").then(() => {
-        alert("Promo code copied!");
+        alert("Промокод скопирован!");
       });
     }
   </script>
 </body>
 </html>
-
