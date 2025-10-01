@@ -13,7 +13,7 @@
       --bg:#0d0f14;
       --card:#161a21;
       --text:#f1f1f1;
-      --muted:#9da5b4;
+      --muted:#c5cad5;
     }
     * { box-sizing:border-box; margin:0; padding:0; }
     body {
@@ -21,6 +21,7 @@
       background:var(--bg);
       color:var(--text);
       overflow-x:hidden;
+      line-height:1.7;
     }
 
     header {
@@ -49,41 +50,55 @@
 
     .container {
       max-width:1200px;
-      margin:20px auto;
+      margin:30px auto;
       padding:20px;
       display:flex;
-      flex-wrap:wrap;
-      gap:20px;
-      align-items:center;
+      gap:30px;
+      align-items:flex-start;
     }
-    .container img {
-      max-width:100%;
+    .image-box {
+      flex:1 1 45%;
+    }
+    .image-box img {
+      width:100%;
       height:auto;
-      border-radius:16px;
-      box-shadow:0 8px 20px rgba(0,0,0,0.6);
-      flex:1 1 350px;
+      border-radius:20px;
+      box-shadow:0 8px 25px rgba(0,0,0,0.6);
     }
+
     .content {
-      flex:1 1 400px;
+      flex:1 1 55%;
       background:var(--card);
       border-radius:20px;
-      padding:20px;
+      padding:30px;
       box-shadow:0 8px 20px rgba(0,0,0,0.5);
     }
     .content h2 {
       font-family:"Montserrat",sans-serif;
       color:var(--accent1);
-      font-size:28px;
-      margin-bottom:15px;
+      font-size:30px;
+      margin-bottom:20px;
+      text-align:left;
     }
     .content ul {
-      list-style:disc;
-      padding-left:20px;
-      color:var(--muted);
-      line-height:1.6;
-      font-size:18px;
+      list-style:none;
+      padding:0;
+      margin-bottom:20px;
     }
-    .content li { margin-bottom:10px; }
+    .content li {
+      margin-bottom:15px;
+      font-size:18px;
+      color:var(--muted);
+      padding-left:25px;
+      position:relative;
+    }
+    .content li::before {
+      content:"✨";
+      position:absolute;
+      left:0;
+      top:0;
+      color:var(--accent1);
+    }
 
     .promo-box {
       margin-top:20px;
@@ -94,39 +109,43 @@
       background:#111;
       border:2px solid var(--accent1);
       color:var(--accent1);
-      padding:12px 24px;
-      font-size:22px;
-      font-weight:800;
-      border-radius:12px;
-      margin-bottom:12px;
+      padding:14px 28px;
+      font-size:24px;
+      font-weight:900;
+      border-radius:14px;
+      margin-bottom:15px;
+      letter-spacing:2px;
+      text-shadow:0 0 8px rgba(255,200,0,0.6);
     }
     .copy-btn {
-      display:block;
-      margin:0 auto;
+      display:inline-block;
       background:linear-gradient(90deg,var(--accent1),var(--accent2));
       color:#000;
       border:none;
       font-weight:700;
       font-size:18px;
-      padding:10px 22px;
-      border-radius:10px;
+      padding:12px 26px;
+      border-radius:12px;
       cursor:pointer;
-      transition:0.2s;
+      transition:0.25s;
+      box-shadow:0 5px 15px rgba(255,150,0,0.4);
     }
-    .copy-btn:hover { transform:scale(1.05); }
+    .copy-btn:hover { transform:scale(1.07); }
     .notification {
       margin-top:10px;
       color:#90ee90;
       display:none;
       font-size:16px;
+      font-weight:600;
     }
 
     @media(max-width:768px){
-      header h1 { font-size:18px; }
-      .content h2 { font-size:22px; }
-      .content ul { font-size:16px; }
+      .container { flex-direction:column; align-items:center; }
+      .content { padding:20px; }
+      .content h2 { font-size:24px; text-align:center; }
+      .content li { font-size:16px; }
       .promo-code { font-size:20px; }
-      .copy-btn { font-size:16px; }
+      .copy-btn { font-size:16px; padding:10px 20px; }
     }
   </style>
 </head>
@@ -137,20 +156,22 @@
   </header>
 
   <div class="container">
-    <img src="https://s.iimg.su/s/01/gRV57vZxrN0KzrmXkSiQJL9XYSHnQDcq4z7VL74G.jpg" alt="Tower Rush бонусы">
+    <div class="image-box">
+      <img src="https://s.iimg.su/s/01/gRV57vZxrN0KzrmXkSiQJL9XYSHnQDcq4z7VL74G.jpg" alt="Tower Rush бонусы">
+    </div>
 
     <div class="content">
-      <h2>Вот бонусы, которые игрок получит за ввод промокода</h2>
+      <h2>Подарки для новых игроков</h2>
       <ul>
-        <li>+500% бонус на первые 4 пополнения</li>
-        <li>30% cashback</li>
-        <li>+70 FS</li>
+        <li><strong>+500%</strong> бонус на первые 4 пополнения</li>
+        <li><strong>30% cashback</strong> — возврат части проигранных средств</li>
+        <li><strong>+70 FS</strong> — бесплатные вращения</li>
       </ul>
 
       <div class="promo-box">
         <div class="promo-code" id="promo">ADBLOCK</div>
         <button class="copy-btn" onclick="copyPromo()">Скопировать промокод</button>
-        <div id="notify" class="notification">Промокод скопирован!</div>
+        <div id="notify" class="notification">✅ Промокод скопирован!</div>
       </div>
     </div>
   </div>
