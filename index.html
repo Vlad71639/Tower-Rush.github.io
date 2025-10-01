@@ -69,10 +69,10 @@
 
     h1 {
       font-family:"Montserrat",sans-serif;
-      font-size:12vw;  /* увеличил размер */
+      font-size:12vw;
       font-weight:900;
       text-align:center;
-      margin:20px 20px; /* уменьшил отступ сверху */
+      margin:20px 20px;
       color:var(--accent1);
       text-shadow:0 0 10px var(--accent1), 0 0 20px var(--accent2);
       animation: neonBlink 2s infinite alternate;
@@ -93,7 +93,7 @@
       margin:0 auto;
       padding:10px;
       position:relative;
-      top:-20px; /* весь контент чуть выше */
+      top:-20px;
     }
     .card {
       background:var(--card);
@@ -140,7 +140,7 @@
 
     .promo {
       text-align:center;
-      margin:40px 0 100px 0; /* больше отступа снизу для мобильных */
+      margin:40px 0 100px 0;
     }
     .promo-code {
       display:inline-block;
@@ -175,14 +175,30 @@
       font-size:3.5vw;
     }
 
+    .faq-item {
+      margin-bottom:15px;
+    }
+    .faq-item h3 {
+      font-size:4.5vw;
+      margin-bottom:8px;
+      color:var(--accent1);
+    }
+    .faq-item p {
+      font-size:4vw;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
     @media (min-width:768px){
-      h1 { font-size:80px; } /* на ПК тоже крупнее */
+      h1 { font-size:80px; }
       h2 { font-size:26px; }
       p,li { font-size:17px; }
       .play-btn { font-size:20px; padding:16px 40px; }
       .promo-code { font-size:22px; padding:14px 30px; }
       .copy-btn { font-size:18px; padding:12px 28px; }
       .notification { font-size:16px; }
+      .faq-item h3 { font-size:20px; }
+      .faq-item p { font-size:16px; }
     }
   </style>
 </head>
@@ -218,6 +234,22 @@
         <li>Используй промокод, чтобы получить дополнительные бонусы.</li>
       </ul>
     </div>
+
+    <div class="card">
+      <h2>FAQ</h2>
+      <div class="faq-item">
+        <h3>Можно ли играть бесплатно?</h3>
+        <p>Да, игра доступна в демо-режиме. Но выигрыши возможны только при игре на реальные ставки.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Что даёт промокод?</h3>
+        <p>Используя промокод, вы получите приветственные бонусы: дополнительные средства и бесплатные вращения.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Безопасна ли игра?</h3>
+        <p>Игра лицензирована и использует проверенный генератор случайных чисел для честного результата.</p>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -245,9 +277,5 @@
   </script>
 </body>
 </html>
-
-
-
-
 
 
