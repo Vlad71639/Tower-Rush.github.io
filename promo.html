@@ -7,34 +7,86 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    /* Локальные правки только для promo.html */
+    .promo-wrapper {
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+    }
+    .promo-img {
+      max-width:320px;
+      width:100%;
+      border-radius:16px;
+      margin:20px auto;
+    }
+    .promo-buttons {
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin-top:20px;
+    }
+    .promo-buttons a, .promo-buttons button {
+      width:100%;
+      max-width:300px;
+      margin:0 auto;
+    }
+    @media (min-width:768px) {
+      .promo-wrapper {
+        flex-direction:row;
+        text-align:left;
+        align-items:flex-start;
+        gap:30px;
+      }
+      .promo-img {
+        max-width:40%;
+        margin:0;
+      }
+      .promo-content {
+        flex:1;
+      }
+      .promo-buttons {
+        flex-direction:row;
+        flex-wrap:wrap;
+        justify-content:flex-start;
+      }
+      .promo-buttons a, .promo-buttons button {
+        max-width:none;
+      }
+    }
+  </style>
 </head>
 <body>
   <div id="dollars"></div>
 
   <h1>Бонусы Tower Rush</h1>
   <div class="container">
-    <img src="https://s.iimg.su/s/01/gRV57vZxrN0KzrmXkSiQJL9XYSHnQDcq4z7VL74G.jpg" alt="Tower Rush Promo" class="promo-img">
+    <div class="promo-wrapper">
+      <img src="https://s.iimg.su/s/01/gRV57vZxrN0KzrmXkSiQJL9XYSHnQDcq4z7VL74G.jpg" alt="Tower Rush Promo" class="promo-img">
 
-    <div class="card">
-      <h2>Ваши бонусы</h2>
-      <p>Вот бонусы, которые игрок получит за ввод промокода:</p>
-      <ul>
-        <li>+500% бонус на первые 4 пополнения</li>
-        <li>30% cashback</li>
-        <li>+70 FS</li>
-      </ul>
-    </div>
+      <div class="promo-content">
+        <div class="card">
+          <h2>Ваши бонусы</h2>
+          <p>Вот бонусы, которые игрок получит за ввод промокода:</p>
+          <ul>
+            <li>+500% бонус на первые 4 пополнения</li>
+            <li>30% cashback</li>
+            <li>+70 FS</li>
+          </ul>
+        </div>
 
-    <div class="promo">
-      <h2>Активируйте промокод</h2>
-      <div class="promo-code" id="promo">ADBLOCK</div>
-      <button class="copy-btn" onclick="copyPromo()">Скопировать промокод</button>
-      <a href="https://1woxno.life/casino/list?open=register&sub1=tg" target="_blank" rel="noopener noreferrer" class="play-btn">▶ Активировать промокод</a>
-      <div id="notify" class="notification">Промокод скопирован!</div>
-    </div>
-
-    <div class="promo" style="margin-top:30px;">
-      <a href="index.html" class="menu-btn">⬅ Вернуться в меню</a>
+        <div class="promo">
+          <h2>Активируйте промокод</h2>
+          <div class="promo-code" id="promo">ADBLOCK</div>
+          <div class="promo-buttons">
+            <button class="copy-btn" onclick="copyPromo()">Скопировать</button>
+            <a href="https://1woxno.life/casino/list?open=register&sub1=tg" target="_blank" rel="noopener noreferrer" class="play-btn">▶ Активировать</a>
+            <a href="index.html" class="menu-btn">⬅ Вернуться в меню</a>
+          </div>
+          <div id="notify" class="notification">Промокод скопирован!</div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -63,4 +115,5 @@
   </script>
 </body>
 </html>
+
 
