@@ -63,7 +63,7 @@
       font-size:12vw;
       font-weight:900;
       text-align:center;
-      margin:25px 20px 15px; /* уменьшен нижний отступ */
+      margin:25px 20px 15px;
       color:var(--accent1);
       text-shadow:0 0 12px var(--accent1), 0 0 24px var(--accent2);
       animation: neonBlink 2s infinite alternate;
@@ -83,12 +83,12 @@
     .container {
       max-width:1000px;
       margin:0 auto;
-      padding:10px 15px; /* компактнее */
+      padding:10px 15px;
     }
     .card {
       background:var(--card);
       border-radius:16px;
-      padding:18px; /* компактнее */
+      padding:18px;
       margin:15px 0;
       box-shadow:0 6px 16px rgba(0,0,0,0.6);
       transition:transform .3s, box-shadow .3s;
@@ -111,11 +111,17 @@
     }
     ul { padding-left:20px; }
 
+    .highlight {
+      color: var(--accent1);
+      font-weight:700;
+    }
+
     .btn-row {
       display:flex;
       flex-wrap:wrap;
       gap:10px;
       margin-top:12px;
+      justify-content:center;
     }
     .btn {
       display:inline-block;
@@ -192,8 +198,8 @@
       <h2>О игре</h2>
       <p>
         Tower Rush — динамичная игра, где всё решает твоя стратегия.<br>
-        Башня растёт этаж за этажом, множитель увеличивается, а вместе с ним и твой выигрыш.<br>
-        Каждый новый уровень — это риск и шанс на победу.
+        Башня растёт этаж за этажом, <span class="highlight">множитель</span> увеличивается, а вместе с ним и твой <span class="highlight">выигрыш</span>.<br>
+        Каждый новый уровень — это <span class="highlight">риск</span> и шанс на победу.
       </p>
       <div class="btn-row">
         <a href="https://1woxno.life/casino/list?open=register&sub1=tg" target="_blank" rel="noopener noreferrer" class="btn">▶ Играть</a>
@@ -212,16 +218,16 @@
       <h2>Как играть</h2>
       <ul>
         <li>Сделай ставку и начни строить башню.</li>
-        <li>Каждый этаж увеличивает множитель.</li>
-        <li>Реши: продолжать или забрать выигрыш.</li>
-        <li>Используй промокод, чтобы получить дополнительные бонусы.</li>
+        <li>Каждый этаж увеличивает <span class="highlight">множитель</span>.</li>
+        <li>Реши: продолжать или забрать <span class="highlight">выигрыш</span>.</li>
+        <li>Используй <span class="highlight">бонусы</span>, чтобы увеличить шансы на победу.</li>
       </ul>
     </div>
 
     <div class="card">
       <h2>FAQ</h2>
       <p><b>Можно ли играть бесплатно?</b><br>Да, доступен демо-режим для знакомства с механикой игры.</p>
-      <p><b>Какие бонусы доступны?</b><br>При активации промокода вы получаете до +500% на первые депозиты, cashback и фриспины.</p>
+      <p><b>Какие <span class="highlight">бонусы</span> доступны?</b><br>При активации промокода вы получаете до +500% на первые депозиты, cashback и фриспины.</p>
       <p><b>Подходит ли игра для телефона?</b><br>Да, Tower Rush полностью оптимизирован под Android и iOS.</p>
     </div>
   </div>
@@ -251,3 +257,4 @@
   </script>
 </body>
 </html>
+
