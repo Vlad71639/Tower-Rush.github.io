@@ -3,200 +3,173 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Бонусы Tower Rush — промокод</title>
-  <meta name="description" content="Tower Rush — получи бонусы и промокоды: +500% на первые 4 пополнения, 30% cashback и +70 FS.">
+  <title>Бонусы Tower Rush</title>
+  <link rel="icon" type="image/png" href="https://iimg.su/i/Np6peT">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --accent1:#ffcc00;
-      --accent2:#ff8800;
+      --accent:#ffb400;
+      --accent-hover:#ffaa00;
       --bg:#0d0f14;
       --card:#161a21;
       --text:#f1f1f1;
-      --muted:#c5cad5;
+      --muted:#9da5b4;
     }
-    * { box-sizing:border-box; margin:0; padding:0; }
+    *{margin:0;padding:0;box-sizing:border-box}
     body {
       font-family:"Inter",sans-serif;
       background:var(--bg);
       color:var(--text);
-      overflow-x:hidden;
-      line-height:1.7;
-    }
-
-    header {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:15px 20px;
-      background:var(--card);
-      box-shadow:0 2px 6px rgba(0,0,0,0.4);
-    }
-    header h1 {
-      font-family:"Montserrat",sans-serif;
-      font-size:22px;
-      color:var(--accent1);
-    }
-    header a {
-      text-decoration:none;
-      color:#000;
-      background:linear-gradient(90deg,var(--accent1),var(--accent2));
-      padding:8px 16px;
-      border-radius:8px;
-      font-weight:700;
-      transition:0.2s;
-    }
-    header a:hover { transform:scale(1.05); }
-
-    .container {
-      max-width:1200px;
-      margin:30px auto;
       padding:20px;
+      line-height:1.6;
+    }
+    .container {
+      max-width:1100px;
+      margin:0 auto;
       display:flex;
-      gap:30px;
+      flex-wrap:wrap;
+      gap:20px;
       align-items:flex-start;
     }
-    .image-box {
-      flex:1 1 45%;
-    }
-    .image-box img {
-      width:100%;
-      height:auto;
-      border-radius:20px;
-      box-shadow:0 8px 25px rgba(0,0,0,0.6);
-    }
-
-    .content {
-      flex:1 1 55%;
-      background:var(--card);
-      border-radius:20px;
-      padding:30px;
-      box-shadow:0 8px 20px rgba(0,0,0,0.5);
-    }
-    .content h2 {
-      font-family:"Montserrat",sans-serif;
-      color:var(--accent1);
-      font-size:30px;
-      margin-bottom:20px;
-      text-align:left;
-    }
-    .content ul {
-      list-style:none;
-      padding:0;
-      margin-bottom:20px;
-    }
-    .content li {
-      margin-bottom:15px;
-      font-size:18px;
-      color:var(--muted);
-      padding-left:25px;
-      position:relative;
-    }
-    .content li::before {
-      content:"✨";
-      position:absolute;
-      left:0;
-      top:0;
-      color:var(--accent1);
-    }
-
-    .promo-box {
-      margin-top:20px;
+    .image {
+      flex:1 1 350px;
       text-align:center;
     }
+    .image img {
+      max-width:100%;
+      border-radius:12px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.4);
+    }
+    .content {
+      flex:2 1 500px;
+      background:var(--card);
+      padding:20px;
+      border-radius:16px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.3);
+    }
+    h1 {
+      font-family:"Montserrat",sans-serif;
+      font-size:clamp(24px,5vw,36px);
+      margin-bottom:15px;
+      color:var(--accent);
+      text-align:center;
+    }
+    ul {
+      margin:15px 0;
+      padding-left:20px;
+    }
+    li { color:var(--muted); margin-bottom:6px; font-size:clamp(14px,4vw,17px); }
+
     .promo-code {
       display:inline-block;
-      background:#111;
-      border:2px solid var(--accent1);
-      color:var(--accent1);
-      padding:14px 28px;
-      font-size:24px;
-      font-weight:900;
-      border-radius:14px;
-      margin-bottom:25px; /* увеличенный отступ */
-      letter-spacing:2px;
-      text-shadow:0 0 8px rgba(255,200,0,0.6);
+      background:#0b0c0e;
+      border:2px solid var(--accent);
+      color:var(--accent);
+      padding:10px 20px;
+      font-weight:800;
+      font-size:clamp(16px,4.5vw,20px);
+      border-radius:10px;
+      letter-spacing:1px;
+      margin-bottom:12px;
     }
-
-    .copy-btn {
-      display:inline-block;
-      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+    .buttons {
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:12px;
+    }
+    button, .btn-link {
+      flex:1;
+      min-width:150px;
+      background:var(--accent);
       color:#000;
       border:none;
       font-weight:700;
-      font-size:18px;
-      padding:12px 26px;
-      border-radius:12px;
+      font-size:clamp(14px,4vw,18px);
+      padding:12px 20px;
+      border-radius:8px;
       cursor:pointer;
-      transition:0.25s;
-      box-shadow:0 5px 15px rgba(255,150,0,0.4);
-      margin-bottom:20px; /* отступ снизу */
-    }
-    .copy-btn:hover { transform:scale(1.07); }
-
-    .activate-btn {
-      display:inline-block;
-      background:linear-gradient(90deg,#00ffcc,#0099ff);
-      color:#000;
-      font-weight:800;
-      font-size:20px;
-      padding:14px 30px;
-      border-radius:14px;
+      transition:background .2s ease, transform .2s ease;
+      text-align:center;
       text-decoration:none;
-      transition:0.25s;
-      box-shadow:0 5px 20px rgba(0,200,255,0.5);
     }
-    .activate-btn:hover { transform:scale(1.08); }
-
+    button:hover, .btn-link:hover { background:var(--accent-hover); transform:translateY(-2px); }
     .notification {
       margin-top:10px;
       color:#90ee90;
       display:none;
-      font-size:16px;
-      font-weight:600;
+      font-size:14px;
     }
 
+    /* FAQ */
+    .faq {
+      max-width:1100px;
+      margin:30px auto 0;
+      background:var(--card);
+      padding:20px;
+      border-radius:16px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.3);
+    }
+    .faq h2 {
+      font-family:"Montserrat",sans-serif;
+      font-size:clamp(20px,5vw,28px);
+      margin-bottom:15px;
+      color:var(--accent);
+      text-align:center;
+    }
+    .faq-item { margin-bottom:14px; }
+    .faq-item h3 {
+      font-size:clamp(16px,4vw,20px);
+      color:var(--accent);
+      margin-bottom:6px;
+    }
+    .faq-item p { font-size:clamp(14px,3.8vw,16px); color:var(--muted); }
+
     @media(max-width:768px){
-      .container { flex-direction:column; align-items:center; }
-      .content { padding:20px; }
-      .content h2 { font-size:24px; text-align:center; }
-      .content li { font-size:16px; }
-      .promo-code { font-size:20px; }
-      .copy-btn { font-size:16px; padding:10px 20px; }
-      .activate-btn { font-size:18px; padding:12px 24px; }
+      .container {flex-direction:column; align-items:center;}
+      .content {width:100%;}
+      .buttons {flex-direction:column; width:100%;}
+      button, .btn-link {width:100%;}
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>🎁 Tower Rush Бонусы</h1>
-    <a href="index.html">🏠 На главную</a>
-  </header>
-
   <div class="container">
-    <div class="image-box">
-      <img src="https://s.iimg.su/s/01/gRV57vZxrN0KzrmXkSiQJL9XYSHnQDcq4z7VL74G.jpg" alt="Tower Rush бонусы">
+    <div class="image">
+      <a href="https://iimg.su/i/RV57vZ">
+        <img src="https://s.iimg.su/s/01/gRV57vZxrN0KzrmXkSiQJL9XYSHnQDcq4z7VL74G.jpg" alt="Tower Rush бонусы">
+      </a>
     </div>
-
     <div class="content">
-      <h2>Подарки для новых игроков</h2>
+      <h1>Бонусы за промокод</h1>
+      <p>Вот что вы получите при активации промокода:</p>
       <ul>
-        <li><strong>+500%</strong> бонус на первые 4 пополнения</li>
-        <li><strong>30% cashback</strong> — возврат части проигранных средств</li>
-        <li><strong>+70 FS</strong> — бесплатные вращения</li>
+        <li><b>+500%</b> бонус на первые 4 пополнения</li>
+        <li><b>30%</b> cashback</li>
+        <li><b>+70 FS</b> (фриспинов)</li>
       </ul>
-
-      <div class="promo-box">
-        <div class="promo-code" id="promo">ADBLOCK</div>
-
-        <button class="copy-btn" onclick="copyPromo()">Скопировать промокод</button>
-        <div id="notify" class="notification">✅ Промокод скопирован!</div>
-
-        <!-- новая кнопка -->
-        <a href="https://1woxno.life/casino/list?open=register&sub1=tg" 
-           target="_blank" rel="noopener noreferrer" 
-           class="activate-btn">🚀 Активировать промокод</a>
+      <div class="promo-code" id="promo">ADBLOCK</div>
+      <div class="buttons">
+        <button onclick="copyPromo()">Скопировать промокод</button>
+        <a href="https://1woxno.life/casino/list?open=register&sub1=tg" target="_blank" class="btn-link">Активировать промокод</a>
       </div>
+      <div id="notify" class="notification">Промокод скопирован!</div>
+    </div>
+  </div>
+
+  <div class="faq">
+    <h2>FAQ</h2>
+    <div class="faq-item">
+      <h3>Как активировать промокод?</h3>
+      <p>Скопируйте код и введите его при регистрации или пополнении баланса, чтобы получить бонусы.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Можно ли использовать промокод несколько раз?</h3>
+      <p>Нет, промокод активируется только один раз на нового игрока.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Какие бонусы я получу?</h3>
+      <p>Дополнительные деньги, фриспины и cashback. Полный список указан выше.</p>
     </div>
   </div>
 
