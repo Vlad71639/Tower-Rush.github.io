@@ -4,9 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tower Rush - Play Online</title>
-  <meta name="description" content="Tower Rush — динамичная онлайн-игра с растущим множителем. Играй, строй башню, получай бонусы и используй промокод ADBLOCK для приветственного подарка.">
-  <meta name="keywords" content="Tower Rush, Tower Rush играть онлайн, Tower Rush бонусы, Tower Rush промокод, казино игра Tower Rush">
-
+  <link rel="icon" type="image/png" href="https://iimg.su/i/Np6peT">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
   <!-- Google tag (gtag.js) -->
@@ -43,7 +41,6 @@
       to {opacity:1;}
     }
 
-    /* Падающие доллары */
     #dollars {
       position:fixed;
       top:0;left:0;width:100%;height:100%;
@@ -72,10 +69,10 @@
 
     h1 {
       font-family:"Montserrat",sans-serif;
-      font-size:10vw;
+      font-size:12vw;  /* увеличил размер */
       font-weight:900;
       text-align:center;
-      margin:40px 20px;
+      margin:20px 20px; /* уменьшил отступ сверху */
       color:var(--accent1);
       text-shadow:0 0 10px var(--accent1), 0 0 20px var(--accent2);
       animation: neonBlink 2s infinite alternate;
@@ -94,7 +91,9 @@
     .container {
       max-width:1000px;
       margin:0 auto;
-      padding:15px;
+      padding:10px;
+      position:relative;
+      top:-20px; /* весь контент чуть выше */
     }
     .card {
       background:var(--card);
@@ -121,8 +120,7 @@
     }
     ul { padding-left:20px; }
 
-    /* Кнопки Играть и Бонусы */
-    .play-btn, .bonus-btn {
+    .play-btn {
       display:inline-block;
       background:linear-gradient(90deg,var(--accent1),var(--accent2));
       color:#000;
@@ -131,19 +129,18 @@
       padding:12px 24px;
       border-radius:50px;
       margin-top:15px;
-      margin-right:10px;
       text-decoration:none;
       transition:transform .2s, box-shadow .2s;
       box-shadow:0 8px 20px rgba(255,200,0,0.4);
     }
-    .play-btn:hover, .bonus-btn:hover {
+    .play-btn:hover {
       transform:scale(1.05);
       box-shadow:0 12px 26px rgba(255,180,0,0.6);
     }
 
     .promo {
       text-align:center;
-      margin:40px 0;
+      margin:40px 0 100px 0; /* больше отступа снизу для мобильных */
     }
     .promo-code {
       display:inline-block;
@@ -159,7 +156,7 @@
     }
     .copy-btn {
       display:block;
-      margin:0 auto;
+      margin:20px auto 0 auto;
       background:linear-gradient(90deg,var(--accent1),var(--accent2));
       color:#000;
       border:none;
@@ -178,30 +175,14 @@
       font-size:3.5vw;
     }
 
-    /* FAQ styles */
-    .faq {
-      margin:30px 0;
-      background:var(--card);
-      border-radius:16px;
-      padding:18px;
-      border:1px solid rgba(255,255,255,0.02);
-    }
-    .faq h2 { color:var(--accent1); margin-bottom:12px; font-size:6vw; }
-    .faq-item { margin-bottom:12px; }
-    .faq-item h3 { color:var(--accent2); font-size:4.5vw; margin-bottom:6px; }
-    .faq-item p { color:var(--muted); font-size:4vw; line-height:1.5; }
-
     @media (min-width:768px){
-      h1 { font-size:72px; }
+      h1 { font-size:80px; } /* на ПК тоже крупнее */
       h2 { font-size:26px; }
       p,li { font-size:17px; }
-      .play-btn, .bonus-btn { font-size:20px; padding:16px 40px; }
+      .play-btn { font-size:20px; padding:16px 40px; }
       .promo-code { font-size:22px; padding:14px 30px; }
       .copy-btn { font-size:18px; padding:12px 28px; }
       .notification { font-size:16px; }
-      .faq h2 { font-size:28px; }
-      .faq-item h3 { font-size:18px; }
-      .faq-item p { font-size:16px; }
     }
   </style>
 </head>
@@ -217,12 +198,10 @@
         Башня растёт этаж за этажом, множитель увеличивается, а вместе с ним и твой выигрыш.  
         Каждый новый уровень — это риск и шанс на победу.
       </p>
-      <!-- две кнопки: Играть и Что за бонусы -->
       <a href="https://1woxno.life/casino/list?open=register&sub1=tg" target="_blank" rel="noopener noreferrer" class="play-btn">▶ Играть</a>
-      <a href="promo.html" class="bonus-btn">🎁 Что за бонусы?</a>
+      <a href="promo.html" class="play-btn" style="margin-left:10px;">🎁 Что за бонусы?</a>
     </div>
 
-    <!-- Секция промокода (оставлена без изменений) -->
     <div class="promo">
       <h2>Ваш промокод для бонуса</h2>
       <div class="promo-code" id="promo">ADBLOCK</div>
@@ -239,28 +218,6 @@
         <li>Используй промокод, чтобы получить дополнительные бонусы.</li>
       </ul>
     </div>
-
-    <!-- ВОССТАНОВЛЕННЫЙ FAQ -->
-    <div class="faq" aria-labelledby="faq-title">
-      <h2 id="faq-title">Часто задаваемые вопросы</h2>
-
-      <div class="faq-item">
-        <h3>Что такое Tower Rush?</h3>
-        <p>Tower Rush — азартная онлайн-игра, где игрок строит башню по этажам; множитель растёт, и игрок решает, когда забрать выигрыш.</p>
-      </div>
-
-      <div class="faq-item">
-        <h3>Как использовать промокод ADBLOCK?</h3>
-        <p>Нажми «Скопировать промокод» на этой странице, затем вставь код в поле «Промокод» при регистрации или пополнении на платформе. Следуй инструкциям оператора для получения бонуса.</p>
-      </div>
-
-      <div class="faq-item">
-        <h3>Доступен ли промокод всем игрокам?</h3>
-        <p>Обычно промокод действует для новых аккаунтов или по условиям акции — проверь правила на странице регистрации платформы.</p>
-      </div>
-    </div>
-    <!-- конец FAQ -->
-
   </div>
 
   <script>
@@ -270,18 +227,9 @@
         const notify = document.getElementById("notify");
         notify.style.display = "block";
         setTimeout(() => notify.style.display = "none", 2000);
-
-        // трекинг события в GA (если нужно)
-        if (window.gtag) {
-          gtag('event', 'copy_promo', {
-            'event_category': 'engagement',
-            'event_label': code
-          });
-        }
       });
     }
 
-    // генерация падающих долларов (оптимизировано)
     const container = document.getElementById("dollars");
     const num = 15;
     for (let i=0;i<num;i++) {
@@ -290,47 +238,15 @@
       dollar.innerText = "$";
       dollar.style.left = Math.random()*100 + "vw";
       dollar.style.fontSize = (18 + Math.random()*22) + "px";
-      dollar.style.animationDuration = (4 + Math.random()*3) + "s"; /* чуть быстрее падение */
+      dollar.style.animationDuration = (4 + Math.random()*3) + "s";
       dollar.style.animationDelay = (Math.random()*6) + "s";
       container.appendChild(dollar);
     }
   </script>
-
-  <!-- FAQ JSON-LD для поиска -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Что такое Tower Rush?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Tower Rush — азартная онлайн-игра, где игрок строит башню по этажам; множитель растёт, и игрок решает, когда забрать выигрыш."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Как использовать промокод ADBLOCK?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Нажми «Скопировать промокод» на этой странице, затем вставь код в поле «Промокод» при регистрации или пополнении на платформе."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Доступен ли промокод всем игрокам?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Обычно промокод действует для новых аккаунтов или по условиям акции — проверь правила на странице регистрации платформы."
-        }
-      }
-    ]
-  }
-  </script>
 </body>
 </html>
+
+
 
 
 
