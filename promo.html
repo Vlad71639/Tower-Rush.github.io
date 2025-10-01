@@ -51,10 +51,6 @@
       gap:20px;
       width:100%;
     }
-    .hero-text {
-      font-size:18px;
-      color:var(--muted);
-    }
 
     .card {
       background:var(--card);
@@ -66,6 +62,10 @@
       font-size:22px;
       margin-bottom:15px;
       color:var(--accent1);
+    }
+    .card p {
+      color:var(--muted);
+      font-size:18px;
     }
     .card ul {
       margin:10px 0 20px;
@@ -132,7 +132,6 @@
       .hero-right {
         width:58%;
       }
-      .hero-text { font-size:18px; }
     }
   </style>
 </head>
@@ -143,11 +142,13 @@
     <img src="https://s.iimg.su/s/01/gRV57vZxrN0KzrmXkSiQJL9XYSHnQDcq4z7VL74G.jpg" alt="Tower Rush бонусы">
     
     <div class="hero-right">
-      <div class="hero-text">
-        <p><b>Используй промокод и получи щедрые приветственные бонусы!</b><br><br>
-        Всё это ждёт новых игроков — стартуй с преимуществом и наслаждайся игрой.</p>
+      <!-- Описание в рамке -->
+      <div class="card">
+        <p><b>Используй промокод и получи щедрые приветственные бонусы!</b></p>
+        <p>Всё это ждёт новых игроков — стартуй с преимуществом и наслаждайся игрой.</p>
       </div>
 
+      <!-- Бонусы -->
       <div class="card">
         <h2>Что даёт промокод?</h2>
         <ul>
