@@ -1,3 +1,16 @@
+Понял 👍
+Вот полный **index.html** с встроенными стилями (без отдельного `style.css`). Это именно та версия главной страницы, где:
+
+* фон с падающими долларами,
+* «Tower Rush» крупно в центре с неоновым эффектом,
+* «О игре» компактно сверху,
+* кнопки «Играть» и «Что за бонусы?» одинаковые и рядом,
+* промокод с копированием,
+* «Как играть» и «FAQ» отдельными карточками.
+
+Полностью готовый код:
+
+```html
 <!doctype html>
 <html lang="ru">
 <head>
@@ -5,8 +18,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tower Rush - Play Online</title>
   <link rel="icon" type="image/png" href="https://s.iimg.su/s/01/gNp6peTxXb5Xs0LEn2zPbvy0Mg9sg6LSpOwSbngF.png">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-
   <style>
     :root {
       --accent1:#ffcc00;
@@ -25,45 +36,36 @@
       position:relative;
     }
 
-    /* падающие доллары */
     #dollars {
-      position:fixed;
-      top:0;left:0;width:100%;height:100%;
-      pointer-events:none;
-      overflow:hidden;
-      z-index:-1;
+      position:fixed;top:0;left:0;width:100%;height:100%;
+      pointer-events:none;overflow:hidden;z-index:-1;
     }
     .dollar {
-      position:absolute;
-      top:-50px;
-      font-weight:bold;
+      position:absolute;top:-50px;font-weight:bold;
       animation: fall linear infinite, colorShift 3s ease-in-out infinite;
-      opacity:0.75;
-      user-select:none;
+      opacity:0.75;user-select:none;
     }
     @keyframes fall {
-      0% {transform:translateY(-50px);}
-      100% {transform:translateY(110vh);}
+      0%{transform:translateY(-50px);}
+      100%{transform:translateY(110vh);}
     }
     @keyframes colorShift {
-      0% {color:#ffcc00;}
-      50% {color:#00ff66;}
-      100% {color:#ffcc00;}
+      0%{color:#ffcc00;}
+      50%{color:#00ff66;}
+      100%{color:#ffcc00;}
     }
 
     h1 {
       font-family:"Montserrat",sans-serif;
-      font-size:10vw;
-      font-weight:900;
-      text-align:center;
+      font-size:10vw;font-weight:900;text-align:center;
       margin:30px 20px 15px;
       color:var(--accent1);
       text-shadow:0 0 10px var(--accent1),0 0 20px var(--accent2);
       animation: neonBlink 2s infinite alternate;
     }
     @keyframes neonBlink {
-      0%,100% {opacity:1;}
-      50% {opacity:.7;}
+      0%,100%{opacity:1;}
+      50%{opacity:.7;}
     }
 
     .container {
@@ -72,7 +74,6 @@
       padding:15px;
     }
 
-    /* блоки */
     .card {
       background:var(--card);
       border-radius:16px;
@@ -91,12 +92,8 @@
       line-height:1.6;
       color:var(--muted);
     }
-    .highlight {
-      color:var(--accent1);
-      font-weight:700;
-    }
+    .highlight {color:var(--accent1);font-weight:700;}
 
-    /* кнопки */
     .buttons {
       display:flex;
       justify-content:center;
@@ -119,11 +116,7 @@
     }
     .btn:hover { transform:translateY(-2px); }
 
-    /* промокод */
-    .promo {
-      text-align:center;
-      margin:30px 0;
-    }
+    .promo {text-align:center;margin:30px 0;}
     .promo-code {
       display:inline-block;
       background:#111;
@@ -136,13 +129,10 @@
       margin-bottom:10px;
     }
     .copy-btn {
-      display:block;
-      margin:10px auto 0;
+      display:block;margin:10px auto 0;
       background:linear-gradient(90deg,var(--accent1),var(--accent2));
-      color:#000;
-      border:none;
-      font-weight:700;
-      font-size:18px;
+      color:#000;border:none;
+      font-weight:700;font-size:18px;
       padding:10px 20px;
       border-radius:10px;
       cursor:pointer;
@@ -151,36 +141,6 @@
       margin-top:8px;
       color:#90ee90;
       display:none;
-    }
-
-    /* аккордеон */
-    .accordion {
-      margin-top:20px;
-    }
-    .accordion-item {
-      border-radius:12px;
-      background:var(--card);
-      margin-bottom:10px;
-      overflow:hidden;
-      box-shadow:0 6px 14px rgba(0,0,0,0.4);
-    }
-    .accordion-header {
-      padding:15px;
-      cursor:pointer;
-      font-weight:600;
-      color:var(--accent1);
-    }
-    .accordion-content {
-      max-height:0;
-      overflow:hidden;
-      transition:max-height .3s ease;
-      padding:0 15px;
-      color:var(--text);
-      background:#111;
-    }
-    .accordion-item.active .accordion-content {
-      max-height:250px;
-      padding:15px;
     }
 
     @media(min-width:768px){
@@ -217,21 +177,16 @@
       <div id="notify" class="notification">Промокод скопирован!</div>
     </div>
 
-    <div class="accordion">
-      <div class="accordion-item">
-        <div class="accordion-header">Как играть</div>
-        <div class="accordion-content">
-          <p>Ставь и строй башню этаж за этажом. Каждый новый уровень увеличивает множитель.  
-          Можно остановиться в любой момент и забрать выигрыш или рискнуть и подняться выше.</p>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <div class="accordion-header">FAQ</div>
-        <div class="accordion-content">
-          <p><b>Можно ли остановиться?</b><br>Да, башню можно завершить в любой момент.</p>
-          <p><b>Что даёт промокод?</b><br>Щедрые бонусы новым игрокам.</p>
-        </div>
-      </div>
+    <div class="card">
+      <h2>Как играть</h2>
+      <p>Ставь и строй башню этаж за этажом. Каждый новый уровень увеличивает множитель.  
+      Можно остановиться в любой момент и забрать выигрыш или рискнуть и подняться выше.</p>
+    </div>
+
+    <div class="card">
+      <h2>FAQ</h2>
+      <p><b>Можно ли остановиться?</b><br>Да, башню можно завершить в любой момент.</p>
+      <p><b>Что даёт промокод?</b><br>Щедрые бонусы новым игрокам.</p>
     </div>
 
   </div>
@@ -246,13 +201,7 @@
       });
     }
 
-    document.querySelectorAll(".accordion-header").forEach(header=>{
-      header.addEventListener("click",()=>{
-        const item = header.parentElement;
-        item.classList.toggle("active");
-      });
-    });
-
+    // Доллары
     const container=document.getElementById("dollars");
     const num=15;
     for(let i=0;i<num;i++){
@@ -268,3 +217,8 @@
   </script>
 </body>
 </html>
+```
+
+Хочешь, я сразу сделаю такую же аккуратную версию и для **promo.html**, чтобы они совпадали по стилю?
+
+
