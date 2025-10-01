@@ -21,6 +21,14 @@
       color:var(--text);
       overflow-x:hidden;
       position:relative;
+      opacity:0;
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    /* Анимация появления */
+    @keyframes fadeIn {
+      from {opacity:0;}
+      to {opacity:1;}
     }
 
     /* Падающие доллары */
@@ -50,7 +58,7 @@
       100% {color:#ffcc00; text-shadow:0 0 10px rgba(255,255,0,0.6);}
     }
 
-    /* Заголовок — крупнее и неоновый */
+    /* Заголовок — крупный неон */
     h1 {
       font-family:"Montserrat",sans-serif;
       font-size:10vw; /* крупнее на мобильных */
@@ -161,7 +169,7 @@
 
     /* Desktop tweaks */
     @media (min-width:768px){
-      h1 { font-size:64px; }
+      h1 { font-size:72px; }
       h2 { font-size:26px; }
       p,li { font-size:17px; }
       .play-btn { font-size:20px; padding:16px 40px; }
@@ -215,17 +223,17 @@
       });
     }
 
-    // Оптимизированный дождь из долларов
+    // Оптимизированный дождь из долларов (быстрее падение)
     const container = document.getElementById("dollars");
-    const num = 15; // меньше элементов = меньше нагрузка
+    const num = 15; // оптимально для производительности
     for (let i=0;i<num;i++) {
       let dollar = document.createElement("div");
       dollar.classList.add("dollar");
       dollar.innerText = "$";
       dollar.style.left = Math.random()*100 + "vw";
       dollar.style.fontSize = (18 + Math.random()*22) + "px";
-      dollar.style.animationDuration = (7 + Math.random()*6) + "s";
-      dollar.style.animationDelay = (Math.random()*8) + "s";
+      dollar.style.animationDuration = (5 + Math.random()*4) + "s"; // быстрее падение
+      dollar.style.animationDelay = (Math.random()*6) + "s";
       container.appendChild(dollar);
     }
   </script>
