@@ -78,10 +78,26 @@
     p,li { color:var(--muted); line-height:1.6; font-size:4vw; }
     ul { padding-left:20px; }
 
+    .buttons {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+      margin-top:15px;
+    }
+    .buttons a {
+      flex:1 1 auto;
+      text-align:center;
+    }
+    @media (max-width:767px){
+      .buttons { flex-direction:column; gap:12px; }
+      .buttons a { width:100%; }
+    }
+
     .play-btn {
       display:inline-block; background:linear-gradient(90deg,var(--accent1),var(--accent2));
       color:#000; font-weight:800; font-size:4.5vw; padding:12px 24px;
-      border-radius:50px; margin-top:15px; text-decoration:none;
+      border-radius:50px; text-decoration:none;
       transition:transform .2s, box-shadow .2s;
       box-shadow:0 8px 20px rgba(255,200,0,0.4);
     }
@@ -132,8 +148,10 @@
         Башня растёт этаж за этажом, множитель увеличивается, а вместе с ним и твой выигрыш.  
         Каждый новый уровень — это риск и шанс на победу.
       </p>
-      <a href="https://1woxno.life/casino/list?open=register&sub1=tg" target="_blank" rel="noopener noreferrer" class="play-btn">▶ Играть</a>
-      <a href="promo.html" class="play-btn" style="margin-left:10px;">🎁 Что за бонусы?</a>
+      <div class="buttons">
+        <a href="https://1woxno.life/casino/list?open=register&sub1=tg" target="_blank" rel="noopener noreferrer" class="play-btn">▶ Играть</a>
+        <a href="promo.html" class="play-btn">🎁 Что за бонусы?</a>
+      </div>
     </div>
 
     <div class="promo">
@@ -195,3 +213,4 @@
   </script>
 </body>
 </html>
+
