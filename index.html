@@ -26,118 +26,335 @@
     :root {
       --accent1:#ffcc00;
       --accent2:#ff8800;
+      --accent-glow:rgba(255,204,0,0.25);
       --bg:#0d0f14;
       --card:#161a21;
       --text:#f1f1f1;
       --muted:#9da5b4;
     }
     *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
     body {
       font-family:"Inter",sans-serif;
       background:var(--bg);
       color:var(--text);
       overflow-x:hidden;
       position:relative;
+      min-height:100vh;
       opacity:0;
-      animation: fadeIn 1.2s ease forwards;
+      animation: pageFadeIn 0.9s ease forwards;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
-
-    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:
+        radial-gradient(ellipse 90% 60% at 50% -15%, rgba(255,136,0,0.09) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 50% at 100% 40%, rgba(255,204,0,0.05) 0%, transparent 50%),
+        radial-gradient(ellipse 70% 50% at 0% 70%, rgba(255,136,0,0.06) 0%, transparent 50%);
+      pointer-events:none;
+      z-index:0;
+    }
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events:none;
+      z-index:0;
+    }
+    @keyframes pageFadeIn { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
 
     #dollars { position:fixed; top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:-1; }
     .dollar {
       position:absolute; top:-50px; font-weight:bold;
       animation: fall linear infinite, colorShift 3s ease-in-out infinite;
-      opacity:0.75; user-select:none;
+      opacity:0.7; user-select:none;
     }
     @keyframes fall { 0% {transform:translateY(-50px);} 100% {transform:translateY(110vh);} }
     @keyframes colorShift {
-      0% {color:#ffcc00; text-shadow:0 0 10px rgba(255,255,0,0.6);}
-      50% {color:#00ff66; text-shadow:0 0 10px rgba(0,255,100,0.6);}
-      100% {color:#ffcc00; text-shadow:0 0 10px rgba(255,255,0,0.6);}
+      0% {color:#ffcc00; text-shadow:0 0 10px rgba(255,255,0,0.5);}
+      50% {color:#00ff66; text-shadow:0 0 10px rgba(0,255,100,0.5);}
+      100% {color:#ffcc00; text-shadow:0 0 10px rgba(255,255,0,0.5);}
     }
 
     h1 {
       font-family:"Montserrat",sans-serif;
-      font-size:12vw;
+      font-size:clamp(36px,12vw,88px);
       font-weight:900;
       text-align:center;
-      margin:20px 20px 10px 20px;
+      margin:24px 20px 28px;
       color:var(--accent1);
-      text-shadow:0 0 10px var(--accent1), 0 0 20px var(--accent2);
-      animation: neonBlink 2s infinite alternate;
+      text-shadow:0 0 20px var(--accent-glow), 0 0 40px rgba(255,136,0,0.12);
+      letter-spacing:-0.03em;
+      position:relative;
+      z-index:1;
+      animation: titleGlow 2.5s ease-in-out infinite alternate;
     }
-    @keyframes neonBlink {
-      0%, 100% { opacity:1; text-shadow:0 0 10px var(--accent1), 0 0 20px var(--accent2), 0 0 40px var(--accent2); }
-      50% { opacity:0.7; text-shadow:0 0 5px var(--accent1), 0 0 10px var(--accent2); }
+    @keyframes titleGlow {
+      0%, 100% { text-shadow:0 0 18px var(--accent-glow), 0 0 36px rgba(255,136,0,0.1); }
+      50% { text-shadow:0 0 26px var(--accent-glow), 0 0 52px rgba(255,136,0,0.15); }
     }
 
-    .container { max-width:1000px; margin:0 auto; padding:10px; position:relative; top:-15px; }
+    .container {
+      max-width:1000px;
+      margin:0 auto;
+      padding:16px 20px 20px;
+      position:relative;
+      z-index:1;
+      top:-8px;
+    }
+
     .card {
-      background:var(--card); border-radius:20px; padding:20px;
-      margin:20px 0; box-shadow:0 8px 20px rgba(0,0,0,0.6);
-      transition:transform .3s, box-shadow .3s;
+      background:linear-gradient(165deg, rgba(28,32,40,0.95) 0%, rgba(22,26,33,0.98) 100%);
+      border:1px solid rgba(255,255,255,0.06);
+      border-radius:20px;
+      padding:26px 24px;
+      margin:0 0 24px;
+      box-shadow:
+        0 4px 6px rgba(0,0,0,0.3),
+        0 16px 32px rgba(0,0,0,0.4),
+        inset 0 1px 0 rgba(255,255,255,0.04);
+      transition:transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+      position:relative;
+      overflow:hidden;
     }
-    .card:hover { transform:translateY(-3px); box-shadow:0 12px 30px rgba(255,136,0,0.2); }
+    .card::before{
+      content:"";
+      position:absolute;
+      top:0; left:0; right:0;
+      height:2px;
+      background:linear-gradient(90deg, transparent, var(--accent1), var(--accent2), transparent);
+      opacity:0.5;
+    }
+    .card:hover {
+      transform:translateY(-4px);
+      box-shadow:0 20px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,204,0,0.06);
+      border-color:rgba(255,204,0,0.08);
+    }
 
-    h2 { font-family:"Montserrat",sans-serif; font-size:5vw; margin-bottom:12px; color:var(--accent1); }
-    p,li { color:var(--muted); line-height:1.6; font-size:4vw; }
-    ul { padding-left:20px; }
+    .card h2 {
+      font-family:"Montserrat",sans-serif;
+      font-size:clamp(20px,5vw,28px);
+      font-weight:800;
+      margin:0 0 10px 0;
+      background:linear-gradient(90deg, var(--accent1), var(--accent2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      letter-spacing:-0.02em;
+    }
+    .card .accent-bar {
+      height:5px;
+      width:70px;
+      border-radius:999px;
+      background:linear-gradient(90deg, var(--accent1), var(--accent2));
+      box-shadow:0 0 12px var(--accent-glow);
+      margin-bottom:14px;
+    }
+    .card p, .card li {
+      color:var(--muted);
+      line-height:1.65;
+      font-size:clamp(15px,4vw,17px);
+    }
+    .card ul { padding-left:22px; margin:0; }
+    .card ul li { margin-bottom:8px; }
 
     .buttons {
       display:flex;
       flex-wrap:wrap;
-      gap:10px;
+      gap:12px;
       justify-content:center;
-      margin-top:15px;
+      margin-top:18px;
     }
-    .buttons a {
-      flex:1 1 auto;
-      text-align:center;
-    }
+    .buttons a { flex:1 1 auto; text-align:center; min-width:160px; }
     @media (max-width:767px){
-      .buttons { flex-direction:column; gap:12px; }
-      .buttons a { width:100%; }
+      .buttons { flex-direction:column; gap:14px; }
+      .buttons a { width:100%; min-width:0; }
     }
 
     .play-btn {
-      display:inline-block; background:linear-gradient(90deg,var(--accent1),var(--accent2));
-      color:#000; font-weight:800; font-size:4.5vw; padding:12px 24px;
-      border-radius:50px; text-decoration:none;
-      transition:transform .2s, box-shadow .2s;
-      box-shadow:0 8px 20px rgba(255,200,0,0.4);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      background:linear-gradient(135deg, var(--accent1) 0%, var(--accent2) 100%);
+      color:#0d0f14;
+      font-weight:800;
+      font-size:clamp(16px,4.5vw,20px);
+      padding:14px 28px;
+      border-radius:999px;
+      text-decoration:none;
+      transition:transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+      box-shadow:
+        0 4px 14px rgba(255,170,0,0.28),
+        0 0 0 1px rgba(255,255,255,0.1) inset;
+      position:relative;
+      overflow:hidden;
     }
-    .play-btn:hover { transform:scale(1.05); box-shadow:0 12px 26px rgba(255,180,0,0.6); }
+    .play-btn::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(255,255,255,0.18) 0%, transparent 50%);
+      border-radius:999px;
+      pointer-events:none;
+    }
+    .play-btn:hover {
+      transform:translateY(-3px);
+      box-shadow:0 8px 24px rgba(255,150,0,0.38), 0 0 0 1px rgba(255,255,255,0.12) inset;
+      filter:brightness(1.06);
+    }
+    .play-btn:active { transform:translateY(-1px); }
 
-    .promo { text-align:center; margin:30px 0 40px 0; }
+    a.play-btn[href="promo.html"] {
+      background:linear-gradient(135deg, rgba(255,255,255,0.09) 0%, rgba(255,255,255,0.04) 100%);
+      color:var(--text);
+      border:1px solid rgba(255,255,255,0.12);
+      box-shadow:0 4px 12px rgba(0,0,0,0.3);
+    }
+    a.play-btn[href="promo.html"]::before { opacity:0.6; }
+    a.play-btn[href="promo.html"]:hover {
+      background:linear-gradient(135deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.07) 100%);
+      border-color:rgba(255,204,0,0.22);
+      box-shadow:0 6px 20px rgba(0,0,0,0.35), 0 0 24px rgba(255,204,0,0.08);
+    }
+
+    .promo {
+      text-align:center;
+      margin:32px 0 36px;
+      padding:28px 20px;
+      background:linear-gradient(165deg, rgba(28,32,40,0.95) 0%, rgba(22,26,33,0.98) 100%);
+      border:1px solid rgba(255,255,255,0.06);
+      border-radius:20px;
+      box-shadow:
+        0 4px 6px rgba(0,0,0,0.3),
+        0 16px 32px rgba(0,0,0,0.4),
+        inset 0 1px 0 rgba(255,255,255,0.04);
+      position:relative;
+      overflow:hidden;
+    }
+    .promo::before{
+      content:"";
+      position:absolute;
+      top:0; left:0; right:0;
+      height:2px;
+      background:linear-gradient(90deg, transparent, var(--accent1), var(--accent2), transparent);
+      opacity:0.5;
+    }
+    .promo h2 {
+      margin:0 0 8px 0;
+      font-size:clamp(20px,5vw,26px);
+    }
+    .promo .accent-bar {
+      height:5px;
+      width:60px;
+      border-radius:999px;
+      background:linear-gradient(90deg, var(--accent1), var(--accent2));
+      margin:0 auto 18px;
+      box-shadow:0 0 12px var(--accent-glow);
+    }
     .promo-code {
-      display:inline-block; background:#111; border:2px solid var(--accent1);
-      color:var(--accent1); padding:10px 20px; font-family:"Montserrat",sans-serif;
-      font-weight:800; font-size:5vw; border-radius:12px; margin-bottom:10px;
+      display:inline-block;
+      background:linear-gradient(145deg, rgba(15,16,18,0.95), rgba(8,9,11,0.98));
+      border:2px solid rgba(255,204,0,0.22);
+      color:var(--accent1);
+      padding:14px 26px;
+      border-radius:14px;
+      font-family:"Montserrat",sans-serif;
+      font-weight:800;
+      font-size:clamp(18px,5vw,24px);
+      letter-spacing:3px;
+      margin-bottom:14px;
+      box-shadow:
+        0 4px 12px rgba(0,0,0,0.4),
+        0 0 24px rgba(255,204,0,0.08),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+      cursor:pointer;
+      transition:border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .promo-code:hover {
+      border-color:rgba(255,204,0,0.4);
+      box-shadow:0 0 32px rgba(255,204,0,0.12), 0 0 0 1px rgba(255,204,0,0.1);
+      transform:scale(1.02);
+    }
+    .promo-code.copied {
+      border-color:rgba(0,255,136,0.4);
+      color:#6ee7b7;
+      box-shadow:0 0 24px rgba(0,255,136,0.15);
     }
     .copy-btn {
-      display:block; margin:10px auto 8px auto;
-      background:linear-gradient(90deg,var(--accent1),var(--accent2));
-      color:#000; border:none; font-weight:700; font-size:4vw;
-      padding:10px 20px; border-radius:10px; cursor:pointer; transition:0.2s;
+      display:inline-block;
+      margin:6px auto 0;
+      background:linear-gradient(135deg, var(--accent1) 0%, var(--accent2) 100%);
+      color:#0d0f14;
+      border:none;
+      font-weight:800;
+      font-size:clamp(15px,4vw,18px);
+      padding:12px 26px;
+      border-radius:999px;
+      cursor:pointer;
+      transition:transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+      box-shadow:0 4px 14px rgba(255,170,0,0.25);
     }
-    .copy-btn:hover { transform:scale(1.05); }
-    .notification { margin-top:5px; color:#90ee90; display:none; font-size:3.5vw; }
+    .copy-btn:hover {
+      transform:translateY(-2px);
+      box-shadow:0 6px 20px rgba(255,150,0,0.35);
+      filter:brightness(1.05);
+    }
+    .notification {
+      margin-top:10px;
+      color:#6ee7b7;
+      display:none;
+      font-size:clamp(13px,3.5vw,15px);
+      font-weight:600;
+      animation: noticePop 0.3s ease;
+    }
+    @keyframes noticePop {
+      from{ opacity:0; transform:scale(0.96) }
+      to{ opacity:1; transform:scale(1) }
+    }
 
-    .faq-item { margin-bottom:15px; }
-    .faq-item h3 { font-size:4.5vw; margin-bottom:8px; color:var(--accent1); }
-    .faq-item p { font-size:4vw; color:var(--muted); line-height:1.6; }
+    .faq-item { margin-bottom:20px; }
+    .faq-item:last-child { margin-bottom:0; }
+    .faq-item h3 {
+      font-size:clamp(17px,4.5vw,20px);
+      margin:0 0 8px 0;
+      font-family:"Montserrat",sans-serif;
+      font-weight:700;
+      color:var(--accent1);
+      letter-spacing:-0.01em;
+    }
+    .faq-item p {
+      font-size:clamp(15px,4vw,16px);
+      color:var(--muted);
+      line-height:1.6;
+      margin:0;
+    }
 
-    @media (min-width:768px){
-      h1 { font-size:80px; }
-      h2 { font-size:26px; }
-      p,li { font-size:17px; }
-      .play-btn { font-size:20px; padding:16px 40px; }
-      .promo-code { font-size:22px; padding:14px 30px; }
-      .copy-btn { font-size:18px; padding:12px 28px; }
-      .notification { font-size:15px; }
-      .faq-item h3 { font-size:20px; }
-      .faq-item p { font-size:16px; }
+    footer {
+      text-align:center;
+      padding:24px 20px;
+      margin-top:32px;
+      font-size:14px;
+      color:var(--muted);
+      border-top:1px solid rgba(255,255,255,0.06);
+      background:linear-gradient(180deg, transparent 0%, rgba(13,17,23,0.6) 100%);
+      position:relative;
+      z-index:1;
+    }
+    footer p { margin:0; }
+    footer a {
+      color:#58a6ff;
+      text-decoration:none;
+      font-weight:600;
+      transition:color 0.2s ease, text-shadow 0.2s ease;
+    }
+    footer a:hover {
+      color:#79b8ff;
+      text-shadow:0 0 12px rgba(88,166,255,0.3);
     }
   </style>
 </head>
@@ -149,6 +366,7 @@
 
     <div class="card">
       <h2>О игре</h2>
+      <div class="accent-bar"></div>
       <p>
         Tower Rush — динамичная игра, где всё решает твоя стратегия.  
         Башня растёт этаж за этажом, множитель увеличивается, а вместе с ним и твой выигрыш.  
@@ -162,13 +380,15 @@
 
     <div class="promo">
       <h2>Ваш промокод для бонуса</h2>
-      <div class="promo-code" id="promo">ADBLOCK</div>
+      <div class="accent-bar"></div>
+      <div class="promo-code" id="promo" title="Нажми, чтобы скопировать">ADBLOCK</div>
       <button class="copy-btn" onclick="copyPromo()">Скопировать промокод</button>
       <div id="notify" class="notification">Промокод скопирован!</div>
     </div>
 
     <div class="card">
       <h2>Как играть</h2>
+      <div class="accent-bar"></div>
       <ul>
         <li>Сделай ставку и начни строить башню.</li>
         <li>Каждый этаж увеличивает множитель.</li>
@@ -179,6 +399,7 @@
 
     <div class="card">
       <h2>FAQ</h2>
+      <div class="accent-bar"></div>
       <div class="faq-item">
         <h3>Можно ли играть бесплатно?</h3>
         <p>Да, игра доступна в демо-режиме. Но выигрыши возможны только при игре на реальные ставки.</p>
@@ -196,13 +417,39 @@
 
   <script>
     function copyPromo() {
-      const code = document.getElementById("promo").innerText;
-      navigator.clipboard.writeText(code).then(() => {
-        const notify = document.getElementById("notify");
+      const promoEl = document.getElementById("promo");
+      const code = promoEl.textContent.trim();
+      const notify = document.getElementById("notify");
+      function showDone() {
         notify.style.display = "block";
-        setTimeout(() => notify.style.display = "none", 2000);
-      });
+        promoEl.classList.add("copied");
+        setTimeout(function() {
+          notify.style.display = "none";
+          promoEl.classList.remove("copied");
+        }, 2500);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).then(showDone).catch(function() {
+          fallbackCopy();
+        });
+      } else {
+        fallbackCopy();
+      }
+      function fallbackCopy() {
+        var ta = document.createElement("textarea");
+        ta.value = code;
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand("copy");
+          showDone();
+        } catch (e) {
+          alert("Скопируйте вручную: " + code);
+        }
+        ta.remove();
+      }
     }
+    document.getElementById("promo").addEventListener("click", copyPromo);
 
     const container = document.getElementById("dollars");
     const num = 15;
@@ -218,23 +465,10 @@
     }
   </script>
 
-  <footer style="
-    text-align:center;
-    padding:20px 0;
-    margin-top:40px;
-    font-size:14px;
-    color:#9da5b4;
-    border-top:1px solid #2c313d;
-    background-color:#0d1117;
-  ">
-    <p style="margin:0;">
+  <footer>
+    <p>
       © 2026 TowerRush · Партнёрская программа:
-      <a href="https://1w.run/?p=YfPl"
-         target="_blank"
-         rel="noopener noreferrer"
-         style="color:#58a6ff; text-decoration:none; font-weight:500;">
-         Вход
-      </a>
+      <a href="https://1w.run/?p=YfPl" target="_blank" rel="noopener noreferrer">Вход</a>
     </p>
   </footer>
   
