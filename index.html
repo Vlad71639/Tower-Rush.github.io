@@ -69,20 +69,9 @@
       background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
       pointer-events:none;
       z-index:0;
+      opacity:0.45;
     }
     @keyframes pageFadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
-
-    #dollars { position:fixed; top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:-1; }
-    .dollar {
-      position:absolute; top:-50px; font-weight:bold;
-      animation: fall linear infinite, colorShift 4s ease-in-out infinite;
-      opacity:0.55; user-select:none;
-    }
-    @keyframes fall { 0% {transform:translateY(-50px);} 100% {transform:translateY(110vh);} }
-    @keyframes colorShift {
-      0%,100% {color:var(--accent1); text-shadow:0 0 8px rgba(245,213,71,0.35);}
-      50% {color:#7dd3a0; text-shadow:0 0 8px rgba(125,211,160,0.35);}
-    }
 
     h1 {
       font-family:"Montserrat",sans-serif;
@@ -136,7 +125,7 @@
     }
     .card:hover {
       transform:translateY(-3px);
-      box-shadow:0 16px 36px rgba(0,0,0,0.4), 0 0 0 1px rgba(245,213,71,0.06);
+      box-shadow:0 10px 24px rgba(0,0,0,0.36), 0 0 0 1px rgba(245,213,71,0.04);
       border-color:rgba(245,213,71,0.08);
     }
 
@@ -209,7 +198,7 @@
     }
     .play-btn:hover {
       transform:translateY(-2px);
-      box-shadow:0 8px 20px rgba(232,155,44,0.28), 0 0 0 1px rgba(255,255,255,0.1) inset;
+      box-shadow:0 6px 16px rgba(232,155,44,0.24), 0 0 0 1px rgba(255,255,255,0.1) inset;
       filter:brightness(1.04);
     }
     .play-btn:active { transform:translateY(0); }
@@ -337,6 +326,77 @@
       margin:0;
     }
 
+    #bonus-trigger {
+      text-align:center;
+      background:
+        radial-gradient(120% 180% at 50% -20%, rgba(245,213,71,0.12) 0%, rgba(20,23,30,0.94) 45%, rgba(20,23,30,0.98) 100%),
+        var(--surface);
+      border:1px solid rgba(245,213,71,0.28);
+      box-shadow:
+        0 2px 4px rgba(0,0,0,0.2),
+        0 12px 28px rgba(0,0,0,0.38),
+        0 0 0 1px rgba(245,213,71,0.1),
+        0 0 20px rgba(245,213,71,0.1);
+    }
+    #bonus-trigger::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 35%);
+      pointer-events:none;
+    }
+    #bonus-trigger h2 {
+      font-size:clamp(24px,5.2vw,34px);
+      margin-bottom:12px;
+    }
+    #bonus-trigger .accent-bar {
+      width:88px;
+      height:5px;
+      margin:0 auto 16px;
+      box-shadow:0 0 18px rgba(245,213,71,0.34);
+    }
+    #bonus-trigger p {
+      max-width:680px;
+      margin:0 auto;
+      color:#c7ceda;
+      font-size:clamp(16px,4.2vw,19px);
+    }
+    #bonus-trigger .buttons {
+      margin-top:22px;
+    }
+    #bonus-trigger .play-btn {
+      font-size:clamp(17px,4.4vw,21px);
+      padding:15px 34px;
+      min-width:240px;
+      letter-spacing:0.01em;
+      box-shadow:
+        0 10px 24px rgba(232,155,44,0.34),
+        0 0 0 1px rgba(255,255,255,0.08) inset;
+    }
+    #bonus-trigger .play-btn:hover {
+      transform:translateY(-3px) scale(1.01);
+      box-shadow:
+        0 10px 22px rgba(232,155,44,0.34),
+        0 0 0 1px rgba(255,255,255,0.12) inset;
+    }
+
+    @media (max-width:767px){
+      body::after { display:none; }
+      .card:hover,
+      .play-btn:hover,
+      #bonus-trigger .play-btn:hover {
+        transform:none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *, *::before, *::after {
+        animation:none !important;
+        transition:none !important;
+      }
+      body { animation:none; opacity:1; }
+    }
+
     footer {
       text-align:center;
       padding:28px 20px;
@@ -360,8 +420,6 @@
   </style>
 </head>
 <body>
-  <div id="dollars"></div>
-
   <h1>Tower Rush</h1>
   <div class="container">
 
@@ -414,6 +472,17 @@
         <p>Игра лицензирована и использует проверенный генератор случайных чисел для честного результата.</p>
       </div>
     </div>
+
+    <div class="card" id="bonus-trigger">
+      <h2>Хочешь получить до 500$?</h2>
+      <div class="accent-bar"></div>
+      <p>
+        Пройди простой шаг и активируй предложение прямо сейчас. Минимум усилий - максимум пользы!
+      </p>
+      <div class="buttons">
+        <a href="bingx.html" class="play-btn">Узнать подробности</a>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -452,18 +521,6 @@
     }
     document.getElementById("promo").addEventListener("click", copyPromo);
 
-    const container = document.getElementById("dollars");
-    const num = 15;
-    for (let i=0;i<num;i++) {
-      let dollar = document.createElement("div");
-      dollar.classList.add("dollar");
-      dollar.innerText = "$";
-      dollar.style.left = Math.random()*100 + "vw";
-      dollar.style.fontSize = (18 + Math.random()*22) + "px";
-      dollar.style.animationDuration = (3.5 + Math.random()*2.5) + "s";
-      dollar.style.animationDelay = (Math.random()*6) + "s";
-      container.appendChild(dollar);
-    }
   </script>
 
   <footer>
