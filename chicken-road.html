@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Chicken Road — Играть Онлайн | Официальный Сайт</title>
+    <meta name="description" content="Официальный сайт игры Chicken Road. Попробуй сорвать куш x100, используй код ADBLOCK и получи бонус на первый депозит. Лицензированный софт 2026.">
+
+    <link rel="canonical" href="https://towerrush.vercel.app/chicken-road">
+    
+    <meta property="og:title" content="Chicken Road — Играть Онлайн | Официальный Сайт">
+    <meta property="og:description" content="Сорви куш x100 в Chicken Road. Бонус ADBLOCK на первый депозит.">
+    <meta property="og:url" content="https://towerrush.vercel.app/chicken-road">
+    <meta property="og:type" content="website">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Chicken Road",
+      "operatingSystem": "ALL",
+      "applicationCategory": "GameApplication",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "1250"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "RUB"
+      }
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Manrope:wght@300;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --neon-gold: #FFD700;
+            --deep-bg: #050507;
+            --glass-white: rgba(255, 255, 255, 0.03);
+            --road-line: rgba(255, 215, 0, 0.12);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            background-color: var(--deep-bg);
+            color: #fff;
+            font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- ATMOSPHERIC GAME BACKGROUND --- */
+        .game-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 30%, #1a1505 0%, #050507 70%);
+            overflow: hidden;
+        }
+
+        .highway-lines {
+            position: absolute;
+            bottom: 0; left: 50%;
+            width: 200%; height: 100%;
+            transform: translateX(-50%) perspective(400px) rotateX(65deg);
+            background-image: 
+                linear-gradient(to bottom, transparent, var(--road-line) 2px, transparent 2px),
+                linear-gradient(90deg, transparent 49.6%, var(--road-line) 50%, transparent 50.4%);
+            background-size: 100% 80px, 120px 100%;
+            mask-image: linear-gradient(to top, rgba(0,0,0,1), transparent);
+            animation: moveRoad 1.5s linear infinite;
+        }
+
+        @keyframes moveRoad {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 80px; }
+        }
+
+        .neon-flash {
+            position: absolute;
+            top: 20%; left: 10%; width: 300px; height: 300px;
+            background: var(--neon-gold);
+            filter: blur(180px);
+            opacity: 0.05;
+            animation: pulse 4s infinite alternate;
+        }
+
+        @keyframes pulse { 0% { opacity: 0.03; } 100% { opacity: 0.08; } }
+
+        .container { max-width: 950px; margin: 0 auto; padding: 0 20px; position: relative; }
+
+        header { padding: 90px 0 30px; text-align: center; }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.8rem, 9vw, 5rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            line-height: 0.9;
+            background: linear-gradient(180deg, #fff 40%, var(--neon-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px rgba(255,215,0,0.25));
+        }
+
+        .hero-section {
+            background: var(--glass-white);
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            backdrop-filter: blur(30px);
+            border-radius: 40px;
+            padding: 50px 30px;
+            text-align: center;
+            margin-bottom: 70px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.7);
+        }
+
+        .promo-trigger {
+            display: inline-block;
+            background: linear-gradient(180deg, #111 0%, #000 100%);
+            border: 1px solid var(--neon-gold);
+            padding: 14px 40px;
+            border-radius: 18px;
+            cursor: pointer;
+            transition: 0.4s;
+            margin-bottom: 35px;
+        }
+
+        .promo-trigger:hover { transform: translateY(-3px); box-shadow: 0 0 30px rgba(255,215,0,0.3); }
+        .promo-trigger small { display: block; font-size: 9px; color: var(--neon-gold); letter-spacing: 3px; margin-bottom: 4px; font-weight: 800; }
+        .promo-trigger b { font-family: 'Syne'; font-size: 34px; color: #fff; letter-spacing: 5px; }
+
+        .play-button {
+            display: flex; align-items: center; justify-content: center;
+            background: #fff; color: #000;
+            padding: 26px; border-radius: 18px;
+            font-family: 'Syne'; font-size: 20px; font-weight: 800;
+            text-decoration: none; text-transform: uppercase;
+            max-width: 420px; margin: 0 auto;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .play-button:hover { background: var(--neon-gold); transform: scale(1.03); box-shadow: 0 20px 50px rgba(255,215,0,0.3); }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 70px;
+        }
+
+        .info-card {
+            background: rgba(255,255,255,0.015);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 35px; border-radius: 35px;
+            transition: 0.3s;
+        }
+
+        .info-card:hover { border-color: var(--neon-gold); background: rgba(255,255,255,0.03); }
+        .info-card h2 { font-family: 'Syne'; font-size: 22px; color: var(--neon-gold); margin-bottom: 15px; }
+        .info-card p { font-size: 15px; color: #9aa3af; line-height: 1.6; font-weight: 300; }
+
+        .seo-content {
+            background: rgba(0,0,0,0.25);
+            padding: 55px 40px;
+            border-radius: 45px;
+            border: 1px solid rgba(255,215,0,0.08);
+            margin-bottom: 90px;
+        }
+
+        .seo-content h2 { font-family: 'Syne'; font-size: 30px; margin-bottom: 30px; text-align: center; color: #fff; }
+        .seo-content p { font-size: 17px; color: #cbd5e1; margin-bottom: 25px; line-height: 1.8; font-weight: 300; }
+        .seo-content strong { color: var(--neon-gold); font-weight: 800; }
+
+        .faq-section { padding-bottom: 100px; }
+        .faq-item { border-bottom: 1px solid rgba(255,255,255,0.06); padding: 25px 0; }
+        .faq-q { font-weight: 800; font-size: 19px; color: #fff; margin-bottom: 10px; }
+        .faq-a { color: #8892a0; font-size: 16px; font-weight: 300; }
+
+        footer { padding: 60px 0; text-align: center; opacity: 0.3; font-size: 11px; border-top: 1px solid rgba(255,215,0,0.05); letter-spacing: 2px; }
+
+        #toast {
+            position: fixed;
+            bottom: 40px; left: 50%; transform: translateX(-50%) translateY(150px);
+            background: #fff; color: #000; padding: 14px 40px;
+            border-radius: 100px; font-weight: 800; transition: 0.5s; z-index: 1000;
+        }
+        #toast.active { transform: translateX(-50%) translateY(0); }
+
+        @media (max-width: 768px) {
+            header { padding-top: 60px; }
+            .hero-section { padding: 40px 20px; }
+            .seo-content { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="game-bg">
+    <div class="highway-lines"></div>
+    <div class="neon-flash"></div>
+</div>
+
+<div class="container">
+    <header>
+        <div style="font-size: 10px; letter-spacing: 6px; color: var(--neon-gold); text-transform: uppercase; margin-bottom: 15px; font-weight: 800;">Verified 2026 Node</div>
+        <h1 class="logo">CHICKEN<br>ROAD</h1>
+    </header>
+
+    <main class="hero-section">
+        <div class="promo-trigger" onclick="copyCode()">
+            <small>ACTIVATION CODE</small>
+            <b id="code">ADBLOCK</b>
+        </div>
+        
+        <a href="https://one-vv6649.com/casino/list?open=register&sub1=road" class="play-button" rel="nofollow">ИГРАТЬ ОНЛАЙН</a>
+        
+        <div style="margin-top: 35px; font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 3px; font-weight: 800;">
+            Real-Time Payouts • Provably Fair • 24/7 Support
+        </div>
+    </main>
+
+    <div class="info-grid">
+        <div class="info-card">
+            <h2>Чистая Честность</h2>
+            <p>Механика Chicken Road основана на технологии <strong>Provably Fair</strong>. Это значит, что каждый раунд генерируется задолго до его начала, и вы можете проверить результат в независимом блокчейн-реестре.</p>
+        </div>
+        <div class="info-card">
+            <h2>Риск под контролем</h2>
+            <p>В отличие от классических слотов, здесь вы сами управляете судьбой. Забирайте выигрыш на x2 или идите до победного <strong>x100</strong>. Твоя стратегия — твои правила.</p>
+        </div>
+        <div class="info-card">
+            <h2>Бонус ADBLOCK</h2>
+            <p>Используй официальный промокод <strong>ADBLOCK</strong>, чтобы получить эксклюзивные условия для старта. Это твой пропуск в мир больших коэффициентов с минимальным риском.</p>
+        </div>
+    </div>
+
+    <article class="seo-content">
+        <h2>Chicken Road: Официальный гайд по игре</h2>
+        <p>
+            Добро пожаловать на <strong>официальный сайт Chicken Road</strong>. Если вы искали место, где можно безопасно и выгодно <strong>играть онлайн</strong>, то наш портал — это именно то, что вам нужно. Мы являемся прямым шлюзом к лицензированным серверам игры «Цыпленок Переходит Дорогу».
+        </p>
+        <p>
+            В 2026 году Chicken Road стала эталоном жанра краш-игр. Простая, но глубокая механика позволяет каждому пользователю почувствовать настоящий азарт. Главная цель — провести цыпленка через поток машин. Каждая полоса увеличивает ваш профит. Главное — вовремя нажать <strong>Cash Out</strong>.
+        </p>
+        <p>
+            Для новичков мы рекомендуем использовать <strong>промокод ADBLOCK</strong>. Он активирует страховочный баланс, который позволит вам изучить динамику игры без лишнего давления. Помните: в Chicken Road побеждает не самый удачливый, а самый хладнокровный.
+        </p>
+    </article>
+
+    <section class="faq-section">
+        <div class="faq-item">
+            <div class="faq-q">Как пройти регистрацию?</div>
+            <div class="faq-a">Нажмите «Играть онлайн», выберите удобный способ создания аккаунта (телефон, email или соцсети) и подтвердите данные. Это займет не более 30 секунд.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Можно ли играть на телефоне?</div>
+            <div class="faq-a">Да, Chicken Road идеально оптимизирована под мобильные браузеры. Все анимации и скорость отклика идентичны десктопной версии.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Как быстро приходят деньги?</div>
+            <div class="faq-a">Вывод средств на официальном сайте происходит в автоматическом режиме. Обычно деньги поступают на карту или криптокошелек в течение 5-15 минут.</div>
+        </div>
+    </section>
+
+    <footer>
+        © 2026 CHICKEN ROAD NETWORK. ALL RIGHTS RESERVED. GAMING LICENSE #1668/JAZ.
+    </footer>
+</div>
+
+<div id="toast">✅ ПРОМОКОД СКОПИРОВАН</div>
+
+<script>
+    function copyCode() {
+        const text = document.getElementById('code').innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            const toast = document.getElementById('toast');
+            toast.classList.add('active');
+            setTimeout(() => toast.classList.remove('active'), 2500);
+        });
+    }
+</script>
+
+</body>
+</html>
