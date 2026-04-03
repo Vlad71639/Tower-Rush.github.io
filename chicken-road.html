@@ -7,15 +7,6 @@
     <title>Chicken Road — Играть Онлайн | Официальный Сайт</title>
     <meta name="description" content="Официальный сайт игры Chicken Road. Попробуй сорвать куш x100, используй код ADBLOCK и получи бонус на первый депозит. Лицензированный софт 2026.">
 
-    <link rel="canonical" href="https://towerrush.vercel.app/chicken-road">
-    
-    <meta property="og:title" content="Chicken Road — Играть Онлайн | Официальный Сайт">
-    <meta property="og:description" content="Сорви куш x100 в Chicken Road. Бонус ADBLOCK на первый депозит.">
-    <meta property="og:url" content="https://towerrush.vercel.app/chicken-road">
-    <meta property="og:type" content="website">
-
-    <link rel="icon" type="image/png" href="chicken.png">
-
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Manrope:wght@300;600;800&display=swap" rel="stylesheet">
 
     <style>
@@ -30,30 +21,26 @@
         
         html, body {
             width: 100%;
-            overflow-x: hidden;
+            height: 100%;
             background-color: var(--deep-bg);
-        }
-
-        body {
             color: #fff;
             font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- ВОЗВРАТ И ОПТИМИЗАЦИЯ ФОНА --- */
+        /* --- ВЕРНУЛ ПОЛНОЦЕННЫЙ ДИЗАЙН ФОНА --- */
         .game-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
             background: radial-gradient(circle at 50% 30%, #1a1505 0%, #050507 70%);
-            overflow: hidden;
-            transform: translateZ(0);
         }
 
         .highway-lines {
             position: absolute;
             bottom: 0; left: 50%;
-            width: 200%; height: 100%;
+            width: 200%; height: 120%;
             transform: translateX(-50%) perspective(400px) rotateX(65deg);
             background-image: 
                 linear-gradient(to bottom, transparent, var(--road-line) 2px, transparent 2px),
@@ -61,7 +48,7 @@
             background-size: 100% 80px, 120px 100%;
             mask-image: linear-gradient(to top, rgba(0,0,0,1), transparent);
             -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1), transparent);
-            animation: moveRoad 1.5s linear infinite;
+            animation: moveRoad 1.8s linear infinite;
             will-change: background-position;
         }
 
@@ -72,67 +59,67 @@
 
         .neon-flash {
             position: absolute;
-            top: 20%; left: 10%; width: 300px; height: 300px;
+            top: 15%; left: 50%; 
+            width: 80vw; height: 80vw;
+            transform: translateX(-50%);
             background: var(--neon-gold);
-            filter: blur(150px);
-            opacity: 0.05;
-            animation: pulse 4s infinite alternate;
+            filter: blur(120px);
+            opacity: 0.07;
+            pointer-events: none;
         }
-
-        @keyframes pulse { 0% { opacity: 0.03; } 100% { opacity: 0.08; } }
 
         .container { 
             width: 100%;
             max-width: 950px; 
             margin: 0 auto; 
-            padding: 0 20px; 
+            padding: 0 16px; 
             position: relative; 
         }
 
-        header { padding: 80px 0 30px; text-align: center; }
+        header { padding: 60px 0 20px; text-align: center; }
 
-        /* --- ИСПРАВЛЕННЫЙ ЛОГОТИП (КРУПНО И В ДВЕ СТРОКИ) --- */
         .logo {
             font-family: 'Syne', sans-serif;
-            font-size: clamp(3rem, 15vw, 5.5rem);
+            /* Динамический размер: не вылезет за границы */
+            font-size: min(15vw, 5rem); 
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: -2px;
-            line-height: 0.85;
-            background: linear-gradient(180deg, #fff 40%, var(--neon-gold) 100%);
+            line-height: 0.9;
+            background: linear-gradient(180deg, #fff 30%, var(--neon-gold) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 15px rgba(255,215,0,0.25));
-            display: inline-block;
+            filter: drop-shadow(0 0 15px rgba(255,215,0,0.3));
         }
 
         .hero-section {
-            background: var(--glass-white);
-            border: 1px solid rgba(255, 215, 0, 0.15);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 40px;
-            padding: 50px 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 32px;
+            padding: 40px 16px;
             text-align: center;
-            margin-bottom: 60px;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.7);
+            margin: 20px 0 40px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.8);
         }
 
         .promo-trigger {
             display: inline-block;
-            background: linear-gradient(180deg, #111 0%, #000 100%);
+            background: #000;
             border: 1px solid var(--neon-gold);
-            padding: 14px 30px;
-            border-radius: 18px;
+            padding: 12px 20px;
+            border-radius: 16px;
             cursor: pointer;
-            margin-bottom: 35px;
-            max-width: 100%;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 280px;
         }
 
         .promo-trigger small { display: block; font-size: 9px; color: var(--neon-gold); letter-spacing: 3px; margin-bottom: 4px; font-weight: 800; }
         .promo-trigger b { 
             font-family: 'Syne'; 
-            font-size: clamp(24px, 8vw, 34px); 
+            font-size: 26px; 
             color: #fff; 
             letter-spacing: 4px;
         }
@@ -140,61 +127,61 @@
         .play-button {
             display: flex; align-items: center; justify-content: center;
             background: #fff; color: #000;
-            padding: 24px; border-radius: 18px;
-            font-family: 'Syne'; font-size: 20px; font-weight: 800;
+            padding: 22px; border-radius: 16px;
+            font-family: 'Syne'; font-size: 19px; font-weight: 800;
             text-decoration: none; text-transform: uppercase;
-            max-width: 400px; margin: 0 auto;
-            transition: 0.3s;
+            width: 100%;
+            max-width: 320px; margin: 0 auto;
+            transition: 0.2s;
         }
 
-        .play-button:hover { background: var(--neon-gold); transform: scale(1.02); }
+        .play-button:active { transform: scale(0.97); background: var(--neon-gold); }
 
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 60px;
+            grid-template-columns: 1fr; /* По умолчанию в колонку на мобилках */
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        @media (min-width: 600px) {
+            .info-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
         }
 
         .info-card {
-            background: rgba(255,255,255,0.015);
+            background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 35px; border-radius: 35px;
+            padding: 25px; border-radius: 24px;
         }
 
-        .info-card h2 { font-family: 'Syne'; font-size: 22px; color: var(--neon-gold); margin-bottom: 15px; }
-        .info-card p { font-size: 15px; color: #9aa3af; line-height: 1.6; }
+        .info-card h2 { font-family: 'Syne'; font-size: 20px; color: var(--neon-gold); margin-bottom: 12px; }
+        .info-card p { font-size: 14px; color: #9aa3af; line-height: 1.6; }
 
         .seo-content {
-            background: rgba(0,0,0,0.25);
-            padding: 40px 25px;
-            border-radius: 40px;
-            border: 1px solid rgba(255,215,0,0.08);
-            margin-bottom: 80px;
+            background: rgba(0,0,0,0.4);
+            padding: 30px 20px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,215,0,0.1);
+            margin-bottom: 60px;
         }
 
-        .seo-content h2 { font-family: 'Syne'; font-size: 28px; margin-bottom: 25px; text-align: center; }
-        .seo-content p { font-size: 16px; color: #cbd5e1; margin-bottom: 20px; line-height: 1.8; }
+        .seo-content h2 { font-family: 'Syne'; font-size: 24px; margin-bottom: 20px; text-align: center; color: #fff; }
+        .seo-content p { font-size: 15px; color: #cbd5e1; margin-bottom: 15px; line-height: 1.7; }
 
-        .faq-item { border-bottom: 1px solid rgba(255,255,255,0.06); padding: 25px 0; }
-        .faq-q { font-weight: 800; font-size: 18px; margin-bottom: 10px; }
-        .faq-a { color: #8892a0; font-size: 16px; }
+        .faq-item { border-bottom: 1px solid rgba(255,255,255,0.06); padding: 20px 0; }
+        .faq-q { font-weight: 800; font-size: 17px; color: #fff; margin-bottom: 8px; }
+        .faq-a { color: #8892a0; font-size: 15px; line-height: 1.5; }
 
-        footer { padding: 60px 0; text-align: center; opacity: 0.3; font-size: 10px; border-top: 1px solid rgba(255,215,0,0.05); letter-spacing: 2px; }
+        footer { padding: 40px 0; text-align: center; opacity: 0.4; font-size: 9px; letter-spacing: 2px; }
 
         #toast {
             position: fixed;
             bottom: 30px; left: 50%; transform: translateX(-50%) translateY(150px);
-            background: #fff; color: #000; padding: 14px 35px;
-            border-radius: 100px; font-weight: 800; transition: 0.5s; z-index: 1000;
+            background: #fff; color: #000; padding: 12px 30px;
+            border-radius: 100px; font-weight: 800; transition: 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28); z-index: 1000;
+            font-size: 13px; white-space: nowrap;
         }
         #toast.active { transform: translateX(-50%) translateY(0); }
-
-        @media (max-width: 768px) {
-            header { padding-top: 60px; }
-            .hero-section { padding: 40px 20px; border-radius: 30px; }
-            .logo { font-size: clamp(3rem, 18vw, 5rem); }
-        }
     </style>
 </head>
 <body>
@@ -206,7 +193,7 @@
 
 <div class="container">
     <header>
-        <div style="font-size: 10px; letter-spacing: 6px; color: var(--neon-gold); text-transform: uppercase; margin-bottom: 15px; font-weight: 800;">Verified 2026 Node</div>
+        <div style="font-size: 9px; letter-spacing: 5px; color: var(--neon-gold); text-transform: uppercase; margin-bottom: 12px; font-weight: 800;">Verified 2026 Node</div>
         <h1 class="logo">CHICKEN<br>ROAD</h1>
     </header>
 
@@ -218,7 +205,7 @@
         
         <a href="https://one-vv6649.com/casino/list?open=register&sub1=road" class="play-button" rel="nofollow">ИГРАТЬ ОНЛАЙН</a>
         
-        <div style="margin-top: 35px; font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 3px; font-weight: 800;">
+        <div style="margin-top: 25px; font-size: 9px; color: #666; text-transform: uppercase; letter-spacing: 2px; font-weight: 800;">
             Real-Time Payouts • Provably Fair • 24/7 Support
         </div>
     </main>
@@ -226,32 +213,32 @@
     <div class="info-grid">
         <div class="info-card">
             <h2>Чистая Честность</h2>
-            <p>Механика Chicken Road основана на технологии <strong>Provably Fair</strong>. Каждый раунд проверяется в блокчейн-реестре.</p>
+            <p>Механика Chicken Road основана на технологии <strong>Provably Fair</strong>. Результаты проверяются в реальном времени.</p>
         </div>
         <div class="info-card">
             <h2>Риск под контролем</h2>
-            <p>Вы сами управляете игрой. Забирайте выигрыш на x2 или идите до победного <strong>x100</strong>.</p>
+            <p>Твоя стратегия — твои правила. Забирай выигрыш на x2 или иди до <strong>x100</strong>.</p>
         </div>
         <div class="info-card">
             <h2>Бонус ADBLOCK</h2>
-            <p>Используй промокод <strong>ADBLOCK</strong>, чтобы получить эксклюзивные условия для мощного старта.</p>
+            <p>Промокод <strong>ADBLOCK</strong> дает эксклюзивный старт. Твой профит начинается здесь.</p>
         </div>
     </div>
 
     <article class="seo-content">
-        <h2>Chicken Road: Официальный сайт</h2>
-        <p>Добро пожаловать на <strong>официальный сайт Chicken Road</strong>. Мы обеспечиваем безопасный доступ к лицензированным серверам игры.</p>
-        <p>В 2026 году Chicken Road стала лидером краш-игр. Проведите цыпленка через дорогу и вовремя нажмите <strong>Cash Out</strong>.</p>
+        <h2>Chicken Road: Официальный гайд</h2>
+        <p>Добро пожаловать на <strong>официальный сайт Chicken Road</strong>. Лицензированный доступ к лучшей краш-игре 2026 года.</p>
+        <p>Проведи цыпленка через поток машин и успей нажать <strong>Cash Out</strong> до столкновения. Каждая полоса — это твой множитель.</p>
     </article>
 
     <section class="faq-section">
         <div class="faq-item">
-            <div class="faq-q">Как пройти регистрацию?</div>
-            <div class="faq-a">Нажмите «Играть онлайн», выберите удобный способ создания аккаунта. Это займет не более 30 секунд.</div>
+            <div class="faq-q">Как начать играть?</div>
+            <div class="faq-a">Жми «Играть онлайн», регистрируйся за 30 секунд и используй код ADBLOCK для бонуса.</div>
         </div>
         <div class="faq-item">
-            <div class="faq-q">Можно ли играть на телефоне?</div>
-            <div class="faq-a">Да, игра идеально оптимизирована под мобильные браузеры. Скорость отклика идентична десктопной версии.</div>
+            <div class="faq-q">Выплаты на карту?</div>
+            <div class="faq-a">Да, вывод средств на карты и криптокошельки занимает от 5 до 15 минут в автоматическом режиме.</div>
         </div>
     </section>
 
@@ -266,9 +253,7 @@
     function copyCode() {
         const text = document.getElementById('code').innerText;
         if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(text).then(() => {
-                showToast();
-            });
+            navigator.clipboard.writeText(text).then(showToast);
         } else {
             const textArea = document.createElement("textarea");
             textArea.value = text;
