@@ -73,7 +73,7 @@
         .highway-lines {
             position: absolute;
             bottom: 0; left: 50%;
-            width: 140%; /* уменьшено для мобильных */
+            width: 140%;
             height: 100%;
             transform: translateX(-50%) perspective(400px) rotateX(65deg);
             background-image: 
@@ -219,6 +219,22 @@
             .logo { font-size: 2.4rem; }
             .promo-trigger b { font-size: 18px; letter-spacing: 2px; }
             .play-button { padding: 20px; font-size: 16px; }
+        }
+
+        /* ======= Android Fix ======= */
+        @supports (-webkit-touch-callout: none) {
+          .logo {
+              font-size: clamp(2.5rem, 7vw, 5rem) !important;
+              letter-spacing: -1px !important;
+              line-height: 1 !important;
+              padding-right: 0 !important;
+          }
+
+          .promo-trigger b {
+              font-size: clamp(18px, 5vw, 34px) !important;
+              letter-spacing: 1px !important;
+              word-break: break-word;
+          }
         }
     </style>
 </head>
