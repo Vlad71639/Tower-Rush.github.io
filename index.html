@@ -5,15 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tower Rush - Play Online</title>
 
-  <!-- Favicon (исправленная ссылка) -->
+  <meta name="description" content="Играть в Tower Rush онлайн. Лучшая стратегия Tower Rush, актуальные промокоды и бонусы. Узнайте, как строить башню и забирать выигрыш в игре Tower Rush.">
+
   <link rel="icon" type="image/png" href="https://i.postimg.cc/cCCyhwZ4/game1.png">
   <link rel="shortcut icon" href="https://i.postimg.cc/cCCyhwZ4/game1.png">
   <link rel="apple-touch-icon" href="https://i.postimg.cc/cCCyhwZ4/game1.png">
-  <meta name="msapplication-TileImage" content="https://i.postimg.cc/cCCyhwZ4/game1.png">
 
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4BLH9NWKZW"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -22,542 +21,259 @@
     gtag('config', 'G-4BLH9NWKZW');
   </script>
 
+  <script type="text/javascript">
+      (function(m,e,t,r,i,k,a){
+          m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+          m[i].l=1*new Date();
+          for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+          k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+      })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105090773', 'ym');
+      ym(105090773, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/105090773" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
   <style>
     :root {
-      --accent1:#f5d547;
-      --accent2:#e89b2c;
-      --accent-glow:rgba(245,213,71,0.18);
-      --bg:#0a0c10;
-      --surface:rgba(20,23,30,0.92);
-      --surface-edge:rgba(255,255,255,0.05);
-      --text:#f4f4f5;
-      --muted:#8b92a0;
-      --radius:22px;
-      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --bg: #060709;
+      --card-bg: rgba(18, 20, 25, 0.98);
+      --edge: rgba(255, 255, 255, 0.07);
+      --bingx-blue: #0052ff;
+      --radius: 20px;
     }
-    *{box-sizing:border-box;margin:0;padding:0}
-    ::selection{ background:rgba(245,213,71,0.25); color:var(--text); }
-    html{scroll-behavior:smooth}
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; } /* Добавлено для мобилок */
+
     body {
-      font-family:"Inter",sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      overflow-x:hidden;
-      position:relative;
-      min-height:100vh;
-      opacity:0;
-      animation: pageFadeIn 1s var(--ease) forwards;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      letter-spacing:0.01em;
+      font-family: "Inter", sans-serif;
+      background: var(--bg);
+      color: #9da3ae;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden; /* Защита от горизонтального скролла */
     }
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      background:
-        radial-gradient(ellipse 100% 70% at 50% -20%, rgba(232,155,44,0.06) 0%, transparent 50%),
-        radial-gradient(ellipse 80% 60% at 100% 30%, rgba(245,213,71,0.03) 0%, transparent 50%),
-        radial-gradient(ellipse 80% 60% at 0% 80%, rgba(232,155,44,0.04) 0%, transparent 50%);
-      pointer-events:none;
-      z-index:0;
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,0.05) 0%, transparent 50%),
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 40px 40px, 40px 40px;
+      z-index: -1;
     }
-    body::after{
-      content:"";
-      position:fixed;
-      inset:0;
-      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
-      pointer-events:none;
-      z-index:0;
-      opacity:0.45;
-    }
-    @keyframes pageFadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
 
     h1 {
-      font-family:"Montserrat",sans-serif;
-      font-size:clamp(36px,12vw,88px);
-      font-weight:900;
-      text-align:center;
-      margin:28px 20px 32px;
-      color:var(--accent1);
-      text-shadow:0 0 24px var(--accent-glow), 0 0 48px rgba(232,155,44,0.08);
-      letter-spacing:-0.035em;
-      position:relative;
-      z-index:1;
-      animation: titleGlow 4s var(--ease) infinite alternate;
-    }
-    @keyframes titleGlow {
-      0%, 100% { text-shadow:0 0 20px var(--accent-glow), 0 0 40px rgba(232,155,44,0.06); }
-      50% { text-shadow:0 0 28px var(--accent-glow), 0 0 56px rgba(232,155,44,0.1); }
+      font-family: "Montserrat", sans-serif;
+      /* Сделал еще больше для десктопа (до 90px), при этом адаптивно под мобилу */
+      font-size: clamp(48px, 12vw, 90px); 
+      font-weight: 900;
+      text-align: center;
+      margin: 60px 10px 40px;
+      background: linear-gradient(180deg, #fff 0%, #888 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      word-wrap: break-word; /* Чтобы не ломало экран */
+      line-height: 1.1;
     }
 
-    .container {
-      max-width:1000px;
-      margin:0 auto;
-      padding:16px 20px 20px;
-      position:relative;
-      z-index:1;
-      top:-8px;
-    }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 20px 80px; }
 
     .card {
-      background:var(--surface);
-      border:1px solid var(--surface-edge);
-      border-radius:var(--radius);
-      padding:28px 26px;
-      margin:0 0 26px;
-      box-shadow:
-        0 2px 4px rgba(0,0,0,0.2),
-        0 12px 28px rgba(0,0,0,0.35),
-        0 0 0 1px rgba(0,0,0,0.2),
-        inset 0 1px 0 rgba(255,255,255,0.04);
-      transition:transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.3s ease;
-      position:relative;
-      overflow:hidden;
-    }
-    .card::before{
-      content:"";
-      position:absolute;
-      top:0; left:0; right:0;
-      height:1px;
-      background:linear-gradient(90deg, transparent 10%, var(--accent1), var(--accent2), transparent 90%);
-      opacity:0.6;
-    }
-    .card:hover {
-      transform:translateY(-3px);
-      box-shadow:0 10px 24px rgba(0,0,0,0.36), 0 0 0 1px rgba(245,213,71,0.04);
-      border-color:rgba(245,213,71,0.08);
+      background: var(--card-bg);
+      border: 1px solid var(--edge);
+      border-radius: var(--radius);
+      padding: 40px;
+      margin-bottom: 30px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
     }
 
     .card h2 {
-      font-family:"Montserrat",sans-serif;
-      font-size:clamp(20px,5vw,28px);
-      font-weight:800;
-      margin:0 0 10px 0;
-      background:linear-gradient(90deg, var(--accent1), var(--accent2));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-      letter-spacing:-0.02em;
-    }
-    .card .accent-bar {
-      height:4px;
-      width:56px;
-      border-radius:999px;
-      background:linear-gradient(90deg, var(--accent1), var(--accent2));
-      box-shadow:0 0 10px var(--accent-glow);
-      margin-bottom:16px;
-    }
-    .card p, .card li {
-      color:var(--muted);
-      line-height:1.65;
-      font-size:clamp(15px,4vw,17px);
-    }
-    .card ul { padding-left:22px; margin:0; }
-    .card ul li { margin-bottom:8px; }
-
-    .buttons {
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      justify-content:center;
-      margin-top:18px;
-    }
-    .buttons a { flex:1 1 auto; text-align:center; min-width:160px; }
-    @media (max-width:767px){
-      .buttons { flex-direction:column; gap:14px; }
-      .buttons a { width:100%; min-width:0; }
+      font-family: "Montserrat", sans-serif;
+      font-size: 26px;
+      margin-bottom: 25px;
+      color: #fff;
+      text-transform: uppercase;
     }
 
-    .play-btn {
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      background:linear-gradient(135deg, var(--accent1) 0%, var(--accent2) 100%);
-      color:#0a0c10;
-      font-weight:800;
-      font-size:clamp(16px,4.5vw,20px);
-      padding:14px 28px;
-      border-radius:999px;
-      text-decoration:none;
-      transition:transform 0.28s var(--ease), box-shadow 0.28s var(--ease), filter 0.28s ease;
-      box-shadow:
-        0 2px 8px rgba(232,155,44,0.2),
-        0 0 0 1px rgba(255,255,255,0.08) inset;
-      position:relative;
-      overflow:hidden;
-    }
-    .play-btn::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 45%);
-      border-radius:999px;
-      pointer-events:none;
-    }
-    .play-btn:hover {
-      transform:translateY(-2px);
-      box-shadow:0 6px 16px rgba(232,155,44,0.24), 0 0 0 1px rgba(255,255,255,0.1) inset;
-      filter:brightness(1.04);
-    }
-    .play-btn:active { transform:translateY(0); }
-    .play-btn:focus-visible { outline:2px solid var(--accent1); outline-offset:3px; }
+    .accent-bar { height: 4px; width: 50px; background: #fff; margin-bottom: 25px; border-radius: 2px; }
+    
+    p, li { font-size: 17px; margin-bottom: 15px; color: #a1a1aa; }
+    b { color: #fff; }
 
-    a.play-btn[href="promo.html"] {
-      background:linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 100%);
-      color:var(--text);
-      border:1px solid var(--surface-edge);
-      box-shadow:0 2px 8px rgba(0,0,0,0.25);
-    }
-    a.play-btn[href="promo.html"]::before { opacity:0.5; }
-    a.play-btn[href="promo.html"]:hover {
-      background:linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-      border-color:rgba(245,213,71,0.2);
-      box-shadow:0 6px 18px rgba(0,0,0,0.3), 0 0 20px rgba(245,213,71,0.05);
+    .btn-wrap { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 30px; }
+    
+    .btn {
+      flex: 1; min-width: 180px; padding: 20px; border-radius: 12px;
+      font-weight: 800; font-size: 15px; text-transform: uppercase;
+      text-decoration: none; text-align: center; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer; display: inline-block;
     }
 
-    .promo {
-      text-align:center;
-      margin:34px 0 38px;
-      padding:30px 22px;
-      background:var(--surface);
-      border:1px solid var(--surface-edge);
-      border-radius:var(--radius);
-      box-shadow:
-        0 2px 4px rgba(0,0,0,0.2),
-        0 12px 28px rgba(0,0,0,0.35),
-        0 0 0 1px rgba(0,0,0,0.2),
-        inset 0 1px 0 rgba(255,255,255,0.04);
-      position:relative;
-      overflow:hidden;
+    .btn-main { background: #fff; color: #000; box-shadow: 0 10px 20px rgba(255,255,255,0.1); }
+    .btn-sec { background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(255,255,255,0.1); }
+    .btn:hover { transform: translateY(-4px); filter: brightness(1.1); }
+
+    /* ПРОМОКОД */
+    .promo-card {
+      background: linear-gradient(145deg, #16181d 0%, #000 100%);
+      text-align: center; cursor: pointer; border-color: rgba(255,255,255,0.15);
     }
-    .promo::before{
-      content:"";
-      position:absolute;
-      top:0; left:0; right:0;
-      height:1px;
-      background:linear-gradient(90deg, transparent 10%, var(--accent1), var(--accent2), transparent 90%);
-      opacity:0.6;
+    .chip { width: 50px; height: 32px; background: linear-gradient(90deg, #777, #fff, #777); border-radius: 5px; margin: 0 auto 20px; }
+    .promo-code { font-family: "Montserrat", sans-serif; font-size: clamp(36px, 10vw, 75px); font-weight: 900; letter-spacing: 10px; color: #fff; text-shadow: 0 0 30px rgba(255,255,255,0.1); }
+
+    /* ПРЕМИАЛЬНЫЙ BINGX */
+    .bingx-card {
+      border: 1px solid rgba(0, 82, 255, 0.3);
+      border-top: 4px solid var(--bingx-blue);
+      background: linear-gradient(180deg, rgba(0, 82, 255, 0.05) 0%, rgba(18, 20, 25, 1) 100%);
+      position: relative;
+      overflow: hidden;
     }
-    .promo h2 { margin:0 0 8px 0; font-size:clamp(20px,5vw,26px); }
-    .promo .accent-bar {
-      height:4px; width:56px; border-radius:999px;
-      background:linear-gradient(90deg, var(--accent1), var(--accent2));
-      margin:0 auto 20px;
-      box-shadow:0 0 10px var(--accent-glow);
+    .bingx-card::before {
+      content: ""; position: absolute; top: -100px; right: -100px; width: 250px; height: 250px;
+      background: radial-gradient(circle, rgba(0, 82, 255, 0.15) 0%, transparent 70%);
+      pointer-events: none;
     }
-    .promo-code {
-      display:inline-block;
-      background:linear-gradient(160deg, rgba(12,14,18,0.98), rgba(8,9,12,0.98));
-      border:1px solid rgba(245,213,71,0.2);
-      color:var(--accent1);
-      padding:14px 28px;
-      border-radius:14px;
-      font-family:"Montserrat",sans-serif;
-      font-weight:800;
-      font-size:clamp(18px,5vw,24px);
-      letter-spacing:0.2em;
-      margin-bottom:14px;
-      box-shadow:
-        0 2px 8px rgba(0,0,0,0.35),
-        0 0 20px rgba(245,213,71,0.06),
-        inset 0 1px 0 rgba(255,255,255,0.04);
-      cursor:pointer;
-      transition:border-color 0.28s var(--ease), box-shadow 0.28s var(--ease), transform 0.28s var(--ease);
+    .bingx-logo-tag { 
+      background: var(--bingx-blue); color: #fff; 
+      padding: 6px 16px; border-radius: 8px; font-weight: 900; 
+      font-size: 14px; display: inline-block; margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0, 82, 255, 0.3);
+      letter-spacing: 1px;
     }
-    .promo-code:hover {
-      border-color:rgba(245,213,71,0.35);
-      box-shadow:0 0 28px rgba(245,213,71,0.1), 0 0 0 1px rgba(245,213,71,0.06);
-      transform:scale(1.01);
+    .bingx-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; margin: 30px 0; }
+    .bingx-item { 
+      background: rgba(255, 255, 255, 0.03); padding: 25px; border-radius: 15px; 
+      border: 1px solid rgba(255, 255, 255, 0.05); transition: 0.3s;
     }
-    .promo-code.copied {
-      border-color:rgba(94,234,162,0.4);
-      color:#5eeaa2;
-      box-shadow:0 0 20px rgba(94,234,162,0.12);
+    .bingx-item:hover { 
+      background: rgba(0, 82, 255, 0.05); 
+      border-color: rgba(0, 82, 255, 0.3); 
+      transform: translateY(-3px);
     }
-    .copy-btn {
-      display:inline-block;
-      margin:8px auto 0;
-      background:linear-gradient(135deg, var(--accent1) 0%, var(--accent2) 100%);
-      color:#0a0c10;
-      border:none;
-      font-weight:800;
-      font-size:clamp(15px,4vw,18px);
-      padding:12px 26px;
-      border-radius:999px;
-      cursor:pointer;
-      transition:transform 0.28s var(--ease), box-shadow 0.28s var(--ease), filter 0.28s ease;
-      box-shadow:0 2px 8px rgba(232,155,44,0.2);
-    }
-    .copy-btn:hover {
-      transform:translateY(-2px);
-      box-shadow:0 6px 18px rgba(232,155,44,0.28);
-      filter:brightness(1.04);
-    }
-    .copy-btn:focus-visible { outline:2px solid var(--accent1); outline-offset:3px; }
-    .notification {
-      margin-top:10px;
-      color:#6ee7b7;
-      display:none;
-      font-size:clamp(13px,3.5vw,15px);
-      font-weight:600;
-      animation: noticePop 0.3s ease;
-    }
-    @keyframes noticePop {
-      from{ opacity:0; transform:scale(0.96) }
-      to{ opacity:1; transform:scale(1) }
+    .bingx-item b { color: var(--bingx-blue); display: block; font-size: 18px; margin-bottom: 8px; text-shadow: 0 0 10px rgba(0, 82, 255, 0.2); }
+    .btn-bingx { 
+      background: #fff; color: var(--bingx-blue) !important; width: 100%; border: none;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      font-size: 16px;
     }
 
-    .faq-item { margin-bottom:20px; }
-    .faq-item:last-child { margin-bottom:0; }
-    .faq-item h3 {
-      font-size:clamp(17px,4.5vw,20px);
-      margin:0 0 8px 0;
-      font-family:"Montserrat",sans-serif;
-      font-weight:700;
-      color:var(--text);
-      letter-spacing:-0.01em;
-    }
-    .faq-item p {
-      font-size:clamp(15px,4vw,16px);
-      color:var(--muted);
-      line-height:1.6;
-      margin:0;
+    .notif {
+      position: fixed; top: 30px; left: 50%; transform: translateX(-50%);
+      background: #fff; color: #000; padding: 15px 40px; border-radius: 50px;
+      font-weight: 900; font-size: 14px; display: none; z-index: 1000; box-shadow: 0 20px 40px rgba(0,0,0,0.4);
     }
 
-    #bonus-trigger {
-      text-align:center;
-      background:
-        radial-gradient(120% 180% at 50% -20%, rgba(245,213,71,0.12) 0%, rgba(20,23,30,0.94) 45%, rgba(20,23,30,0.98) 100%),
-        var(--surface);
-      border:1px solid rgba(245,213,71,0.28);
-      box-shadow:
-        0 2px 4px rgba(0,0,0,0.2),
-        0 12px 28px rgba(0,0,0,0.38),
-        0 0 0 1px rgba(245,213,71,0.1),
-        0 0 20px rgba(245,213,71,0.1);
-    }
-    #bonus-trigger::after {
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 35%);
-      pointer-events:none;
-    }
-    #bonus-trigger h2 {
-      font-size:clamp(24px,5.2vw,34px);
-      margin-bottom:12px;
-    }
-    #bonus-trigger .accent-bar {
-      width:88px;
-      height:5px;
-      margin:0 auto 16px;
-      box-shadow:0 0 18px rgba(245,213,71,0.34);
-    }
-    #bonus-trigger p {
-      max-width:680px;
-      margin:0 auto;
-      color:#c7ceda;
-      font-size:clamp(16px,4.2vw,19px);
-    }
-    #bonus-trigger .buttons {
-      margin-top:22px;
-    }
-    #bonus-trigger .play-btn {
-      font-size:clamp(17px,4.4vw,21px);
-      padding:15px 34px;
-      min-width:240px;
-      letter-spacing:0.01em;
-      box-shadow:
-        0 10px 24px rgba(232,155,44,0.34),
-        0 0 0 1px rgba(255,255,255,0.08) inset;
-    }
-    #bonus-trigger .play-btn:hover {
-      transform:translateY(-3px) scale(1.01);
-      box-shadow:
-        0 10px 22px rgba(232,155,44,0.34),
-        0 0 0 1px rgba(255,255,255,0.12) inset;
-    }
+    footer { text-align: center; padding: 50px; color: #444; font-size: 13px; }
+    footer a { color: #555; text-decoration: none; font-weight: 700; transition: 0.2s; }
+    footer a:hover { color: #fff; }
 
-    @media (max-width:767px){
-      body::after { display:none; }
-      .card:hover,
-      .play-btn:hover,
-      #bonus-trigger .play-btn:hover {
-        transform:none;
-      }
+    @media (max-width: 650px) {
+      .btn-wrap { flex-direction: column; }
+      .promo-code { letter-spacing: 5px; }
+      .card { padding: 30px 20px; }
+      h1 { margin-top: 40px; margin-bottom: 30px; } /* Оптимизация отступа для мобил */
     }
-
-    @media (prefers-reduced-motion: reduce){
-      *, *::before, *::after {
-        animation:none !important;
-        transition:none !important;
-      }
-      body { animation:none; opacity:1; }
-    }
-
-    footer {
-      text-align:center;
-      padding:28px 20px;
-      margin-top:36px;
-      font-size:13px;
-      color:var(--muted);
-      border-top:1px solid var(--surface-edge);
-      background:linear-gradient(180deg, transparent 0%, rgba(10,12,16,0.5) 100%);
-      position:relative;
-      z-index:1;
-      letter-spacing:0.02em;
-    }
-    footer p { margin:0; }
-    footer a {
-      color:#6b9bd1;
-      text-decoration:none;
-      font-weight:600;
-      transition:color 0.25s var(--ease), opacity 0.25s ease;
-    }
-    footer a:hover { color:#8ab4e8; opacity:1; }
   </style>
 </head>
 <body>
+
+  <div id="notif" class="notif">СКОПИРОВАНО!</div>
+
   <h1>Tower Rush</h1>
+
   <div class="container">
 
     <div class="card">
       <h2>О игре</h2>
       <div class="accent-bar"></div>
-      <p>
-        Tower Rush — динамичная игра, где всё решает твоя стратегия.  
-        Башня растёт этаж за этажом, множитель увеличивается, а вместе с ним и твой выигрыш.  
-        Каждый новый уровень — это риск и шанс на победу.
-      </p>
-      <div class="buttons">
-        <a href="https://one-vv6649.com/casino/list?open=register&sub1=tower" target="_blank" rel="noopener noreferrer" class="play-btn"> Играть</a>
-        <a href="promo.html" class="play-btn">🎁 Что за бонусы?</a>
+      <p>Tower Rush — динамичная стратегия, где ваша задача — построить максимально высокую башню. Каждый новый этаж умножает вашу ставку, но увеличивает риск обрушения. Принимайте решения быстро и забирайте выигрыш вовремя.</p>
+      <div class="btn-wrap">
+        <a href="https://one-vv6649.com/casino/list?open=register&sub1=tower" target="_blank" class="btn btn-main">Играть сейчас</a>
+        <a href="promo.html" class="btn btn-sec">🎁 Бонусы</a>
       </div>
     </div>
 
-    <div class="promo">
-      <h2>Ваш промокод для бонуса</h2>
-      <div class="accent-bar"></div>
-      <div class="promo-code" id="promo" title="Нажми, чтобы скопировать">ADBLOCK</div>
-      <button class="copy-btn" onclick="copyPromo()">Скопировать промокод</button>
-      <div id="notify" class="notification">Промокод скопирован!</div>
+    <div class="card promo-card" onclick="copy()">
+      <div class="chip"></div>
+      <p style="text-transform: uppercase; letter-spacing: 4px; font-size: 11px; color: #666; margin-bottom: 12px; font-weight: 800;">Exclusive Promo Code</p>
+      <div class="promo-code" id="code">ADBLOCK</div>
+      <p style="margin-top: 20px; color: #444; font-size: 12px; font-weight: 700;">НАЖМИ, ЧТОБЫ СКОПИРОВАТЬ</p>
     </div>
 
     <div class="card">
       <h2>Как играть</h2>
       <div class="accent-bar"></div>
-      <ul>
-        <li>Сделай ставку и начни строить башню.</li>
-        <li>Каждый этаж увеличивает множитель.</li>
-        <li>Реши: продолжать или забрать выигрыш.</li>
-        <li>Используй промокод, чтобы получить дополнительные бонусы.</li>
+      <ul style="list-style: none;">
+        <li>⚡ <b>Ставка:</b> Выберите сумму и подтвердите участие в раунде.</li>
+        <li>⚡ <b>Построение:</b> Наблюдайте, как растет множитель с каждым уровнем.</li>
+        <li>⚡ <b>Кешаут:</b> Нажмите кнопку вывода до того, как башня упадет.</li>
+        <li>⚡ <b>Бонусы:</b> Используйте ADBLOCK для увеличения первого депозита.</li>
       </ul>
     </div>
 
     <div class="card">
       <h2>FAQ</h2>
       <div class="accent-bar"></div>
-      <div class="faq-item">
-        <h3>Можно ли играть бесплатно?</h3>
-        <p>Да, игра доступна в демо-режиме. Но выигрыши возможны только при игре на реальные ставки.</p>
+      <div style="margin-bottom: 25px;">
+        <b>Безопасно ли играть?</b>
+        <p>Да, игра сертифицирована и работает на базе алгоритма Provably Fair, исключающего манипуляции.</p>
       </div>
-      <div class="faq-item">
-        <h3>Что даёт промокод?</h3>
-        <p>Используя промокод, вы получите приветственные бонусы: дополнительные средства и бесплатные вращения.</p>
+      <div style="margin-bottom: 25px;">
+        <b>Где найти актуальное зеркало?</b>
+        <p>На этой странице всегда размещены прямые ссылки на рабочую версию Tower Rush.</p>
       </div>
-      <div class="faq-item">
-        <h3>Безопасна ли игра?</h3>
-        <p>Игра лицензирована и использует проверенный генератор случайных чисел для честного результата.</p>
+      <div>
+        <b>Есть ли демо-режим?</b>
+        <p>Вы можете запустить игру в ознакомительном режиме, чтобы протестировать механику без реальных ставок.</p>
       </div>
     </div>
 
-    <div class="card" id="bonus-trigger">
-      <h2>Хочешь получить до 500$?</h2>
+    <div class="card bingx-card">
+      <div class="bingx-logo-tag">BINGX OFFICIAL</div>
+      <h2>Бонусы до $5000 на BingX</h2>
+      <p>Лучшая криптобиржа для гемблинга. Выводите свои выигрыши из Tower Rush напрямую в USDT с минимальной комиссией и без лишних проверок.</p>
+      <div class="bingx-grid">
+        <div class="bingx-item"><b>Welcome Pack</b>Бонус до 5000 USDT на счет.</div>
+        <div class="bingx-item"><b>No KYC</b>Торговля и вывод без верификации.</div>
+        <div class="bingx-item"><b>Instant</b>Зачисление крипты за 2 минуты.</div>
+      </div>
+      <a href="bingx.html" class="btn btn-main btn-bingx">Забрать бонусы на BingX</a>
+    </div>
+
+    <div class="card">
+      <h2>Стратегия и Игра онлайн</h2>
       <div class="accent-bar"></div>
-      <p>
-        Пройди простой шаг и активируй предложение прямо сейчас. Минимум усилий - максимум пользы!
-      </p>
-      <div class="buttons">
-        <a href="bingx.html" class="play-btn">Узнать подробности</a>
+      <p>Для успешной игры в <b>Tower Rush онлайн</b> рекомендуем придерживаться тактики "Лестница". Фиксируйте прибыль на множителях 1.4x – 1.7x, чтобы минимизировать математическое преимущество системы и играть в плюс на дистанции.</p>
+      <p>Наш интерфейс полностью оптимизирован для мобильных телефонов и планшетов. Наслаждайтесь игрой в любом месте с мгновенными выплатами.</p>
+      
+      <div class="btn-wrap" style="margin-top: 35px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 25px;">
+        <a href="https://one-vv6649.com/casino/list?open=register&sub1=tower" target="_blank" class="btn btn-main" style="width: 100%;">Начать игру в Tower Rush</a>
       </div>
     </div>
+
   </div>
 
-  <script>
-    function copyPromo() {
-      const promoEl = document.getElementById("promo");
-      const code = promoEl.textContent.trim();
-      const notify = document.getElementById("notify");
-      function showDone() {
-        notify.style.display = "block";
-        promoEl.classList.add("copied");
-        setTimeout(function() {
-          notify.style.display = "none";
-          promoEl.classList.remove("copied");
-        }, 2500);
-      }
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(code).then(showDone).catch(function() {
-          fallbackCopy();
-        });
-      } else {
-        fallbackCopy();
-      }
-      function fallbackCopy() {
-        var ta = document.createElement("textarea");
-        ta.value = code;
-        document.body.appendChild(ta);
-        ta.select();
-        try {
-          document.execCommand("copy");
-          showDone();
-        } catch (e) {
-          alert("Скопируйте вручную: " + code);
-        }
-        ta.remove();
-      }
-    }
-    document.getElementById("promo").addEventListener("click", copyPromo);
-
-  </script>
-
   <footer>
-    <p>
-      © 2026 TowerRush · Партнёрская программа:
-      <a href="https://1w.run/?p=YfPl" target="_blank" rel="noopener noreferrer">Вход</a>
-    </p>
+    <p>© 2026 TowerRush | <a href="https://1w.run/?p=YfPl" target="_blank">AFFILIATE PROGRAM</a></p>
   </footer>
-  
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105090773', 'ym');
 
-    ym(105090773, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/105090773" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
-
-
+  <script>
+    function copy() {
+      const code = document.getElementById("code").innerText;
+      const n = document.getElementById("notif");
+      navigator.clipboard.writeText(code).then(() => {
+        n.style.display = "block";
+        setTimeout(() => n.style.display = "none", 2000);
+      });
+    }
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
