@@ -3,386 +3,231 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tower Rush — Промокод и бонусы</title>
+  <title>Tower Rush — Бонусы от 1win</title>
 
-  <!-- favicon (иконка сайта) -->
   <link rel="icon" type="image/png" href="https://i.postimg.cc/cCCyhwZ4/game1.png">
-
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --accent1:#f5d547;
-      --accent2:#e89b2c;
-      --accent-glow:rgba(245,213,71,0.18);
-      --bg:#0a0c10;
-      --surface:rgba(20,23,30,0.92);
-      --surface-edge:rgba(255,255,255,0.05);
-      --text:#f4f4f5;
-      --muted:#8b92a0;
-      --radius:22px;
-      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    ::selection{ background:rgba(245,213,71,0.25); color:var(--text); }
-    html{scroll-behavior:smooth}
-    html,body{min-height:100%}
-    body{
-      font-family:"Inter",system-ui,-apple-system,Segoe UI, Roboto, "Helvetica Neue", Arial;
-      background:var(--bg);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      padding:28px 20px 44px;
-      line-height:1.6;
-      position:relative;
-      overflow-x:hidden;
-      opacity:0;
-      animation: pageFadeIn 1s var(--ease) forwards;
-      letter-spacing:0.01em;
-    }
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      background:
-        radial-gradient(ellipse 100% 70% at 50% -20%, rgba(232,155,44,0.06) 0%, transparent 50%),
-        radial-gradient(ellipse 80% 60% at 100% 30%, rgba(245,213,71,0.03) 0%, transparent 50%),
-        radial-gradient(ellipse 80% 60% at 0% 80%, rgba(232,155,44,0.04) 0%, transparent 50%);
-      pointer-events:none;
-      z-index:0;
-    }
-    body::after{
-      content:"";
-      position:fixed;
-      inset:0;
-      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
-      pointer-events:none;
-      z-index:0;
-    }
-    @keyframes pageFadeIn{ from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
-
-    .wrap{max-width:1200px;margin:0 auto;position:relative;z-index:1}
-
-    h1{
-      font-family:"Montserrat",sans-serif;
-      font-size:clamp(28px,7.5vw,48px);
-      font-weight:900;
-      text-align:center;
-      margin:0 0 36px;
-      color:var(--accent1);
-      text-shadow:0 0 24px var(--accent-glow), 0 0 48px rgba(232,155,44,0.08);
-      letter-spacing:-0.03em;
-      animation: titleGlow 4s var(--ease) infinite alternate;
-    }
-    @keyframes titleGlow{
-      0%,100%{ text-shadow:0 0 20px var(--accent-glow), 0 0 40px rgba(232,155,44,0.06); }
-      50%{ text-shadow:0 0 28px var(--accent-glow), 0 0 56px rgba(232,155,44,0.1); }
+    :root {
+      --bg: #060709;
+      --card-bg: rgba(18, 20, 25, 0.98);
+      --edge: rgba(255, 255, 255, 0.07);
+      --radius: 20px;
     }
 
-    /* HERO */
-    .hero{
-      display:flex;
-      flex-direction:column;
-      gap:24px;
-      align-items:center;
-      margin-bottom:32px;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: var(--bg);
+      color: #9da3ae;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    .hero-image{
-      width:100%;
-      border-radius:var(--radius);
-      overflow:hidden;
-      flex-shrink:0;
-      position:relative;
-      box-shadow:
-        0 2px 4px rgba(0,0,0,0.25),
-        0 16px 36px rgba(0,0,0,0.4),
-        0 0 0 1px var(--surface-edge),
-        inset 0 1px 0 rgba(255,255,255,0.03);
-      transition:transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
-    }
-    .hero-image::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      border-radius:var(--radius);
-      box-shadow:inset 0 0 80px rgba(245,213,71,0.02);
-      pointer-events:none;
-    }
-    .hero-image:hover{
-      transform:translateY(-3px);
-      box-shadow:
-        0 12px 28px rgba(0,0,0,0.4),
-        0 24px 48px rgba(0,0,0,0.45),
-        0 0 32px var(--accent-glow),
-        0 0 0 1px rgba(245,213,71,0.06);
-    }
-    .hero-image img{
-      display:block;
-      width:100%;
-      height:auto;
-      object-fit:cover;
-      vertical-align:middle;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,0.05) 0%, transparent 50%),
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 40px 40px, 40px 40px;
+      z-index: -1;
     }
 
-    .hero-right{
-      width:100%;
-      display:flex;
-      flex-direction:column;
-      gap:20px;
+    .wrap { max-width: 960px; margin: 0 auto; padding: 40px 20px 80px; }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--edge);
+      border-radius: var(--radius);
+      margin-bottom: 30px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
+      overflow: hidden; /* Важно для скругления углов фото */
     }
 
-    /* Cards */
-    .card{
-      background:var(--surface);
-      border:1px solid var(--surface-edge);
-      color:var(--text);
-      border-radius:var(--radius);
-      padding:26px 24px;
-      box-shadow:
-        0 2px 4px rgba(0,0,0,0.2),
-        0 12px 28px rgba(0,0,0,0.35),
-        0 0 0 1px rgba(0,0,0,0.2),
-        inset 0 1px 0 rgba(255,255,255,0.04);
-      transition:transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.3s ease;
-      position:relative;
-      overflow:hidden;
-    }
-    .card::before{
-      content:"";
-      position:absolute;
-      top:0; left:0; right:0;
-      height:1px;
-      background:linear-gradient(90deg, transparent 10%, var(--accent1), var(--accent2), transparent 90%);
-      opacity:0.6;
-    }
-    .card:hover{
-      transform:translateY(-2px);
-      box-shadow:0 16px 36px rgba(0,0,0,0.4), 0 0 0 1px rgba(245,213,71,0.06);
-      border-color:rgba(245,213,71,0.08);
+    /* ОБНОВЛЕННАЯ СПЛИТ-КАРТОЧКА (ДЛЯ ОРГАНИКИ) */
+    .hero-split-card {
+      display: flex; /* Сплит по горизонтали */
+      align-items: stretch; /* Растягиваем по высоте */
     }
 
-    .lead{
-      font-size:1.05rem;
-      color:var(--muted);
-      margin:0;
-      line-height:1.65;
+    .hero-img-side {
+      flex: 1; /* Занимает половину ширины */
+      min-height: 350px; /* Чтобы блок не был плоским */
     }
 
-    .card h2{
-      margin:0 0 12px 0;
-      font-family:"Montserrat",sans-serif;
-      font-size:22px;
-      line-height:1.2;
-      background:linear-gradient(90deg,var(--accent1),var(--accent2));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-      font-weight:800;
-      display:inline-block;
-      letter-spacing:-0.02em;
-    }
-    .accent-bar{
-      margin-top:12px;
-      height:4px;
-      width:56px;
-      border-radius:999px;
-      background:linear-gradient(90deg,var(--accent1),var(--accent2));
-      box-shadow:0 0 10px var(--accent-glow);
+    .hero-img-side img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Заполняет блок, показывая гораздо больше деталей на вертикальном срезе */
+      display: block;
     }
 
-    ul.bonus-list{
-      padding-left:22px;
-      margin:12px 0 0;
-      color:var(--muted);
-    }
-    ul.bonus-list li{
-      margin-bottom:10px;
-      font-size:15px;
-      position:relative;
-      padding-left:4px;
-    }
-    ul.bonus-list li strong{
-      color:var(--accent1);
-      font-weight:700;
+    .hero-text-side {
+      flex: 1; /* Занимает вторую половину */
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* Центровка текста по вертикали */
     }
 
-    .promo-code-wrap{
-      text-align:center;
-      margin-top:20px;
-      margin-bottom:8px;
-    }
-    .promo-code{
-      display:inline-block;
-      background:linear-gradient(160deg, rgba(12,14,18,0.98), rgba(8,9,12,0.98));
-      border:1px solid rgba(245,213,71,0.2);
-      color:var(--accent1);
-      padding:14px 26px;
-      border-radius:14px;
-      font-weight:800;
-      font-family:"Montserrat",sans-serif;
-      font-size:18px;
-      letter-spacing:0.2em;
-      box-shadow:
-        0 2px 8px rgba(0,0,0,0.35),
-        0 0 20px rgba(245,213,71,0.06),
-        inset 0 1px 0 rgba(255,255,255,0.04);
-      cursor:pointer;
-      transition:border-color 0.28s var(--ease), box-shadow 0.28s var(--ease), transform 0.28s var(--ease);
-    }
-    .promo-code:hover{
-      border-color:rgba(245,213,71,0.35);
-      box-shadow:0 0 28px rgba(245,213,71,0.1), 0 0 0 1px rgba(245,213,71,0.06);
-      transform:scale(1.01);
-    }
-    .promo-code.copied{
-      border-color:rgba(94,234,162,0.4);
-      color:#5eeaa2;
-      box-shadow:0 0 20px rgba(94,234,162,0.12);
+    /* Gamer-Card Стиль для заголовка */
+    .hero-text-side h1 {
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(32px, 5vw, 48px); /* Сбалансированный размер */
+      font-weight: 900;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 15px;
     }
 
-    .buttons{
-      display:flex;
-      gap:14px;
-      flex-direction:column;
-      align-items:center;
-      margin-top:22px;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      background:linear-gradient(135deg, var(--accent1) 0%, var(--accent2) 100%);
-      color:#0a0c10;
-      border:none;
-      padding:14px 26px;
-      border-radius:999px;
-      font-weight:800;
-      text-decoration:none;
-      cursor:pointer;
-      font-size:15px;
-      box-shadow:
-        0 2px 8px rgba(232,155,44,0.2),
-        0 0 0 1px rgba(255,255,255,0.08) inset;
-      transition:transform 0.28s var(--ease), box-shadow 0.28s var(--ease), filter 0.28s ease;
-      min-width:240px;
-      position:relative;
-      overflow:hidden;
-    }
-    .btn::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 45%);
-      border-radius:999px;
-      pointer-events:none;
-    }
-    .btn:hover{
-      transform:translateY(-2px);
-      box-shadow:0 8px 20px rgba(232,155,44,0.28), 0 0 0 1px rgba(255,255,255,0.1) inset;
-      filter:brightness(1.04);
-    }
-    .btn:active{ transform:translateY(0); }
-    .btn:focus-visible{ outline:2px solid var(--accent1); outline-offset:3px; }
-
-    a.btn[href="index.html"]{
-      background:linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 100%);
-      color:var(--text);
-      border:1px solid var(--surface-edge);
-      box-shadow:0 2px 8px rgba(0,0,0,0.25);
-    }
-    a.btn[href="index.html"]::before{ opacity:0.5; }
-    a.btn[href="index.html"]:hover{
-      background:linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-      border-color:rgba(245,213,71,0.2);
-      box-shadow:0 6px 18px rgba(0,0,0,0.3), 0 0 20px rgba(245,213,71,0.05);
+    /* СТИЛИ ДЛЯ ВТОРОЙ КАРТОЧКИ */
+    .bonus-card { padding: 40px; }
+    
+    .bonus-card h2 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 24px;
+      margin-bottom: 25px;
+      color: #fff;
+      text-transform: uppercase;
     }
 
-    .notice{
-      color:#5eeaa2;
-      font-weight:600;
-      display:none;
-      margin-top:10px;
-      text-align:center;
-      font-size:14px;
-      animation: noticePop 0.35s var(--ease);
+    .accent-bar { height: 3px; width: 40px; background: #fff; margin-bottom: 20px; border-radius: 2px; }
+    
+    p.description { font-size: 16px; color: #a1a1aa; margin-bottom: 25px; }
+    ul.bonus-list { list-style: none; margin-bottom: 30px; }
+    ul.bonus-list li { font-size: 16px; margin-bottom: 12px; }
+    ul.bonus-list li strong { color: #fff; font-weight: 800; font-size: 18px; }
+
+    /* ПРОМОКОД СТИЛЬ */
+    .promo-code-wrap {
+      text-align: center;
+      margin: 20px 0;
+      padding: 25px;
+      background: linear-gradient(145deg, #16181d 0%, #000 100%);
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+      cursor: pointer;
     }
-    @keyframes noticePop{
-      from{ opacity:0; transform:scale(0.98) }
-      to{ opacity:1; transform:scale(1) }
+    
+    .promo-code {
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(32px, 8vw, 54px);
+      font-weight: 900;
+      letter-spacing: 6px;
+      color: #fff;
+      text-shadow: 0 0 30px rgba(255,255,255,0.1);
+      display: block;
+    }
+    .promo-code.copied { color: #5eeaa2; text-shadow: 0 0 30px rgba(94,234,162,0.3); }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
-    @media(min-width:880px){
-      h1{ font-size:48px; margin-bottom:40px }
-      .hero{ flex-direction:row; align-items:flex-start; gap:28px }
-      .hero-image{ width:42% }
-      .hero-right{ width:58% }
-      .buttons{ flex-direction:row; flex-wrap:wrap; justify-content:flex-start; align-items:center; gap:14px }
-      .buttons .btn{ min-width:180px }
+    .btn {
+      flex: 1;
+      min-width: 180px;
+      padding: 18px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 14px;
+      text-transform: uppercase;
+      text-decoration: none;
+      text-align: center;
+      transition: 0.2s;
+      cursor: pointer;
+      border: none;
+      display: inline-block;
     }
 
-    @media(max-width:420px){
-      body{ padding:20px 16px 36px }
-      .btn{ min-width:100%; font-size:14px; padding:12px 20px }
-      .promo-code{ font-size:16px; padding:12px 18px; letter-spacing:0.15em }
-      .card{ padding:20px }
-      .card h2{ font-size:19px }
-      ul.bonus-list li{ font-size:14px }
+    .btn-main, .btn#activateBtn { background: #fff; color: #000; }
+    .btn-sec { background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(255,255,255,0.1); }
+    
+    .btn:hover { transform: translateY(-3px); opacity: 0.9; }
+
+    .notice {
+      color: #5eeaa2;
+      font-weight: 800;
+      text-align: center;
+      margin-top: 10px;
+      display: none;
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    footer { text-align: center; color: #444; font-size: 12px; }
+    footer a { color: #555; text-decoration: none; }
+
+    /* АДАПТАЦИЯ ПОД МОБИЛКИ */
+    @media(max-width: 880px) {
+      .hero-split-card { flex-direction: column; } /* С택 на мобиле */
+      .hero-img-side { min-height: 250px; order: -1; } /* Фото сверху */
+      .hero-text-side { padding: 30px 20px; text-align: center; }
+      .bonus-card { padding: 30px 20px; }
+      .buttons { flex-direction: column; }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <h1>Промокод Tower Rush</h1>
+    
+    <div class="card hero-split-card">
+      <div class="hero-img-side">
+        <img src="https://i.postimg.cc/hGFwmVNc/ADBLOCK.jpg" alt="Tower Rush Пакет">
+      </div>
+      <div class="hero-text-side">
+        <h1>Tower Rush</h1>
+        <p class="description">Эксклюзивный пакет бонусов для новых игроков. Активируй промокод при регистрации и начни игру с максимальным преимуществом.</p>
+      </div>
+    </div>
 
-    <section class="hero" aria-labelledby="promo-title">
-      <div class="hero-image" aria-hidden="false">
-        <img src="https://i.postimg.cc/hGFwmVNc/ADBLOCK.jpg" alt="Tower Rush — бонусы и промокод" loading="lazy">
+    <div class="card bonus-card">
+      <h2>Твои преимущества</h2>
+      <div class="accent-bar"></div>
+
+      <ul class="bonus-list">
+        <li>⚡ <strong>+500%</strong> на первые пополнения</li>
+        <li>⚡ <strong>30%</strong> weekly cashback</li>
+        <li>⚡ <strong>+70</strong> free spins</li>
+      </ul>
+
+      <div class="promo-code-wrap" id="promoClickArea">
+        <span class="promo-code" id="promo">ADBLOCK</span>
+        <p style="font-size: 10px; margin-top: 10px; font-weight: 800; color: #444; text-transform: uppercase;">НАЖМИ, ЧТОБЫ СКОПИРОВАТЬ</p>
       </div>
 
-      <div class="hero-right">
-        <!-- DESCRIPTION CARD -->
-        <div class="card" role="region" aria-label="Описание бонусов">
-          <h2 id="promo-title">Стартовый пакет для новых игроков</h2>
-          <div class="accent-bar" aria-hidden="true"></div>
-          <p class="lead">Используй промокод и получи щедрые приветственные бонусы. Всё это ждёт новых игроков — стартуй с преимуществом и наслаждайся игрой.</p>
-        </div>
-
-        <!-- BONUSES + ACTIONS CARD -->
-        <div class="card" role="region" aria-label="Бонусы и промокод">
-          <h2>Что даёт промокод?</h2>
-          <div class="accent-bar" aria-hidden="true"></div>
-
-          <ul class="bonus-list" aria-hidden="false">
-            <li><strong>+500%</strong> бонус на первые 4 пополнения</li>
-            <li><strong>30%</strong> cashback каждую неделю</li>
-            <li><strong>+70</strong> фриспинов</li>
-          </ul>
-
-          <div class="promo-code-wrap">
-            <span class="promo-code" id="promo" title="Нажми, чтобы скопировать">ADBLOCK</span>
-          </div>
-
-          <div class="buttons" role="group" aria-label="Действия с промокодом">
-            <button class="btn" id="copyBtn" aria-describedby="copyHint">📋 Скопировать промокод</button>
-            <a class="btn" id="activateBtn" href="https://one-vv6649.com/casino/list?open=register&sub1=tower" target="_blank" rel="noopener noreferrer">🚀 Активировать промокод</a>
-            <a class="btn" href="index.html">⬅ Вернуться в меню</a>
-          </div>
-
-          <div id="copyHint" class="notice" role="status" aria-live="polite">Промокод скопирован!</div>
-        </div>
+      <div class="buttons">
+        <button class="btn btn-main" id="copyBtn">📋 Скопировать</button>
+        <a class="btn" id="activateBtn" href="https://one-vv6649.com/casino/list?open=register&sub1=tower" target="_blank">🚀 Активировать</a>
+        <a class="btn btn-sec" href="index.html">⬅ Назад</a>
       </div>
-    </section>
+
+      <div id="copyHint" class="notice">Промокод скопирован!</div>
+    </div>
+
+    <footer>
+      <p>© 2026 TowerRush | <a href="https://1w.run/?p=YfPl" target="_blank">AFFILIATE PROGRAM</a></p>
+    </footer>
   </div>
 
   <script>
-    // copy promo
     (function(){
       const copyBtn = document.getElementById('copyBtn');
       const promoEl = document.getElementById('promo');
       const hint = document.getElementById('copyHint');
+      const clickArea = document.getElementById('promoClickArea');
 
       async function doCopy(){
         const code = promoEl.textContent.trim();
@@ -403,52 +248,24 @@
             hint.style.display = 'none';
             promoEl.classList.remove('copied');
           }, 2500);
-
-          // analytics event if present
-          if (typeof gtag === 'function') {
-            gtag('event','copy_promo',{event_category:'engagement', event_label: code});
-          }
         }catch(e){
-          alert('Не удалось скопировать автоматически. Скопируйте вручную: ' + code);
+          alert('Скопируйте вручную: ' + code);
         }
       }
 
       copyBtn.addEventListener('click', doCopy);
-      promoEl.addEventListener('click', doCopy);
+      clickArea.addEventListener('click', doCopy);
     })();
   </script>
 
-  
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105090773', 'ym');
-
-    ym(105090773, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/105090773" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
-
-
+  <script type="text/javascript">
+      (function(m,e,t,r,i,k,a){
+          m[i]=m[i]||function(){(m[i].a=m[i].a[]).push(arguments)};
+          m[i].l=1*new Date();
+          for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+          k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+      })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105090773', 'ym');
+      ym(105090773, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
