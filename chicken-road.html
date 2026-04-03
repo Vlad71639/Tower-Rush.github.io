@@ -47,12 +47,17 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
+
+        html, body {
+            overflow-x: hidden;
+            max-width: 100%;
+            touch-action: pan-y;
+        }
+
         body {
             background-color: var(--deep-bg);
             color: #fff;
             font-family: 'Manrope', sans-serif;
-            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
@@ -68,7 +73,8 @@
         .highway-lines {
             position: absolute;
             bottom: 0; left: 50%;
-            width: 200%; height: 100%;
+            width: 140%; /* уменьшено для мобильных */
+            height: 100%;
             transform: translateX(-50%) perspective(400px) rotateX(65deg);
             background-image: 
                 linear-gradient(to bottom, transparent, var(--road-line) 2px, transparent 2px),
@@ -94,7 +100,7 @@
 
         @keyframes pulse { 0% { opacity: 0.03; } 100% { opacity: 0.08; } }
 
-        .container { max-width: 950px; margin: 0 auto; padding: 0 20px; position: relative; }
+        .container { max-width: 950px; margin: 0 auto; padding: 0 20px; overflow: hidden; }
 
         header { padding: 90px 0 30px; text-align: center; }
 
@@ -103,8 +109,9 @@
             font-size: clamp(2.8rem, 9vw, 5rem);
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: -2px;
+            letter-spacing: clamp(-1px, -0.5vw, -2px);
             line-height: 0.9;
+            padding-right: 6px;
             background: linear-gradient(180deg, #fff 40%, var(--neon-gold) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -126,16 +133,24 @@
             display: inline-block;
             background: linear-gradient(180deg, #111 0%, #000 100%);
             border: 1px solid var(--neon-gold);
-            padding: 14px 40px;
+            padding: 12px 20px;
             border-radius: 18px;
             cursor: pointer;
             transition: 0.4s;
             margin-bottom: 35px;
+            max-width: 100%;
+            overflow: hidden;
         }
 
         .promo-trigger:hover { transform: translateY(-3px); box-shadow: 0 0 30px rgba(255,215,0,0.3); }
         .promo-trigger small { display: block; font-size: 9px; color: var(--neon-gold); letter-spacing: 3px; margin-bottom: 4px; font-weight: 800; }
-        .promo-trigger b { font-family: 'Syne'; font-size: 34px; color: #fff; letter-spacing: 5px; }
+        .promo-trigger b {
+            font-family: 'Syne';
+            font-size: clamp(20px, 6vw, 34px);
+            color: #fff;
+            letter-spacing: clamp(2px, 1vw, 5px);
+            word-break: break-word;
+        }
 
         .play-button {
             display: flex; align-items: center; justify-content: center;
@@ -199,8 +214,15 @@
             .hero-section { padding: 40px 20px; }
             .seo-content { padding: 30px 20px; }
         }
+
+        @media (max-width: 360px) {
+            .logo { font-size: 2.4rem; }
+            .promo-trigger b { font-size: 18px; letter-spacing: 2px; }
+            .play-button { padding: 20px; font-size: 16px; }
+        }
     </style>
 </head>
+
 <body>
 
 <div class="game-bg">
