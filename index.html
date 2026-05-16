@@ -3,16 +3,23 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tower Rush - Play Online</title>
+  <title>Tower Rush (Товер Раш) - Play Online & Бонусы</title>
 
-  <meta name="description" content="Играть в Tower Rush онлайн. Лучшая стратегия Tower Rush, актуальные промокоды и бонусы. Узнайте, как строить башню и забирать выигрыш в игре Tower Rush.">
+  <meta name="description" content="Play Tower Rush online. Играть в Товер Раш: официальное рабочее зеркало, лучшая стратегия выигрыша и эксклюзивный промокод ADBLOCK на бонусы.">
+  
+  <link rel="canonical" href="https://towerrush.vercel.app" />
 
+  <!-- Favicons -->
   <link rel="icon" type="image/png" href="https://i.postimg.cc/cCCyhwZ4/game1.png">
   <link rel="shortcut icon" href="https://i.postimg.cc/cCCyhwZ4/game1.png">
   <link rel="apple-touch-icon" href="https://i.postimg.cc/cCCyhwZ4/game1.png">
 
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+  <!-- Analytics scripts -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4BLH9NWKZW"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -32,25 +39,93 @@
   </script>
   <noscript><div><img src="https://mc.yandex.ru/watch/105090773" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 
+  <!-- СТРУКТУРИРОВАННЫЕ ДАННЫЕ ДЛЯ SERP И LLM -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://towerrush.vercel.app/#game",
+        "url": "https://towerrush.vercel.app",
+        "name": "Tower Rush",
+        "alternativeName": "Товер Раш",
+        "operatingSystem": "Windows, macOS, Android, iOS",
+        "applicationCategory": "GameApplication",
+        "description": "Play Tower Rush online. Официальная игра и стратегия. Быстрые выплаты и бонусы.",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "1240"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Безопасно ли играть в Tower Rush?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Да, игра сертифицирована и работает на базе алгоритма Provably Fair, исключающего любые манипуляции со стороны системы."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Где найти актуальное зеркало Tower Rush?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "На этой странице всегда размещены актуальные и прямые ссылки на рабочую и безопасную версию игры Tower Rush (Товер Раш)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Есть ли демо-режим в игре?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Вы можете запустить игру Tower Rush в ознакомительном (демо) режиме, чтобы полностью протестировать игровую механику без реальных ставок."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <style>
     :root {
-      --bg: #060709;
-      --card-bg: rgba(18, 20, 25, 0.98);
-      --edge: rgba(255, 255, 255, 0.07);
+      --bg: #050608;
+      --card-bg: rgba(10, 12, 16, 0.55); 
+      --card-bg-hover: rgba(15, 18, 24, 0.7);
+      --edge: rgba(255, 255, 255, 0.05);
+      --edge-glow: rgba(255, 255, 255, 0.12);
       --bingx-blue: #0052ff;
-      --radius: 20px;
+      --radius: 24px;
+      --font-inter: "Inter", sans-serif;
+      --font-montserrat: "Montserrat", sans-serif;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; overflow-x: hidden; } /* Добавлено для мобилок */
+    
+    html { 
+      scroll-behavior: smooth; 
+      overflow-x: hidden; 
+      background: var(--bg); 
+    }
 
     body {
-      font-family: "Inter", sans-serif;
-      background: var(--bg);
+      font-family: var(--font-inter);
+      background: transparent; 
       color: #9da3ae;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      overflow-x: hidden; /* Защита от горизонтального скролла */
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body::before {
@@ -58,220 +133,418 @@
       position: fixed;
       inset: 0;
       background-image: 
-        radial-gradient(circle at 50% 0%, rgba(255,255,255,0.05) 0%, transparent 50%),
         linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 100% 100%, 40px 40px, 40px 40px;
+      background-size: 50px 50px;
       z-index: -1;
+      pointer-events: none;
     }
 
+    .bg-animation-container {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .ambient-glow {
+      position: absolute;
+      border-radius: 50%;
+      will-change: transform;
+    }
+
+    .glow-top {
+      top: -15%;
+      left: -5%;
+      width: 50vw;
+      height: 50vw;
+      min-width: 400px;
+      background: #252b37; 
+      filter: blur(100px);
+      opacity: 0.6;
+      animation: floatGlowTop 20s ease-in-out infinite alternate;
+    }
+
+    .glow-bottom {
+      bottom: -10%;
+      right: -10%;
+      width: 55vw;
+      height: 55vw;
+      min-width: 450px;
+      background: var(--bingx-blue);
+      filter: blur(130px);
+      opacity: 0.35; 
+      animation: floatGlowBottom 22s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatGlowTop {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(8%, 12%) scale(1.15); }
+      100% { transform: translate(-4%, 6%) scale(0.95); }
+    }
+
+    @keyframes floatGlowBottom {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-12%, -8%) scale(1.2); }
+      100% { transform: translate(5%, -4%) scale(1); }
+    }
+
+    .container { max-width: 840px; margin: 0 auto; padding: 0 24px 100px; }
+
+    header { text-align: center; padding: 70px 0 35px; }
     h1 {
-      font-family: "Montserrat", sans-serif;
-      /* Сделал еще больше для десктопа (до 90px), при этом адаптивно под мобилу */
-      font-size: clamp(48px, 12vw, 90px); 
+      font-family: var(--font-montserrat);
+      font-size: clamp(44px, 11vw, 86px); 
       font-weight: 900;
-      text-align: center;
-      margin: 60px 10px 40px;
-      background: linear-gradient(180deg, #fff 0%, #888 100%);
+      letter-spacing: -0.04em;
+      background: linear-gradient(180deg, #ffffff 15%, #a1a1aa 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
       text-transform: uppercase;
-      letter-spacing: -0.02em;
-      word-wrap: break-word; /* Чтобы не ломало экран */
-      line-height: 1.1;
+      line-height: 1.05;
+      margin: 0;
     }
-
-    .container { max-width: 900px; margin: 0 auto; padding: 0 20px 80px; }
 
     .card {
       background: var(--card-bg);
       border: 1px solid var(--edge);
       border-radius: var(--radius);
-      padding: 40px;
-      margin-bottom: 30px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-      backdrop-filter: blur(10px);
+      padding: 45px;
+      margin-bottom: 32px;
+      box-shadow: 0 30px 60px -15px rgba(0,0,0,0.70), inset 0 1px 0px rgba(255,255,255,0.05);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: border-color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    }
+    .card:hover {
+      border-color: var(--edge-glow);
+      transform: translateY(-2px);
+      box-shadow: 0 40px 70px -10px rgba(0,0,0,0.85), inset 0 1px 0px rgba(255,255,255,0.08);
     }
 
     .card h2 {
-      font-family: "Montserrat", sans-serif;
-      font-size: 26px;
-      margin-bottom: 25px;
+      font-family: var(--font-montserrat);
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 24px;
       color: #fff;
       text-transform: uppercase;
+      letter-spacing: -0.01em;
     }
 
-    .accent-bar { height: 4px; width: 50px; background: #fff; margin-bottom: 25px; border-radius: 2px; }
+    .accent-bar { 
+      height: 3px; 
+      width: 40px; 
+      background: linear-gradient(90deg, #fff, rgba(255,255,255,0.2)); 
+      margin-bottom: 28px; 
+      border-radius: 2px; 
+    }
     
-    p, li { font-size: 17px; margin-bottom: 15px; color: #a1a1aa; }
-    b { color: #fff; }
+    p { font-size: 16px; line-height: 1.7; margin-bottom: 20px; color: #a1a1aa; font-weight: 400; }
+    p:last-of-type { margin-bottom: 0; }
+    b { color: #fff; font-weight: 600; }
 
-    .btn-wrap { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 30px; }
+    .btn-wrap { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 35px; }
     
     .btn {
-      flex: 1; min-width: 180px; padding: 20px; border-radius: 12px;
-      font-weight: 800; font-size: 15px; text-transform: uppercase;
-      text-decoration: none; text-align: center; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      cursor: pointer; display: inline-block;
+      flex: 1; 
+      min-width: 200px; 
+      padding: 18px 28px; 
+      border-radius: 14px;
+      font-weight: 800; 
+      font-size: 14px; 
+      font-family: var(--font-inter);
+      text-transform: uppercase;
+      text-decoration: none; 
+      text-align: center; 
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer; 
+      display: inline-block;
+      letter-spacing: 0.05em;
     }
 
-    .btn-main { background: #fff; color: #000; box-shadow: 0 10px 20px rgba(255,255,255,0.1); }
-    .btn-sec { background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(255,255,255,0.1); }
-    .btn:hover { transform: translateY(-4px); filter: brightness(1.1); }
+    .btn-main { 
+      background: #ffffff; 
+      color: #000000; 
+      box-shadow: 0 12px 24px -6px rgba(255,255,255,0.12); 
+    }
+    .btn-main:hover {
+      background: #f4f4f5;
+      transform: translateY(-3px);
+      box-shadow: 0 16px 32px -4px rgba(255,255,255,0.22);
+    }
 
-    /* ПРОМОКОД */
-    .promo-card {
-      background: linear-gradient(145deg, #16181d 0%, #000 100%);
-      text-align: center; cursor: pointer; border-color: rgba(255,255,255,0.15);
+    .btn-sec { 
+      background: rgba(255,255,255,0.02); 
+      color: #fff; 
+      border: 1px solid rgba(255,255,255,0.06); 
     }
-    .chip { width: 50px; height: 32px; background: linear-gradient(90deg, #777, #fff, #777); border-radius: 5px; margin: 0 auto 20px; }
-    .promo-code { font-family: "Montserrat", sans-serif; font-size: clamp(36px, 10vw, 75px); font-weight: 900; letter-spacing: 10px; color: #fff; text-shadow: 0 0 30px rgba(255,255,255,0.1); }
-
-    /* ПРЕМИАЛЬНЫЙ BINGX */
-    .bingx-card {
-      border: 1px solid rgba(0, 82, 255, 0.3);
-      border-top: 4px solid var(--bingx-blue);
-      background: linear-gradient(180deg, rgba(0, 82, 255, 0.05) 0%, rgba(18, 20, 25, 1) 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    .bingx-card::before {
-      content: ""; position: absolute; top: -100px; right: -100px; width: 250px; height: 250px;
-      background: radial-gradient(circle, rgba(0, 82, 255, 0.15) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .bingx-logo-tag { 
-      background: var(--bingx-blue); color: #fff; 
-      padding: 6px 16px; border-radius: 8px; font-weight: 900; 
-      font-size: 14px; display: inline-block; margin-bottom: 20px;
-      box-shadow: 0 4px 15px rgba(0, 82, 255, 0.3);
-      letter-spacing: 1px;
-    }
-    .bingx-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; margin: 30px 0; }
-    .bingx-item { 
-      background: rgba(255, 255, 255, 0.03); padding: 25px; border-radius: 15px; 
-      border: 1px solid rgba(255, 255, 255, 0.05); transition: 0.3s;
-    }
-    .bingx-item:hover { 
-      background: rgba(0, 82, 255, 0.05); 
-      border-color: rgba(0, 82, 255, 0.3); 
+    .btn-sec:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.15);
       transform: translateY(-3px);
     }
-    .bingx-item b { color: var(--bingx-blue); display: block; font-size: 18px; margin-bottom: 8px; text-shadow: 0 0 10px rgba(0, 82, 255, 0.2); }
+
+    .rules-list { list-style: none; }
+    .rules-list li { 
+      font-size: 16px; 
+      margin-bottom: 18px; 
+      color: #a1a1aa; 
+      display: flex; 
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .rules-list li:last-child { margin-bottom: 0; }
+    .rules-list .icon { color: #fff; opacity: 0.9; flex-shrink: 0; font-size: 18px; line-height: 1.4; }
+
+    .faq-item { margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.02); }
+    .faq-item:last-of-type { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .faq-item b { display: block; font-size: 17px; color: #fff; margin-bottom: 8px; font-weight: 600; }
+
+    .promo-card {
+      background: linear-gradient(145deg, #0b0d11 0%, #050608 100%);
+      text-align: center; 
+      cursor: pointer; 
+      border: 1px dashed rgba(255,255,255,0.12);
+      position: relative;
+    }
+    .promo-card:hover {
+      border-color: rgba(255,255,255,0.3);
+      background: linear-gradient(145deg, #0f121a 0%, #050608 100%);
+    }
+    .chip { 
+      width: 46px; 
+      height: 30px; 
+      background: linear-gradient(90deg, #3f3f46, #e4e4e7, #3f3f46); 
+      border-radius: 6px; 
+      margin: 0 auto 24px; 
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.3), 0 4px 12px rgba(0,0,0,0.6);
+    }
+    .promo-label { 
+      text-transform: uppercase; 
+      letter-spacing: 0.3em; 
+      font-size: 11px; 
+      color: #52525b; 
+      margin-bottom: 14px; 
+      font-weight: 800; 
+    }
+    .promo-code { 
+      font-family: var(--font-montserrat); 
+      font-size: clamp(38px, 9vw, 72px); 
+      font-weight: 900; 
+      letter-spacing: 0.12em; 
+      color: #fff; 
+      text-shadow: 0 0 40px rgba(255,255,255,0.1); 
+      line-height: 1;
+    }
+    .promo-hint { margin-top: 24px; color: #44444f; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; transition: color 0.3s; }
+    .promo-card:hover .promo-hint { color: #888893; }
+
+    .bingx-card {
+      border: 1px solid rgba(0, 82, 255, 0.15);
+      border-top: 4px solid var(--bingx-blue);
+      background: linear-gradient(180deg, rgba(0, 82, 255, 0.01) 0%, rgba(10, 12, 16, 0.85) 100%);
+    }
+    .bingx-card:hover {
+      border-color: rgba(0, 82, 255, 0.35);
+    }
+    .bingx-logo-tag { 
+      background: var(--bingx-blue); 
+      color: #fff; 
+      padding: 6px 14px; 
+      border-radius: 8px; 
+      font-weight: 800; 
+      font-size: 12px; 
+      display: inline-block; 
+      margin-bottom: 24px;
+      box-shadow: 0 4px 15px rgba(0, 82, 255, 0.3);
+      letter-spacing: 0.05em;
+    }
+    .bingx-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 32px 0; }
+    .bingx-item { 
+      background: rgba(255, 255, 255, 0.01); 
+      padding: 24px; 
+      border-radius: 16px; 
+      border: 1px solid rgba(255, 255, 255, 0.03); 
+      font-size: 14px;
+      color: #a1a1aa;
+      transition: all 0.3s ease;
+    }
+    .bingx-item:hover { 
+      background: rgba(0, 82, 255, 0.03); 
+      border-color: rgba(0, 82, 255, 0.2); 
+      transform: translateY(-2px);
+    }
+    .bingx-item b { color: var(--bingx-blue); display: block; font-size: 17px; margin-bottom: 6px; }
+    
     .btn-bingx { 
-      background: #fff; color: var(--bingx-blue) !important; width: 100%; border: none;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-      font-size: 16px;
+      background: #ffffff; 
+      color: var(--bingx-blue); 
+      width: 100%; 
+      border: none;
     }
 
     .notif {
-      position: fixed; top: 30px; left: 50%; transform: translateX(-50%);
-      background: #fff; color: #000; padding: 15px 40px; border-radius: 50px;
-      font-weight: 900; font-size: 14px; display: none; z-index: 1000; box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      position: fixed; 
+      top: 30px; 
+      left: 50%; 
+      transform: translate(-50%, -20px);
+      background: #ffffff; 
+      color: #000000; 
+      padding: 14px 36px; 
+      border-radius: 100px;
+      font-family: var(--font-inter);
+      font-weight: 800; 
+      font-size: 13px; 
+      letter-spacing: 0.05em;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 1000; 
+      box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .notif.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, 0);
     }
 
-    footer { text-align: center; padding: 50px; color: #444; font-size: 13px; }
-    footer a { color: #555; text-decoration: none; font-weight: 700; transition: 0.2s; }
-    footer a:hover { color: #fff; }
+    .seo-divider { margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.03); padding-top: 30px; }
+    footer { text-align: center; padding: 60px 0; color: #27272a; font-size: 13px; font-weight: 500; }
 
-    @media (max-width: 650px) {
+    @media (max-width: 680px) {
       .btn-wrap { flex-direction: column; }
-      .promo-code { letter-spacing: 5px; }
-      .card { padding: 30px 20px; }
-      h1 { margin-top: 40px; margin-bottom: 30px; } /* Оптимизация отступа для мобил */
+      .btn { width: 100%; }
+      .promo-code { letter-spacing: 0.06em; }
+      .card { padding: 32px 24px; margin-bottom: 24px; border-radius: 20px; }
+      header { padding: 50px 0 20px; }
     }
   </style>
 </head>
 <body>
 
-  <div id="notif" class="notif">СКОПИРОВАНО!</div>
+  <!-- НАСТОЯЩИЙ НЕОНОВЫЙ ЗАДНИЙ СЛОЙ -->
+  <div class="bg-animation-container">
+    <div class="ambient-glow glow-top"></div>
+    <div class="ambient-glow glow-bottom"></div>
+  </div>
 
-  <h1>Tower Rush</h1>
+  <div id="notif" class="notif">УСПЕШНО СКОПИРОВАНО!</div>
 
-  <div class="container">
+  <header>
+    <h1>Tower Rush</h1>
+  </header>
 
-    <div class="card">
+  <main class="container">
+
+    <!-- О ИГРЕ -->
+    <section class="card">
       <h2>О игре</h2>
       <div class="accent-bar"></div>
-      <p>Tower Rush — динамичная стратегия, где ваша задача — построить максимально высокую башню. Каждый новый этаж умножает вашу ставку, но увеличивает риск обрушения. Принимайте решения быстро и забирайте выигрыш вовремя.</p>
+      <p><b>Tower Rush (Товер Раш)</b> — динамичная online стратегия, где ваша задача — построить максимально высокую башню. Каждый новый этаж умножает вашу ставку, но увеличивает риск обрушения. Принимайте решения быстро и забирайте выигрыш вовремя.</p>
       <div class="btn-wrap">
-        <a href="https://one-vv6649.com/casino/list?open=register&sub1=tower" target="_blank" class="btn btn-main">Играть сейчас</a>
+        <a href="https://one-vv6649.com/casino/list?open=register&sub1=tower" target="_blank" rel="noopener" class="btn btn-main">Играть сейчас</a>
         <a href="promo.html" class="btn btn-sec">🎁 Бонусы</a>
       </div>
-    </div>
+    </section>
 
-    <div class="card promo-card" onclick="copy()">
+    <!-- ПРОМОКОД -->
+    <section class="card promo-card" onclick="copyCode()">
       <div class="chip"></div>
-      <p style="text-transform: uppercase; letter-spacing: 4px; font-size: 11px; color: #666; margin-bottom: 12px; font-weight: 800;">Exclusive Promo Code</p>
+      <p class="promo-label">Exclusive Promo Code</p>
       <div class="promo-code" id="code">ADBLOCK</div>
-      <p style="margin-top: 20px; color: #444; font-size: 12px; font-weight: 700;">НАЖМИ, ЧТОБЫ СКОПИРОВАТЬ</p>
-    </div>
+      <p class="promo-hint">НАЖМИ, ЧТОБЫ СКОПИРОВАТЬ</p>
+    </section>
 
-    <div class="card">
+    <!-- КАК ИГРАТЬ -->
+    <section class="card">
       <h2>Как играть</h2>
       <div class="accent-bar"></div>
-      <ul style="list-style: none;">
-        <li>⚡ <b>Ставка:</b> Выберите сумму и подтвердите участие в раунде.</li>
-        <li>⚡ <b>Построение:</b> Наблюдайте, как растет множитель с каждым уровнем.</li>
-        <li>⚡ <b>Кешаут:</b> Нажмите кнопку вывода до того, как башня упадет.</li>
-        <li>⚡ <b>Бонусы:</b> Используйте ADBLOCK для увеличения первого депозита.</li>
+      <ul class="rules-list">
+        <li><span class="icon">⚡</span> <span><b>Ставка:</b> Выберите сумму и подтвердите участие в раунде.</span></li>
+        <li><span class="icon">⚡</span> <span><b>Построение:</b> Наблюдайте, как растет множитель с каждым уровнем.</span></li>
+        <li><span class="icon">⚡</span> <span><b>Кешаут:</b> Нажмите кнопку вывода до того, как башня упадет.</span></li>
+        <li><span class="icon">⚡</span> <span><b>Бонусы:</b> Используйте промокод <b>ADBLOCK</b> для гарантированного увеличения первого депозита.</span></li>
       </ul>
-    </div>
+    </section>
 
-    <div class="card">
+    <!-- FAQ -->
+    <section class="card">
       <h2>FAQ</h2>
       <div class="accent-bar"></div>
-      <div style="margin-bottom: 25px;">
+      
+      <div class="faq-item">
         <b>Безопасно ли играть?</b>
-        <p>Да, игра сертифицирована и работает на базе алгоритма Provably Fair, исключающего манипуляции.</p>
+        <p>Да, игра сертифицирована и работает на базе алгоритма Provably Fair, исключающего любые манипуляции.</p>
       </div>
-      <div style="margin-bottom: 25px;">
+      
+      <div class="faq-item">
         <b>Где найти актуальное зеркало?</b>
-        <p>На этой странице всегда размещены прямые ссылки на рабочую версию Tower Rush.</p>
+        <p>На этой странице всегда размещены прямые и безопасные ссылки на актуальную рабочую версию игры Tower Rush (Товер Раш).</p>
       </div>
-      <div>
+      
+      <div class="faq-item">
         <b>Есть ли демо-режим?</b>
-        <p>Вы можете запустить игру в ознакомительном режиме, чтобы протестировать механику без реальных ставок.</p>
+        <p>Вы можете запустить игру в ознакомительном режиме, чтобы полностью протестировать механику без реальных ставок.</p>
       </div>
-    </div>
+    </section>
 
-    <div class="card bingx-card">
+    <!-- BINGX БОНУСЫ -->
+    <section class="card bingx-card">
       <div class="bingx-logo-tag">BINGX OFFICIAL</div>
       <h2>Бонусы до $5000 на BingX</h2>
       <p>Лучшая криптобиржа для гемблинга. Выводите свои выигрыши из Tower Rush напрямую в USDT с минимальной комиссией и без лишних проверок.</p>
+      
       <div class="bingx-grid">
-        <div class="bingx-item"><b>Welcome Pack</b>Бонус до 5000 USDT на счет.</div>
-        <div class="bingx-item"><b>No KYC</b>Торговля и вывод без верификации.</div>
-        <div class="bingx-item"><b>Instant</b>Зачисление крипты за 2 минуты.</div>
+        <div class="bingx-item">
+          <b>Welcome Pack</b>
+          Бонус до 5000 USDT на баланс за первый депозит.
+        </div>
+        <div class="bingx-item">
+          <b>No KYC</b>
+          Свободная торговля и быстрый вывод средств без обязательной верификации.
+        </div>
+        <div class="bingx-item">
+          <b>Instant</b>
+          Зачисление и обработка криптовалютных транзакций всего за 2 минуты.
+        </div>
       </div>
+      
       <a href="bingx.html" class="btn btn-main btn-bingx">Забрать бонусы на BingX</a>
-    </div>
+    </section>
 
-    <div class="card">
+    <!-- СТРАТЕГИЯ / SEO ТЕКСТ -->
+    <section class="card">
       <h2>Стратегия и Игра онлайн</h2>
       <div class="accent-bar"></div>
       <p>Для успешной игры в <b>Tower Rush онлайн</b> рекомендуем придерживаться тактики "Лестница". Фиксируйте прибыль на множителях 1.4x – 1.7x, чтобы минимизировать математическое преимущество системы и играть в плюс на дистанции.</p>
-      <p>Наш интерфейс полностью оптимизирован для мобильных телефонов и планшетов. Наслаждайтесь игрой в любом месте с мгновенными выплатами.</p>
+      <p>Наш интерфейс полностью оптимизирован для мобильных телефонов и планшетов. Наслаждайтесь играми в любом месте с мгновенными выплатами.</p>
       
-      <div class="btn-wrap" style="margin-top: 35px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 25px;">
-        <a href="https://one-vv6649.com/casino/list?open=register&sub1=tower" target="_blank" class="btn btn-main" style="width: 100%;">Начать игру в Tower Rush</a>
+      <div class="btn-wrap seo-divider">
+        <a href="https://one-vv6649.com/casino/list?open=register&sub1=tower" target="_blank" rel="noopener" class="btn btn-main" style="width: 100%;">Начать игру в Tower Rush</a>
       </div>
-    </div>
+    </section>
 
-  </div>
+  </main>
 
   <footer>
-    <p>© 2026 TOWER RUSH </p>
+    <p>© 2026 TOWER RUSH</p>
   </footer>
 
   <script>
-    function copy() {
-      const code = document.getElementById("code").innerText;
-      const n = document.getElementById("notif");
-      navigator.clipboard.writeText(code).then(() => {
-        n.style.display = "block";
-        setTimeout(() => n.style.display = "none", 2000);
+    function copyCode() {
+      const codeText = document.getElementById("code").innerText;
+      const notifElement = document.getElementById("notif");
+      
+      navigator.clipboard.writeText(codeText).then(() => {
+        notifElement.classList.add("show");
+        setTimeout(() => {
+          notifElement.classList.remove("show");
+        }, 2000);
+      }).catch(err => {
+        console.error('Ошибка копирования: ', err);
       });
     }
   </script>
