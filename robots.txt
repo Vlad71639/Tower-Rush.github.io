@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Allow: /promo
+Allow: /bingx
+
+Sitemap: https://towerrush.vercel.app/sitemap.xml
