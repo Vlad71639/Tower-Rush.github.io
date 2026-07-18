@@ -15,12 +15,10 @@
   <link rel="shortcut icon" href="https://i.postimg.cc/cCCyhwZ4/game1.png">
   <link rel="apple-touch-icon" href="https://i.postimg.cc/cCCyhwZ4/game1.png">
 
-  <!-- Fonts (Оптимизировано с font-display=swap) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600;700;800&family=Roboto&display=swap&font-display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- СТРУКТУРИРОВАННЫЕ ДАННЫЕ ДЛЯ SERP И LLM -->
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -79,311 +77,563 @@
 
   <style>
     :root {
-      --bg: #050608;
-      --card-bg: rgba(10, 12, 16, 0.55); 
-      --card-bg-hover: rgba(15, 18, 24, 0.7);
-      --edge: rgba(255, 255, 255, 0.05);
-      --edge-glow: rgba(255, 255, 255, 0.12);
-      --bingx-blue: #0052ff;
-      --radius: 24px;
-      --font-inter: "Inter", sans-serif;
-      --font-montserrat: "Montserrat", sans-serif;
+      --bg: #05060a;
+      --card: rgba(14, 16, 24, 0.92);
+      --card-solid: #0e1018;
+      --line: rgba(255,255,255,0.08);
+      --line-hover: rgba(255,255,255,0.14);
+      --gold: #f0c42e;
+      --gold-deep: #d4a61a;
+      --blue: #3d8dff;
+      --blue-deep: #1f6fe0;
+      --text: #a4adbc;
+      --bright: #f7f8fb;
+      --muted: #6b7484;
+      --bingx: #0052ff;
+      --font: "Plus Jakarta Sans", sans-serif;
+      --display: "Montserrat", sans-serif;
+      --max: 1180px;
+      --radius: 22px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    
-    html { 
-      scroll-behavior: smooth; 
-      overflow-x: hidden; 
-      background: var(--bg); 
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+      font-size: 16px;
     }
 
     body {
-      font-family: var(--font-inter);
-      background: transparent; 
-      color: #9da3ae;
-      line-height: 1.6;
+      font-family: var(--font);
+      color: var(--text);
+      font-size: 17px;
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
-      -webkit-tap-highlight-color: transparent;
+      min-height: 100vh;
+      background: var(--bg);
     }
 
-    body::before {
-      content: "";
+    /* Background — game art atmosphere (no CSS blur = no black squares on scroll) */
+    .stage {
       position: fixed;
       inset: 0;
-      background-image: 
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 50px 50px;
       z-index: -1;
       pointer-events: none;
-    }
-
-    .bg-animation-container {
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      pointer-events: none;
       overflow: hidden;
+      background-color: #071018;
+      background-image:
+        radial-gradient(ellipse 70% 50% at 50% 10%, rgba(240, 196, 46, 0.28), transparent 55%),
+        radial-gradient(ellipse 55% 45% at 95% 65%, rgba(61, 141, 255, 0.28), transparent 50%),
+        radial-gradient(ellipse 45% 40% at 5% 80%, rgba(45, 160, 230, 0.18), transparent 50%),
+        url("bg-blur.webp");
+      background-position: center, center, center, center 35%;
+      background-size: auto, auto, auto, cover;
+      background-repeat: no-repeat;
     }
-
-    .ambient-glow {
+    .stage::before {
+      content: "";
       position: absolute;
-      border-radius: 50%;
-      will-change: transform;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(5, 10, 18, 0.42) 0%, rgba(5, 8, 14, 0.58) 50%, rgba(4, 6, 12, 0.75) 100%);
+    }
+    .stage::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(ellipse 70% 55% at 50% 25%, #000 5%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 55% at 50% 25%, #000 5%, transparent 70%);
+      opacity: 0.5;
     }
 
-    .glow-top {
-      top: -15%;
-      left: -5%;
-      width: 50vw;
-      height: 50vw;
-      min-width: 400px;
-      background: #252b37; 
-      filter: blur(100px);
-      opacity: 0.6;
-      animation: floatGlowTop 20s ease-in-out infinite alternate;
+    .container {
+      width: min(100% - 32px, var(--max));
+      margin: 0 auto;
+      padding-bottom: 56px;
     }
 
-    .glow-bottom {
-      bottom: -10%;
-      right: -10%;
-      width: 55vw;
-      height: 55vw;
-      min-width: 450px;
-      background: var(--bingx-blue);
-      filter: blur(130px);
-      opacity: 0.35; 
-      animation: floatGlowBottom 22s ease-in-out infinite alternate;
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes floatGlowTop {
-      0% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(8%, 12%) scale(1.15); }
-      100% { transform: translate(-4%, 6%) scale(0.95); }
+    /* HEADER */
+    .header {
+      width: min(100% - 32px, var(--max));
+      margin: 0 auto;
+      padding: 22px 0 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      animation: rise 0.5s ease both;
     }
-
-    @keyframes floatGlowBottom {
-      0% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(-12%, -8%) scale(1.2); }
-      100% { transform: translate(5%, -4%) scale(1); }
-    }
-
-    .container { max-width: 840px; margin: 0 auto; padding: 0 24px 100px; }
-
-    header { text-align: center; padding: 70px 0 35px; }
-    h1 {
-      font-family: var(--font-montserrat);
-      font-size: clamp(44px, 11vw, 86px); 
+    .logo {
+      font-family: var(--display);
       font-weight: 900;
+      font-size: clamp(26px, 4vw, 34px);
       letter-spacing: -0.04em;
-      background: linear-gradient(180deg, #ffffff 15%, #a1a1aa 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
       text-transform: uppercase;
-      line-height: 1.05;
-      margin: 0;
+      line-height: 1;
+      color: var(--bright);
     }
+    .logo .g { color: var(--gold); }
+    .logo .b { color: var(--blue); }
+    .header-btns { display: flex; gap: 12px; flex-shrink: 0; }
 
+    /* CARDS */
     .card {
-      background: var(--card-bg);
-      border: 1px solid var(--edge);
+      background: linear-gradient(180deg, #141824 0%, var(--card-solid) 100%);
+      border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 45px;
-      margin-bottom: 32px;
-      box-shadow: 0 30px 60px -15px rgba(0,0,0,0.70), inset 0 1px 0px rgba(255,255,255,0.05);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      transition: border-color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+      padding: 32px;
+      margin-bottom: 18px;
+      box-shadow:
+        0 24px 56px -28px rgba(0,0,0,0.9),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+      animation: rise 0.55s ease both;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
     }
+    .card:nth-child(1) { animation-delay: 0.04s; }
+    .card:nth-child(2) { animation-delay: 0.08s; }
+    .card:nth-child(3) { animation-delay: 0.12s; }
     .card:hover {
-      border-color: var(--edge-glow);
-      transform: translateY(-2px);
-      box-shadow: 0 40px 70px -10px rgba(0,0,0,0.85), inset 0 1px 0px rgba(255,255,255,0.08);
+      border-color: var(--line-hover);
+      box-shadow:
+        0 28px 60px -24px rgba(0,0,0,0.95),
+        inset 0 1px 0 rgba(255,255,255,0.06);
     }
 
     .card h2 {
-      font-family: var(--font-montserrat);
-      font-size: 24px;
+      font-family: var(--display);
+      font-size: clamp(20px, 2.4vw, 24px);
       font-weight: 800;
-      margin-bottom: 24px;
-      color: #fff;
+      color: var(--bright);
       text-transform: uppercase;
       letter-spacing: -0.01em;
+      margin-bottom: 12px;
     }
 
-    .accent-bar { 
-      height: 3px; 
-      width: 40px; 
-      background: linear-gradient(90deg, #fff, rgba(255,255,255,0.2)); 
-      margin-bottom: 28px; 
-      border-radius: 2px; 
-    }
-    
-    p { font-size: 16px; line-height: 1.7; margin-bottom: 20px; color: #a1a1aa; font-weight: 400; }
-    p:last-of-type { margin-bottom: 0; }
-    b { color: #fff; font-weight: 600; }
-
-    .btn-wrap { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 35px; }
-    
-    .btn {
-      flex: 1; 
-      min-width: 200px; 
-      padding: 18px 28px; 
-      border-radius: 14px;
-      font-weight: 800; 
-      font-size: 14px; 
-      font-family: var(--font-inter);
-      text-transform: uppercase;
-      text-decoration: none; 
-      text-align: center; 
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: pointer; 
-      display: inline-block;
-      letter-spacing: 0.05em;
+    .bar {
+      width: 42px;
+      height: 3px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--gold), rgba(61,141,255,0.55));
+      margin-bottom: 18px;
     }
 
-    .btn-main { 
-      background: #ffffff; 
-      color: #000000; 
-      box-shadow: 0 12px 24px -6px rgba(255,255,255,0.12); 
+    p {
+      font-size: 17px;
+      color: var(--text);
+      margin-bottom: 14px;
+      line-height: 1.7;
     }
-    .btn-main:hover {
-      background: #f4f4f5;
-      transform: translateY(-3px);
-      box-shadow: 0 16px 32px -4px rgba(255,255,255,0.22);
-    }
+    p:last-child { margin-bottom: 0; }
+    b { color: var(--bright); font-weight: 700; }
 
-    .btn-sec { 
-      background: rgba(255,255,255,0.02); 
-      color: #fff; 
-      border: 1px solid rgba(255,255,255,0.06); 
-    }
-    .btn-sec:hover {
-      background: rgba(255,255,255,0.06);
-      border-color: rgba(255,255,255,0.15);
-      transform: translateY(-3px);
-    }
-
-    .rules-list { list-style: none; }
-    .rules-list li { 
-      font-size: 16px; 
-      margin-bottom: 18px; 
-      color: #a1a1aa; 
-      display: flex; 
-      align-items: flex-start;
-      gap: 12px;
-    }
-    .rules-list li:last-child { margin-bottom: 0; }
-    .rules-list .icon { color: #fff; opacity: 0.9; flex-shrink: 0; font-size: 18px; line-height: 1.4; }
-
-    .faq-item { margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.02); }
-    .faq-item:last-of-type { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-    .faq-item b { display: block; font-size: 17px; color: #fff; margin-bottom: 8px; font-weight: 600; }
-
-    .promo-card {
-      background: linear-gradient(145deg, #0b0d11 0%, #050608 100%);
-      text-align: center; 
-      cursor: pointer; 
-      border: 1px dashed rgba(255,255,255,0.12);
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 44px 40px 40px;
       position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 80% 70% at 50% 0%, rgba(240,196,46,0.14), transparent 60%),
+        linear-gradient(180deg, #161a28 0%, var(--card-solid) 100%);
     }
-    .promo-card:hover {
-      border-color: rgba(255,255,255,0.3);
-      background: linear-gradient(145deg, #0f121a 0%, #050608 100%);
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(240,196,46,0.55), transparent);
     }
-    .chip { 
-      width: 46px; 
-      height: 30px; 
-      background: linear-gradient(90deg, #3f3f46, #e4e4e7, #3f3f46); 
-      border-radius: 6px; 
-      margin: 0 auto 24px; 
-      box-shadow: inset 0 1px 1px rgba(255,255,255,0.3), 0 4px 12px rgba(0,0,0,0.6);
-    }
-    .promo-label { 
-      text-transform: uppercase; 
-      letter-spacing: 0.3em; 
-      font-size: 11px; 
-      color: #52525b; 
-      margin-bottom: 14px; 
-      font-weight: 800; 
-    }
-    .promo-code { 
-      font-family: var(--font-montserrat); 
-      font-size: clamp(38px, 9vw, 72px); 
-      font-weight: 900; 
-      letter-spacing: 0.12em; 
-      color: #fff; 
-      text-shadow: 0 0 40px rgba(255,255,255,0.1); 
-      line-height: 1;
-    }
-    .promo-hint { margin-top: 24px; color: #44444f; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; transition: color 0.3s; }
-    .promo-card:hover .promo-hint { color: #888893; }
 
-    .bingx-card {
-      border: 1px solid rgba(0, 82, 255, 0.15);
-      border-top: 4px solid var(--bingx-blue);
-      background: linear-gradient(180deg, rgba(0, 82, 255, 0.01) 0%, rgba(10, 12, 16, 0.85) 100%);
+    .hero h1 {
+      font-family: var(--display);
+      font-size: clamp(48px, 8vw, 72px);
+      font-weight: 900;
+      letter-spacing: -0.045em;
+      text-transform: uppercase;
+      line-height: 0.98;
+      margin: 0 0 12px;
+      color: var(--bright);
     }
-    .bingx-card:hover {
-      border-color: rgba(0, 82, 255, 0.35);
+    .hero h1 .g { color: var(--gold); }
+    .hero h1 .b { color: var(--blue); }
+
+    .hero > h2 {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
     }
-    .bingx-logo-tag { 
-      background: var(--bingx-blue); 
-      color: #fff; 
-      padding: 6px 14px; 
-      border-radius: 8px; 
-      font-weight: 800; 
-      font-size: 12px; 
-      display: inline-block; 
+
+    .hero .bar {
+      margin: 0 auto 18px;
+    }
+
+    .hero > p {
+      max-width: 560px;
+      margin: 0 auto 28px;
+      font-size: 18px;
+      line-height: 1.7;
+      color: #a0a9b8;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
       margin-bottom: 24px;
-      box-shadow: 0 4px 15px rgba(0, 82, 255, 0.3);
+    }
+
+    .trust {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .trust span {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: #b0b8c6;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      padding: 9px 16px;
+    }
+    .trust strong { color: var(--gold); font-size: 14px; }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 32px;
+      border-radius: 14px;
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 800;
       letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease, border-color 0.22s ease;
     }
-    .bingx-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 32px 0; }
-    .bingx-item { 
-      background: rgba(255, 255, 255, 0.01); 
-      padding: 24px; 
-      border-radius: 16px; 
-      border: 1px solid rgba(255, 255, 255, 0.03); 
-      font-size: 14px;
-      color: #a1a1aa;
-      transition: all 0.3s ease;
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-play {
+      background: linear-gradient(180deg, #f7d154 0%, var(--gold) 45%, var(--gold-deep) 100%);
+      color: #1a1505;
+      box-shadow:
+        0 12px 32px -8px rgba(240, 196, 46, 0.55),
+        inset 0 1px 0 rgba(255,255,255,0.35);
+      min-width: 200px;
     }
-    .bingx-item:hover { 
-      background: rgba(0, 82, 255, 0.03); 
-      border-color: rgba(0, 82, 255, 0.2); 
+    .btn-play:hover {
+      box-shadow: 0 16px 38px -6px rgba(240, 196, 46, 0.65);
+    }
+
+    .btn-soft {
+      background: rgba(255,255,255,0.04);
+      color: var(--bright);
+      border: 1px solid var(--line);
+      min-width: 160px;
+    }
+    .btn-soft:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: var(--line-hover);
+    }
+
+    .btn-blue {
+      background: linear-gradient(180deg, #5a9dff 0%, var(--blue) 50%, var(--blue-deep) 100%);
+      color: #fff;
+      box-shadow: 0 12px 28px -10px rgba(61, 141, 255, 0.5);
+      width: 100%;
+    }
+
+    .header-btns .btn {
+      padding: 12px 22px;
+      font-size: 13px;
+      min-width: 0;
+      border-radius: 12px;
+    }
+
+    /* PROMO */
+    .promo {
+      cursor: pointer;
+      padding: 40px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(240, 196, 46, 0.4);
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(240,196,46,0.2), transparent 55%),
+        linear-gradient(180deg, #1a1f2c 0%, #0d1018 100%);
+      box-shadow:
+        0 0 48px -12px rgba(240, 196, 46, 0.3),
+        inset 0 1px 0 rgba(255,255,255,0.06);
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+    }
+    .promo::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(240,196,46,0.85), transparent);
+    }
+    .promo:hover {
+      border-color: rgba(240, 196, 46, 0.7);
+      box-shadow:
+        0 0 56px -10px rgba(240, 196, 46, 0.45),
+        inset 0 1px 0 rgba(255,255,255,0.08);
       transform: translateY(-2px);
     }
-    .bingx-item b { color: var(--bingx-blue); display: block; font-size: 17px; margin-bottom: 6px; }
-    
-    .btn-bingx { 
-      background: #ffffff; 
-      color: var(--bingx-blue); 
-      width: 100%; 
-      border: none;
+
+    .promo-chip {
+      width: 56px;
+      height: 34px;
+      margin: 0 auto 18px;
+      border-radius: 7px;
+      background: linear-gradient(105deg, #2a2a32 0%, #f2f2f6 42%, #9a9aa4 52%, #f8f8fa 68%, #2a2a32 100%);
+      box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.55),
+        0 8px 18px rgba(0,0,0,0.45);
+    }
+    .promo-label {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+    .promo-code {
+      font-family: var(--display);
+      font-size: clamp(48px, 7vw, 68px);
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      color: var(--bright);
+      line-height: 1;
+      margin: 0 0 22px;
+      text-shadow: 0 0 44px rgba(240, 196, 46, 0.4);
+    }
+    .promo-footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .promo-badge {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #1a1505;
+      background: linear-gradient(180deg, #f7d154, var(--gold-deep));
+      padding: 10px 16px;
+      border-radius: 10px;
+      box-shadow: 0 6px 16px rgba(240,196,46,0.35);
+    }
+    .promo-hint {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #b4bcc8;
+      margin: 0;
     }
 
+    /* UI CAROUSEL */
+    .ui-card { padding: 22px; }
+    .ui-card h2 { margin-bottom: 8px; }
+    .carousel { margin-top: 4px; }
+    .carousel-viewport {
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #080a10;
+      aspect-ratio: 16 / 9;
+      box-shadow: 0 16px 40px -20px rgba(0,0,0,0.7);
+    }
+    .carousel-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .carousel-slide {
+      flex: 0 0 100%;
+      min-width: 100%;
+      height: 100%;
+    }
+    .carousel-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .carousel-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .carousel-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--bright);
+      font-size: 18px;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .carousel-btn:hover {
+      border-color: rgba(240,196,46,0.4);
+      background: rgba(240,196,46,0.08);
+    }
+    .carousel-dots { display: flex; gap: 7px; align-items: center; }
+    .carousel-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      border: none;
+      padding: 0;
+      background: rgba(255,255,255,0.18);
+      cursor: pointer;
+      transition: width 0.2s ease, background 0.2s ease;
+    }
+    .carousel-dot.is-active {
+      width: 20px;
+      border-radius: 4px;
+      background: var(--gold);
+    }
+
+    /* SPLIT */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .split .card { margin-bottom: 0; height: 100%; }
+
+    .rules { list-style: none; }
+    .rules li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    .rules li:last-child { border-bottom: none; padding-bottom: 0; }
+    .rules li:first-child { padding-top: 0; }
+    .rules .dot {
+      color: var(--gold);
+      flex-shrink: 0;
+      font-weight: 800;
+      line-height: 1.55;
+      font-size: 16px;
+    }
+
+    .faq-item {
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .faq-item:first-child { padding-top: 0; }
+    .faq-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .faq-item b {
+      display: block;
+      font-size: 16px;
+      color: var(--bright);
+      margin-bottom: 6px;
+    }
+    .faq-item p { font-size: 15px; margin: 0; color: var(--text); }
+
+    /* BINGX */
+    .bingx {
+      border-top: 3px solid var(--bingx);
+      background:
+        linear-gradient(180deg, rgba(0,82,255,0.1) 0%, var(--card-solid) 42%);
+    }
+    .bingx-tag {
+      display: inline-block;
+      background: var(--bingx);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 6px 14px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+      box-shadow: 0 6px 16px rgba(0,82,255,0.3);
+    }
+    .bingx-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin: 18px 0 20px;
+    }
+    .bingx-item {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .bingx-item b {
+      display: block;
+      color: #7aa8ff;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .seo-cta { margin-top: 18px; }
+    .seo-cta .btn { width: 100%; }
+
     .notif {
-      position: fixed; 
-      top: 30px; 
-      left: 50%; 
-      transform: translate(-50%, -20px);
-      background: #ffffff; 
-      color: #000000; 
-      padding: 14px 36px; 
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translate(-50%, -16px);
+      background: var(--gold);
+      color: #1a1505;
+      padding: 12px 28px;
       border-radius: 100px;
-      font-family: var(--font-inter);
-      font-weight: 800; 
-      font-size: 13px; 
-      letter-spacing: 0.05em;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
       opacity: 0;
       visibility: hidden;
-      z-index: 1000; 
-      box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .notif.show {
       opacity: 1;
@@ -391,92 +641,143 @@
       transform: translate(-50%, 0);
     }
 
-    .seo-divider { margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.03); padding-top: 30px; }
-    footer { text-align: center; padding: 60px 0; color: #27272a; font-size: 13px; font-weight: 500; }
+    footer {
+      text-align: center;
+      padding: 28px 16px 48px;
+      color: #3a404c;
+      font-size: 12px;
+      font-weight: 500;
+    }
 
-    @media (max-width: 680px) {
-      .btn-wrap { flex-direction: column; }
-      .btn { width: 100%; }
-      .promo-code { letter-spacing: 0.06em; }
-      .card { padding: 32px 24px; margin-bottom: 24px; border-radius: 20px; }
-      header { padding: 50px 0 20px; }
+    @media (min-width: 900px) {
+      .split { grid-template-columns: 1fr 1fr; }
+      .bingx-grid { grid-template-columns: repeat(3, 1fr); }
+      .hero { padding: 56px 64px 48px; }
+      .container { width: min(100% - 64px, var(--max)); }
+      .header { width: min(100% - 64px, var(--max)); padding: 30px 0 24px; }
+      .card { padding: 36px 40px; }
+      .promo { padding: 48px 56px; }
+      .hero h1 { font-size: clamp(56px, 6vw, 76px); }
+      .hero > p { max-width: 620px; font-size: 19px; }
+      .ui-card { padding: 32px 36px; }
+    }
+
+    @media (max-width: 899px) {
+      .header { flex-wrap: wrap; }
+      .logo { width: 100%; text-align: center; }
+      .header-btns { width: 100%; }
+      .header-btns .btn { flex: 1; }
+      .hero { padding: 32px 22px 28px; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { width: 100%; min-width: 0; }
+      .card { padding: 24px 20px; }
+      .promo { padding: 32px 22px; }
+      .promo-code { letter-spacing: 0.1em; }
+      body { font-size: 16px; }
+      p { font-size: 16px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card, .header, .carousel-track, .btn { animation: none !important; transition: none !important; }
     }
   </style>
 </head>
 <body>
 
-  <!-- НАСТОЯЩИЙ НЕОНОВЫЙ ЗАДНИЙ СЛОЙ -->
-  <div class="bg-animation-container">
-    <div class="ambient-glow glow-top"></div>
-    <div class="ambient-glow glow-bottom"></div>
-  </div>
-
+  <div class="stage" aria-hidden="true"></div>
   <div id="notif" class="notif">УСПЕШНО СКОПИРОВАНО!</div>
 
-  <header>
-    <h1>Tower Rush</h1>
+  <header class="header">
+    <div class="logo" aria-hidden="true"><span class="g">Tower</span> <span class="b">Rush</span></div>
+    <div class="header-btns">
+      <a href="https://one-vv6649.com/casino/list?open=register&sub1=tower" target="_blank" rel="noopener" class="btn btn-play">Играть</a>
+      <a href="/promo" class="btn btn-soft">Бонусы</a>
+    </div>
   </header>
 
   <main class="container">
 
-    <!-- О ИГРЕ -->
-    <section class="card">
+    <section class="card hero">
+      <h1><span class="g">Tower</span> <span class="b">Rush</span></h1>
       <h2>О игре</h2>
-      <div class="accent-bar"></div>
+      <div class="bar"></div>
       <p><b>Tower Rush (Товер Раш)</b> — динамичная online стратегия, где ваша задача — построить максимально высокую башню. Каждый новый этаж умножает вашу ставку, но увеличивает риск обрушения. Принимайте решения быстро и забирайте выигрыш вовремя.</p>
-      <div class="btn-wrap">
-        <a href="https://one-vv6649.com/casino/list?open=register&sub1=tower" target="_blank" rel="noopener" class="btn btn-main">Играть сейчас</a>
-        <a href="/promo" class="btn btn-sec">🎁 Бонусы</a>
+      <div class="hero-actions">
+        <a href="https://one-vv6649.com/casino/list?open=register&sub1=tower" target="_blank" rel="noopener" class="btn btn-play">Играть сейчас</a>
+        <a href="/promo" class="btn btn-soft">Бонусы</a>
+      </div>
+      <div class="trust" aria-hidden="true">
+        <span><strong>x100+</strong> множители</span>
+        <span><strong>24/7</strong> выплаты</span>
+        <span><strong>Provably</strong> Fair</span>
       </div>
     </section>
 
-    <!-- ПРОМОКОД -->
-    <section class="card promo-card" onclick="copyCode()">
-      <div class="chip"></div>
+    <section class="card promo" onclick="copyCode()" role="button" tabindex="0" aria-label="Скопировать промокод ADBLOCK">
+      <div class="promo-chip"></div>
       <p class="promo-label">Exclusive Promo Code</p>
       <div class="promo-code" id="code">ADBLOCK</div>
-      <p class="promo-hint">НАЖМИ, ЧТОБЫ СКОПИРОВАТЬ</p>
-    </section>
-
-    <!-- КАК ИГРАТЬ -->
-    <section class="card">
-      <h2>Как играть</h2>
-      <div class="accent-bar"></div>
-      <ul class="rules-list">
-        <li><span class="icon">⚡</span> <span><b>Ставка:</b> Выберите сумму и подтвердите участие в раунде.</span></li>
-        <li><span class="icon">⚡</span> <span><b>Построение:</b> Наблюдайте, как растет множитель с каждым уровнем.</span></li>
-        <li><span class="icon">⚡</span> <span><b>Кешаут:</b> Нажмите кнопку вывода до того, как башня упадет.</span></li>
-        <li><span class="icon">⚡</span> <span><b>Бонусы:</b> Используйте промокод <b>ADBLOCK</b> для гарантированного увеличения первого депозита.</span></li>
-      </ul>
-    </section>
-
-    <!-- FAQ -->
-    <section class="card">
-      <h2>FAQ</h2>
-      <div class="accent-bar"></div>
-      
-      <div class="faq-item">
-        <b>Безопасно ли играть?</b>
-        <p>Да, игра сертифицирована и работает на базе алгоритма Provably Fair, исключающего любые манипуляции.</p>
-      </div>
-      
-      <div class="faq-item">
-        <b>Где найти актуальное зеркало?</b>
-        <p>На этой странице всегда размещены прямые и безопасные ссылки на актуальную рабочую версию игры Tower Rush (Товер Раш).</p>
-      </div>
-      
-      <div class="faq-item">
-        <b>Есть ли демо-режим?</b>
-        <p>Вы можете запустить игру в ознакомительном режиме, чтобы полностью протестировать механику без реальных ставок.</p>
+      <div class="promo-footer">
+        <span class="promo-badge">+500% бонус</span>
+        <p class="promo-hint">Нажми, чтобы скопировать</p>
       </div>
     </section>
 
-    <!-- BINGX БОНУСЫ -->
-    <section class="card bingx-card">
-      <div class="bingx-logo-tag">BINGX OFFICIAL</div>
+    <section class="card ui-card">
+      <h2>Интерфейс игры</h2>
+      <div class="bar"></div>
+      <div class="carousel" id="uiCarousel" aria-roledescription="carousel" aria-label="Скриншоты интерфейса Tower Rush">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="game-ui.webp" width="938" height="540" alt="Tower Rush — игровой экран" loading="lazy" decoding="async"></div>
+            <div class="carousel-slide"><img src="ui-1.webp" width="938" height="540" alt="Tower Rush — бонусы" loading="lazy" decoding="async"></div>
+            <div class="carousel-slide"><img src="ui-2.webp" width="938" height="540" alt="Tower Rush — Frozen Floor" loading="lazy" decoding="async"></div>
+            <div class="carousel-slide"><img src="ui-3.webp" width="938" height="540" alt="Tower Rush — строительство башни" loading="lazy" decoding="async"></div>
+            <div class="carousel-slide"><img src="ui-4.webp" width="938" height="540" alt="Tower Rush — Bonus Triple Build" loading="lazy" decoding="async"></div>
+          </div>
+        </div>
+        <div class="carousel-nav">
+          <button type="button" class="carousel-btn" data-dir="-1" aria-label="Предыдущий слайд">‹</button>
+          <div class="carousel-dots" role="tablist" aria-label="Слайды"></div>
+          <button type="button" class="carousel-btn" data-dir="1" aria-label="Следующий слайд">›</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="split">
+      <section class="card">
+        <h2>Как играть</h2>
+        <div class="bar"></div>
+        <ul class="rules">
+          <li><span class="dot">▸</span> <span><b>Ставка:</b> Выберите сумму и подтвердите участие в раунде.</span></li>
+          <li><span class="dot">▸</span> <span><b>Построение:</b> Наблюдайте, как растет множитель с каждым уровнем.</span></li>
+          <li><span class="dot">▸</span> <span><b>Кешаут:</b> Нажмите кнопку вывода до того, как башня упадет.</span></li>
+          <li><span class="dot">▸</span> <span><b>Бонусы:</b> Используйте промокод <b>ADBLOCK</b> для гарантированного увеличения первого депозита.</span></li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>FAQ</h2>
+        <div class="bar"></div>
+        <div class="faq-item">
+          <b>Безопасно ли играть?</b>
+          <p>Да, игра сертифицирована и работает на базе алгоритма Provably Fair, исключающего любые манипуляции.</p>
+        </div>
+        <div class="faq-item">
+          <b>Где найти актуальное зеркало?</b>
+          <p>На этой странице всегда размещены прямые и безопасные ссылки на актуальную рабочую версию игры Tower Rush (Товер Раш).</p>
+        </div>
+        <div class="faq-item">
+          <b>Есть ли демо-режим?</b>
+          <p>Вы можете запустить игру в ознакомительном режиме, чтобы полностью протестировать механику без реальных ставок.</p>
+        </div>
+      </section>
+    </div>
+
+    <section class="card bingx">
+      <div class="bingx-tag">BINGX OFFICIAL</div>
       <h2>Бонусы до $5000 на BingX</h2>
       <p>Лучшая криптобиржа для гемблинга. Выводите свои выигрыши из Tower Rush напрямую в USDT с минимальной комиссией и без лишних проверок.</p>
-      
       <div class="bingx-grid">
         <div class="bingx-item">
           <b>Welcome Pack</b>
@@ -491,19 +792,16 @@
           Зачисление и обработка криптовалютных транзакций всего за 2 минуты.
         </div>
       </div>
-      
-      <a href="/bingx" class="btn btn-main btn-bingx">Забрать бонусы на BingX</a>
+      <a href="/bingx" class="btn btn-blue">Забрать бонусы на BingX</a>
     </section>
 
-    <!-- СТРАТЕГИЯ / SEO ТЕКСТ -->
     <section class="card">
       <h2>Стратегия и Игра онлайн</h2>
-      <div class="accent-bar"></div>
+      <div class="bar"></div>
       <p>Для успешной игры in <b>Tower Rush онлайн</b> рекомендуем придерживаться тактики "Лестница". Фиксируйте прибыль на множителях 1.4x – 1.7x, чтобы минимизировать математическое преимущество системы и играть в плюс на дистанции.</p>
       <p>Наш интерфейс полностью оптимизирован для мобильных телефонов и планшетов. Наслаждайтесь играми в любом месте с мгновенными выплатами.</p>
-      
-      <div class="btn-wrap seo-divider">
-        <a href="https://one-vv6649.com/casino/list?open=register&sub1=tower" target="_blank" rel="noopener" class="btn btn-main" style="width: 100%;">Начать игру в Tower Rush</a>
+      <div class="seo-cta">
+        <a href="https://one-vv6649.com/casino/list?open=register&sub1=tower" target="_blank" rel="noopener" class="btn btn-play">Начать игру в Tower Rush</a>
       </div>
     </section>
 
@@ -513,7 +811,6 @@
     <p>© 2026 TOWER RUSH</p>
   </footer>
 
-  <!-- АНАЛИТИКА ПЕРЕНЕСЕНА ВНИЗ С КЛЮЧАМИ УСКОРЕНИЯ (ASYNC/DEFER) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4BLH9NWKZW"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -537,16 +834,66 @@
     function copyCode() {
       const codeText = document.getElementById("code").innerText;
       const notifElement = document.getElementById("notif");
-      
       navigator.clipboard.writeText(codeText).then(() => {
         notifElement.classList.add("show");
-        setTimeout(() => {
-          notifElement.classList.remove("show");
-        }, 2000);
-      }).catch(err => {
-        console.error('Ошибка копирования: ', err);
-      });
+        setTimeout(() => notifElement.classList.remove("show"), 2000);
+      }).catch(err => console.error('Ошибка копирования: ', err));
     }
+
+    document.querySelector(".promo")?.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); copyCode(); }
+    });
+
+    (function initCarousel() {
+      const root = document.getElementById("uiCarousel");
+      if (!root) return;
+      const track = root.querySelector(".carousel-track");
+      const slides = Array.from(root.querySelectorAll(".carousel-slide"));
+      const dotsWrap = root.querySelector(".carousel-dots");
+      const buttons = root.querySelectorAll(".carousel-btn");
+      let index = 0;
+      let timer;
+
+      slides.forEach((_, i) => {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "carousel-dot" + (i === 0 ? " is-active" : "");
+        dot.setAttribute("aria-label", "Слайд " + (i + 1));
+        dot.addEventListener("click", () => go(i));
+        dotsWrap.appendChild(dot);
+      });
+
+      function render() {
+        track.style.transform = "translateX(-" + (index * 100) + "%)";
+        dotsWrap.querySelectorAll(".carousel-dot").forEach((dot, i) => {
+          dot.classList.toggle("is-active", i === index);
+        });
+      }
+      function go(next) {
+        index = (next + slides.length) % slides.length;
+        render();
+        restart();
+      }
+      function restart() {
+        clearInterval(timer);
+        timer = setInterval(() => go(index + 1), 4500);
+      }
+
+      buttons.forEach((btn) => btn.addEventListener("click", () => go(index + Number(btn.dataset.dir))));
+
+      let startX = 0;
+      const vp = root.querySelector(".carousel-viewport");
+      vp.addEventListener("touchstart", (e) => { startX = e.changedTouches[0].clientX; }, { passive: true });
+      vp.addEventListener("touchend", (e) => {
+        const dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 40) go(index + (dx < 0 ? 1 : -1));
+      }, { passive: true });
+
+      root.addEventListener("mouseenter", () => clearInterval(timer));
+      root.addEventListener("mouseleave", restart);
+      render();
+      restart();
+    })();
   </script>
 </body>
 </html>
